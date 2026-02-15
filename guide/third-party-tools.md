@@ -85,27 +85,25 @@ A Python TUI for visual token burn-rate tracking. Displays charts showing consum
 
 ### RTK (Rust Token Killer)
 
-A CLI proxy that filters command outputs **before** they reach Claude's context.
+A CLI proxy that filters command outputs **before** they reach Claude's context. 446 stars, 38 forks, 700+ upvotes on r/ClaudeAI.
 
 | Attribute | Details |
 |-----------|---------|
-| **Source** | [GitHub: pszymkowiak/rtk](https://github.com/pszymkowiak/rtk) (upstream stable) |
-| **Fork** | [GitHub: FlorianBruniaux/rtk](https://github.com/FlorianBruniaux/rtk) (extended features) |
-| **Install** | `cargo install rtk` or binary download |
+| **Source** | [GitHub: rtk-ai/rtk](https://github.com/rtk-ai/rtk) |
+| **Website** | [rtk-ai.app](https://www.rtk-ai.app/) |
+| **Install** | `brew install rtk-ai/tap/rtk` or `cargo install rtk` |
 | **Language** | Rust (standalone binary) |
-| **Version** | v0.2.0+ (upstream), v0.4.0+ (fork) |
+| **Version** | v0.16.0 |
 
 **Key features**:
 
 - `rtk git log` (92% reduction), `rtk git status` (76% reduction), `rtk git diff` (56% reduction)
-- `rtk vitest run`, `rtk prisma`, `rtk pnpm` (fork only, 70-90% reduction)
-- `rtk gain` - token savings analytics
-- `rtk discover` - find missed optimization opportunities (fork only)
-
-**Two versions:**
-
-- **Upstream** (pszymkowiak): Stable, git/find/cat focus, minimal dependencies
-- **Fork** (FlorianBruniaux): Adds JS/TS stack support (vitest, pnpm, prisma), bug fixes (grep, ls), analytics
+- `rtk vitest run`, `rtk prisma`, `rtk pnpm` (70-90% reduction)
+- `rtk python pytest`, `rtk go test` (multi-language support)
+- `rtk cargo test/build/clippy` (Rust toolchain)
+- `rtk init` - hook-first install, `rtk tree` - project structure, `rtk learn` - interactive learning
+- `rtk gain` - token savings analytics (SQLite tracking)
+- `rtk discover` - find missed optimization opportunities
 
 **When to choose RTK vs ccusage/ccburn**:
 
@@ -113,7 +111,7 @@ A CLI proxy that filters command outputs **before** they reach Claude's context.
 - ccusage/ccburn **monitor** it (postprocessing)
 - Use both together for maximum efficiency
 
-**Limitations**: Early-stage project. Upstream has grep/ls bugs (fixed in fork). Not suitable for interactive commands or very small outputs.
+**Limitations**: Rapid development cadence (30 releases in 23 days). Not suitable for interactive commands or very small outputs.
 
 > **Cross-ref**: Full docs at [ultimate-guide.md Section 9](./ultimate-guide.md#command-output-optimization-with-rtk)
 

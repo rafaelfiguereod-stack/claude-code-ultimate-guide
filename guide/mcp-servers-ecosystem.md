@@ -1,6 +1,6 @@
 # MCP Servers Ecosystem
 
-**Last updated**: January 2026 • **Next review**: February 2026
+**Last updated**: February 2026 • **Next review**: March 2026
 
 This guide covers validated community MCP servers beyond the official Anthropic servers. All servers listed have been evaluated for production readiness, maintenance activity, and security.
 
@@ -13,6 +13,7 @@ This guide covers validated community MCP servers beyond the official Anthropic 
   - [Browser Automation](#browser-automation)
   - [DevOps & Infrastructure](#devops--infrastructure)
   - [Security & Code Analysis](#security--code-analysis)
+  - [Code Search & Analysis](#code-search--analysis)
   - [Documentation & Knowledge](#documentation--knowledge)
   - [Project Management](#project-management)
   - [Orchestration](#orchestration)
@@ -700,6 +701,136 @@ Result: [VULNERABLE] SQL injection detected at line 2.
 
 ---
 
+### Code Search & Analysis
+
+#### Grepai MCP
+
+**Community server** for semantic code search and call graph analysis via local Ollama embeddings. Searches code by intent ("payment flow", "auth logic") instead of exact patterns, and traces function call relationships.
+
+**Repository**: [yoanbernabeu/grepai](https://github.com/yoanbernabeu/grepai)
+**License**: MIT
+**Status**: Active development
+**Privacy**: Fully local (Ollama + nomic-embed-text), no data leaves your machine
+
+**Use Case**: Developer needs to understand unfamiliar codebase → grepai finds relevant code by natural language description and maps function dependencies, without reading entire files.
+
+**Key Features**:
+
+| Capability | Details |
+|------------|---------|
+| `grepai_search` | Semantic search by natural language query (e.g., "error handling middleware") |
+| `grepai_trace_callers` | Find all functions that call a given symbol |
+| `grepai_trace_callees` | Find all functions called by a given symbol |
+| `grepai_trace_graph` | Full call graph (callers + callees) with configurable depth |
+| `grepai_index_status` | Health check: indexed files, chunks, configuration |
+
+**Token Efficiency**:
+
+| Workflow | Tokens | Verdict |
+|----------|--------|---------|
+| Grep + Read files (brute force) | ~15K | Noisy, lots of irrelevant context |
+| grepai search + trace | ~4K | Targeted, relevant results only |
+| grepai alone (no follow-up) | ~2-3K | Fast discovery |
+
+**Setup**:
+
+```bash
+# Install grepai
+curl -sSL https://raw.githubusercontent.com/yoanbernabeu/grepai/main/install.sh | sh
+
+# Install Ollama + embedding model
+brew install ollama
+ollama pull nomic-embed-text
+
+# Initialize in your project
+cd /path/to/project
+grepai init  # Choose: ollama, nomic-embed-text, gob
+
+# Index your codebase
+grepai index
+
+# Optional: watch for file changes (auto-reindex)
+grepai watch
+```
+
+**Claude Code Configuration**:
+
+```bash
+claude mcp add grepai -- grepai mcp
+```
+
+**`.mcp.json` (project-scoped)**:
+
+```json
+{
+  "mcpServers": {
+    "grepai": {
+      "command": "grepai",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+**Example Usage**:
+
+```
+User: "Find the authentication flow in this codebase"
+
+Claude: [Uses grepai_search query="authentication flow" limit=5]
+
+Result: 3 relevant files with line numbers and similarity scores
+  - src/auth/middleware.ts:12-45 (0.89)
+  - src/routes/login.ts:8-32 (0.85)
+  - src/utils/jwt.ts:1-28 (0.78)
+
+User: "What calls the validateToken function?"
+
+Claude: [Uses grepai_trace_callers symbol="validateToken"]
+
+Result: Call graph showing 4 callers across 3 files
+  - authMiddleware → validateToken
+  - refreshHandler → validateToken
+  - wsAuthGuard → validateToken
+  - testHelper → validateToken
+```
+
+**Quality Score**: **7.8/10** ⭐⭐⭐⭐
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Maintenance | 8/10 | Active development, responsive maintainer |
+| Documentation | 7/10 | Good README, MCP integration docs |
+| Tests | 7/10 | CI present, growing coverage |
+| Performance | 8/10 | Fast local embeddings (~2s search), no network latency |
+| Adoption | 9/10 | Growing community, production use in Claude Code setups |
+
+**Limitations & Workarounds**:
+
+| Limitation | Workaround |
+|------------|-----------|
+| Requires Ollama running locally | `brew services start ollama` (auto-start) |
+| Index can become stale | Use `grepai watch` for auto-reindex |
+| Not ideal for exact pattern matching | Use native Grep tool for regex patterns |
+| Embedding model download (~270MB) | One-time `ollama pull nomic-embed-text` |
+
+**Alternatives**:
+
+| Server | Advantage | Disadvantage |
+|--------|-----------|--------------|
+| **Grepai** | Local, private, semantic + call graphs | Requires Ollama setup |
+| Native Grep | Instant, exact patterns | No semantic understanding |
+| GitHub Code Search | Cloud-based, cross-repo | Requires GitHub, no call graphs |
+
+**Cross-reference**: See [ultimate-guide.md — MCP Servers: Grepai](./ultimate-guide.md) for detailed usage patterns, prompt strategies, and integration with other MCP servers.
+
+**Resources**:
+- **GitHub**: https://github.com/yoanbernabeu/grepai
+- **Ollama**: https://ollama.com
+- **Embedding Model**: nomic-embed-text (nomic-ai)
+
+---
+
 ### Documentation & Knowledge
 
 #### Context7 MCP
@@ -1103,6 +1234,7 @@ Servers evaluated but not included in the validated list:
 | **Browser Automation** | 3 (Playwright, Browserbase, Chrome DevTools) | Testing, debugging, data extraction |
 | **DevOps/Infrastructure** | 2 (Vercel, Kubernetes) | Deployment, cluster management |
 | **Security/Code Analysis** | 1 (Semgrep) | Vulnerability scanning, secure coding |
+| **Code Search/Analysis** | 1 (Grepai) | Semantic search, call graph analysis |
 | **Documentation/Knowledge** | 1 (Context7) | API reference, code examples |
 | **Project Management** | 1 (Linear) | Issue tracking, sprint planning |
 | **Orchestration** | 1 (MCP-Compose) | Multi-server management |
@@ -1110,12 +1242,12 @@ Servers evaluated but not included in the validated list:
 ### Maintainer Types
 
 - **Official Servers** (6): Playwright (Microsoft), Browserbase, Semgrep, Context7, Kubernetes (Red Hat), Chrome DevTools (Anthropic)
-- **Community Servers** (3): Linear, Vercel, MCP-Compose (well-designed, actively maintained)
+- **Community Servers** (4): Linear, Vercel, MCP-Compose, Grepai (well-designed, actively maintained)
 
 ---
 
-**Last updated**: January 2026
-**Next review**: February 2026
+**Last updated**: February 2026
+**Next review**: March 2026
 **Maintainer**: Claude Code Ultimate Guide Team
 
 ---

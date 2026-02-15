@@ -6,7 +6,7 @@
 
 **Written with**: Claude (Anthropic)
 
-**Version**: 3.27.0 | **Last Updated**: February 2026
+**Version**: 3.27.1 | **Last Updated**: February 2026
 
 ---
 
@@ -518,7 +518,7 @@ where.exe claude; claude doctor; claude mcp list
 | Tool | Purpose | Install |
 |------|---------|---------|
 | **ccusage** | Cost tracking & reports | `bunx ccusage daily` |
-| **RTK** | Token reduction (60-90%) | `cargo install rtk` |
+| **RTK** | Token reduction (60-90%) | `brew install rtk-ai/tap/rtk` or `cargo install rtk` · [Site](https://www.rtk-ai.app/) |
 | **claude-code-viewer** | Session history UI | `npx @kimuson/claude-code-viewer` |
 | **Entire CLI** | Session checkpoints + governance | [entire.io](https://entire.io) (Feb 2026) |
 
@@ -538,4 +538,4 @@ where.exe claude; claude doctor; claude mcp list
 
 **Author**: Florian BRUNIAUX | [@Méthode Aristote](https://methode-aristote.fr) | Written with Claude
 
-*Last updated: February 2026 | Version 3.27.0*
+*Last updated: February 2026 | Version 3.27.1*

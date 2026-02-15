@@ -10,7 +10,7 @@ This repository is the **comprehensive documentation for Claude Code** (Anthropi
 
 ```
 guide/                    # Core documentation
-├── ultimate-guide.md     # Main guide (~9900 lines, the reference)
+├── ultimate-guide.md     # Main guide (~19K lines, the reference)
 ├── cheatsheet.md         # 1-page printable summary
 ├── architecture.md       # How Claude Code works internally
 ├── methodologies.md      # TDD, SDD, BDD workflows
@@ -34,7 +34,7 @@ tools/                    # Interactive utilities
 └── onboarding-prompt.md  # Personalized learning prompt
 
 docs/                     # Public documentation (tracked)
-└── resource-evaluations/ # External resource evaluations (14 files)
+└── resource-evaluations/ # External resource evaluations (68 files)
 
 claudedocs/               # Claude working documents (gitignored)
 ├── resource-evaluations/ # Research working docs (prompts, private audits)
@@ -45,7 +45,7 @@ claudedocs/               # Claude working documents (gitignored)
 
 | File | Purpose |
 |------|---------|
-| `VERSION` | Single source of truth for version (currently 3.9.9) |
+| `VERSION` | Single source of truth for version (currently 3.27.0) |
 | `guide/ultimate-guide.md` | The main reference (search here first) |
 | `guide/cheatsheet.md` | Quick reference for daily use |
 | `machine-readable/reference.yaml` | LLM-optimized index with line numbers |
@@ -269,7 +269,7 @@ Ce guide fait partie d'un écosystème de 4 repositories interconnectés, sépar
 |--------|---------|
 | **GitHub** | https://github.com/FlorianBruniaux/claude-code-ultimate-guide |
 | **Local** | `/Users/florianbruniaux/Sites/perso/claude-code-ultimate-guide/` |
-| **Contenu** | Guide 11K lignes, 66+ templates, workflows, architecture |
+| **Contenu** | Guide ~19K lignes, 108 templates, workflows, architecture |
 | **Audience** | Développeurs, DevOps, tech leads |
 
 ### 2. Claude Cowork Guide (repo dédié)
@@ -292,7 +292,7 @@ Ce guide fait partie d'un écosystème de 4 repositories interconnectés, sépar
 | Aspect | Détails |
 |--------|---------|
 | **Local** | `/Users/florianbruniaux/Sites/perso/claude-code-ultimate-guide-landing/` |
-| **Contenu** | Page marketing, badges, FAQ, quiz (257 questions) |
+| **Contenu** | Page marketing, badges, FAQ, quiz (264 questions) |
 | **Sync avec** | Guide principal (version, templates, guide lines) |
 
 ### 4. Cowork Landing Site
@@ -421,7 +421,7 @@ External resources (articles, videos, discussions) are evaluated before integrat
 
 | Location | Content | Tracking |
 |----------|---------|----------|
-| `docs/resource-evaluations/` | Final evaluations (14 files) | ✅ Git tracked (public) |
+| `docs/resource-evaluations/` | Final evaluations (68 files) | ✅ Git tracked (public) |
 | `claudedocs/resource-evaluations/` | Working docs, prompts, private audits | ❌ Gitignored (private) |
 
 ### Scoring Grid

@@ -22,6 +22,8 @@
 - [11. AI Coding Agents Matrix](#11-ai-coding-agents-matrix)
 - [11.1 Goose: Open-Source Alternative (Block)](#111-goose-open-source-alternative-block)
 - [11.2 Practitioner Insights](#112-practitioner-insights)
+- [11.3 When to Build vs Use](#113-when-to-build-vs-use)
+- [11.4 Skills Distribution Platforms](#114-skills-distribution-platforms)
 - [12. Context Packing Tools](#12-context-packing-tools)
 - [Appendix: Ready-to-Use Prompts](#appendix-ready-to-use-prompts)
 - [Alternative Providers (Community Workarounds)](#alternative-providers-community-workarounds)
@@ -1987,8 +1989,8 @@ An **interactive comparison matrix** of 23 AI coding agents across 11 technical 
 |-------------------|---------------------|
 | "Which agents exist?" | "How to use Claude Code effectively?" |
 | Feature comparison (11 criteria) | Workflows, architecture, TDD/SDD methodologies |
-| 23 agents × shallow | 1 agent × deep (11K lines) |
-| Technical specs | Practical templates (66+), quiz (257 questions) |
+| 23 agents × shallow | 1 agent × deep (19K lines) |
+| Technical specs | Practical templates (120), quiz (264 questions) |
 
 **Use case**: Use Matrix to **discover and compare** → Choose Claude Code → Use this guide to **master it**.
 
@@ -2310,9 +2312,112 @@ External resources from experienced practitioners that validate and extend the p
 
 **Caveat**: Performance metrics reported (-63% LCP, -33% LOC) are attributable to the Nuxt 3 migration, not Claude Code. The productivity trajectory is the transferable insight. Article is self-published by the team (no third-party validation).
 
+### Outcome Engineering — o16g Manifesto (Cory Ondrejka)
+
+**URL**: [o16g.com](https://o16g.com/)
+
+**Author credentials**:
+- CTO at Onebrief (military command AI platform)
+- Co-creator of Second Life (Linden Lab CTO)
+- Former VP Google Experience (1,500+ engineers, advisor to Sundar Pichai)
+- Former VP Mobile Engineering at Meta
+- Published: February 13, 2026
+
+**Content summary**: Philosophical manifesto proposing 16 principles for shifting from "software engineering" to "outcome engineering" — prioritizing measurable results over code output. Organized in two parts:
+1. **Goals** (1-8): Human intent guides agents, verified reality over metrics, budget-based management replacing backlogs, creation over tedium, map context before dispatch, build aggressively to test hypotheses, analyze failures as learning artifacts
+2. **Building** (9-16): Agent orchestration, constitutional encoding, knowledge graphs, priority systems, documentation, continuous improvement, risk gates, outcome auditing
+
+**Cultural positioning**: The naming "o16g" follows the numeronym pattern (i18n, k8s, a11y) — designed for community adoption. Honeycomb cited it in their 10-year manifesto. Talent500 picked up the term on publication day. Posted on Hacker News. Positions itself as a successor framework to software engineering for the agentic era, comparable in ambition to the Agile Manifesto (2001) for its era.
+
+**Alignment with this guide**:
+
+| o16g Concept | This Guide Reference |
+|--------------|---------------------|
+| Engineer → outcome architect | Mental Model: orchestrator pattern (ultimate-guide.md:2360) |
+| Risk gates blocking delivery | Production Safety rules (production-safety.md) |
+| Agent orchestration principles | Agent Teams (workflows/agent-teams.md) |
+| Map context before dispatch | CLAUDE.md + Plan Mode (Sections 3.1, 2.3) |
+| Verified reality over metrics | Trust Calibration (ultimate-guide.md:1039) |
+
+**Value**: Not a Claude Code-specific resource — no commands, configurations, or actionable patterns. Value is cultural: a credible industry leader articulating the philosophical shift that underpins all patterns in this guide. If "outcome engineering" gains traction as a term (like "vibe coding" did), this manifesto is the primary source.
+
+**Status**: Emerging (day-1 publication). On watch list for community adoption tracking.
+
 ---
 
-## 11.3 Skills Distribution Platforms
+## 11.3 When to Build vs Use
+
+For most developers, Claude Code CLI provides the right balance of power and simplicity. But understanding when to use pre-built agents versus building custom agents helps you choose the right tool for your needs.
+
+### Pre-Built Agents
+
+**Claude Code, Cursor, Windsurf, Goose**: Ready-to-use CLI or GUI tools optimized for coding workflows. Install and start working immediately.
+
+**Use when**:
+- You need a coding assistant now
+- Standard workflows (implementation, debugging, refactoring)
+- Want managed updates and community support
+- Prefer fixed costs (subscriptions) over usage-based pricing
+
+### Agent Builder Frameworks
+
+**Google ADK, LangChain, Vercel AI SDK**: Code-first toolkits for building custom agents from scratch.
+
+**Key features**:
+- **Multi-LLM support**: Use Claude, GPT, Gemini, or local models (often via unified APIs)
+- **MCP-compatible**: Consume the same MCP servers as Claude Code (3,000+ available)
+- **Custom workflows**: Design agent behavior for domain-specific tasks
+- **Embedable**: Integrate agents into your applications
+
+**Use when**:
+- Building a product around AI agents (not just using one)
+- Need multi-LLM fallback strategies (e.g., Claude for code, GPT for other tasks)
+- Require custom execution flows beyond coding assistance
+- Want full control over prompts, memory, and orchestration
+
+| Framework | Focus | Claude Support | Maturity |
+|-----------|-------|----------------|----------|
+| **[Google ADK](https://google.github.io/adk-docs/)** | Multi-language (TypeScript, Python, Go, Java) | ✅ Native | Production (17.6K⭐, Renault/Box) |
+| **[LangChain](https://python.langchain.com/)** | Python/JS ecosystem, largest community | ✅ Via `@anthropic-ai/sdk` | Mature (100K+⭐) |
+| **[Vercel AI SDK](https://sdk.vercel.ai/)** | Edge/streaming, React-first | ✅ Native provider | Active (15K+⭐) |
+
+### Direct API
+
+**Anthropic API, OpenAI API**: Raw LLM access without agent scaffolding.
+
+**Use when**:
+- Building simple chatbots or single-purpose bots
+- Maximum flexibility, minimal dependencies
+- You're handling tool calls, memory, and orchestration yourself
+
+### Decision Tree
+
+```
+Need coding assistant? → Claude Code
+Building agent product? → ADK/LangChain
+Simple chatbot only? → Direct API
+Multi-LLM required? → Framework (ADK/LangChain)
+Custom workflow logic? → Framework
+Standard dev tasks? → Pre-built agent
+```
+
+### MCP: The Common Standard
+
+All frameworks (Claude Code, ADK, LangChain) support the **Model Context Protocol** (MCP). This means:
+- MCP servers you build work across tools
+- 3,000+ MCP servers available ecosystem-wide
+- Tools, prompts, and resources are portable
+
+**Example**: A `mcp-server-github` works with Claude Code, ADK-built agents, and LangChain agents identically.
+
+**Resources**:
+- [MCP Specification](https://modelcontextprotocol.io)
+- [MCP Servers Ecosystem](https://github.com/modelcontextprotocol/servers)
+- [This guide's MCP coverage](../guide/ultimate-guide.md#mcp-servers) (Section 6)
+
+---
+
+## 11.4 Skills Distribution Platforms
 
 For discovering and distributing agent skills beyond local creation:
 

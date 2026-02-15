@@ -6,20 +6,84 @@
 
 <p align="center">
   <a href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers"><img src="https://img.shields.io/github/stars/FlorianBruniaux/claude-code-ultimate-guide?style=for-the-badge" alt="Stars"/></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Feb_12,_2026_·_v3.27.0-brightgreen?style=for-the-badge" alt="Last Update"/></a>
-  <a href="./quiz/"><img src="https://img.shields.io/badge/Quiz-257_questions-orange?style=for-the-badge" alt="Quiz"/></a>
-  <a href="./examples/"><img src="https://img.shields.io/badge/Templates-111-green?style=for-the-badge" alt="Templates"/></a>
-  <a href="./guide/security-hardening.md"><img src="https://img.shields.io/badge/🛡️_Threat_DB-22_CVEs_·_341_malicious_skills-red?style=for-the-badge" alt="Threat Database"/></a>
+  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Feb_15,_2026_·_v3.27.1-brightgreen?style=for-the-badge" alt="Last Update"/></a>
+  <a href="./quiz/"><img src="https://img.shields.io/badge/Quiz-264_questions-orange?style=for-the-badge" alt="Quiz"/></a>
+  <a href="./examples/"><img src="https://img.shields.io/badge/Templates-108-green?style=for-the-badge" alt="Templates"/></a>
+  <a href="./guide/security-hardening.md"><img src="https://img.shields.io/badge/🛡️_Threat_DB-18_CVEs_·_341_malicious_skills-red?style=for-the-badge" alt="Threat Database"/></a>
 </p>
 
 <p align="center">
+  <a href="https://github.com/hesreallyhim/awesome-claude-code"><img src="https://awesome.re/mentioned-badge-flat.svg" alt="Mentioned in Awesome Claude Code"/></a>
   <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg" alt="License: CC BY-SA 4.0"/></a>
   <a href="https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide"><img src="https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff" alt="Ask Zread"/></a>
 </p>
 
-> **Claude Code from beginner to power user.** Exhaustive documentation, production-ready templates, agentic workflow guides, quiz, and a cheatsheet for daily use.
+> **6 months of daily practice** distilled into a guide that teaches you the WHY, not just the what. From core concepts to production security, you learn to design your own agentic workflows instead of copy-pasting configs.
 
 > **If this guide helps you, [give it a star ⭐](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers)** — it helps others discover it too.
+
+---
+
+## 🎯 What You'll Learn
+
+**This guide teaches you to think differently about AI-assisted development:**
+- ✅ **Understand trade-offs** — When to use agents vs skills vs commands (not just how to configure them)
+- ✅ **Build mental models** — How Claude Code works internally (architecture, context flow, tool orchestration)
+- ✅ **Master methodologies** — TDD, SDD, BDD with AI collaboration (not just templates)
+- ✅ **Security mindset** — Threat modeling for AI systems (only guide with 18 CVEs + 341 malicious skills database)
+- ✅ **Test your knowledge** — 264-question quiz to validate understanding (no other resource offers this)
+
+**Outcome**: Go from copy-pasting configs to designing your own agentic workflows with confidence.
+
+---
+
+## 📊 When to Use This Guide vs Everything-CC
+
+Both guides serve different needs. Choose based on your priority.
+
+| Your Goal | This Guide | everything-claude-code |
+|-----------|------------|------------------------|
+| **Understand why** patterns work | Deep explanations + architecture | Config-focused |
+| **Quick setup** for projects | Available but not the priority | Battle-tested production configs |
+| **Learn trade-offs** (agents vs skills) | Decision frameworks + comparisons | Lists patterns, no trade-off analysis |
+| **Security hardening** | Only threat database (18 CVEs) | Basic patterns only |
+| **Test understanding** | 264-question quiz | Not available |
+| **Methodologies** (TDD/SDD/BDD) | Full workflow guides | Not covered |
+| **Copy-paste ready** templates | 108 templates | 200+ templates |
+
+### Ecosystem Positioning
+
+```
+                    EDUCATIONAL DEPTH
+                           ▲
+                           │
+                           │  ★ This Guide
+                           │  Security + Methodologies + 19K lines
+                           │
+                           │  [Everything-You-Need-to-Know]
+                           │  SDLC/BMAD beginner
+  ─────────────────────────┼─────────────────────────► READY-TO-USE
+  [awesome-claude-code]    │            [everything-claude-code]
+  (discovery, curation)    │            (plugin, 1-cmd install)
+                           │
+                           │  [claude-code-studio]
+                           │  Context management
+                           │
+                      SPECIALIZED
+```
+
+**4 unique gaps no competitor covers:**
+1. **Security-First** — 18 CVEs + 341 malicious skills tracked (no competitor has this depth)
+2. **Methodology Workflows** — TDD/SDD/BDD comparison + step-by-step guides
+3. **Comprehensive Reference** — 19K lines across 16 specialized guides (24× more reference material than everything-cc)
+4. **Educational Progression** — 264-question quiz, beginner → expert path
+
+**Recommended workflow:**
+1. Learn concepts here (mental models, trade-offs, security)
+2. Use battle-tested configs there (quick project setup)
+3. Return here for deep dives (when something doesn't work or to design custom workflows)
+
+**Both resources are complementary, not competitive.** Use what fits your current need.
 
 ---
 
@@ -71,11 +135,11 @@ graph LR
     root[📦 Repository<br/>Root]
 
     root --> guide[📖 guide/<br/>19K lines]
-    root --> examples[📋 examples/<br/>111 templates]
-    root --> quiz[🧠 quiz/<br/>257 questions]
+    root --> examples[📋 examples/<br/>108 templates]
+    root --> quiz[🧠 quiz/<br/>264 questions]
     root --> tools[🔧 tools/<br/>utils]
     root --> machine[🤖 machine-readable/<br/>AI index]
-    root --> docs[📚 docs/<br/>56 evaluations]
+    root --> docs[📚 docs/<br/>67 evaluations]
 
     style root fill:#d35400,stroke:#e67e22,stroke-width:3px,color:#fff
     style guide fill:#2980b9,stroke:#3498db,stroke-width:2px,color:#fff
@@ -95,20 +159,20 @@ graph LR
 ├─ 📖 guide/              Core Documentation (~19K lines)
 │  ├─ ultimate-guide.md   Complete reference, 10 sections
 │  ├─ cheatsheet.md       1-page printable
-│  ├─ architecture.md     How Claude Code works internal ly
+│  ├─ architecture.md     How Claude Code works internally
 │  ├─ methodologies.md    TDD, SDD, BDD workflows
 │  ├─ third-party-tools.md  Community tools (RTK, ccusage, Entire CLI)
 │  ├─ mcp-servers-ecosystem.md  Official & community MCP servers
 │  └─ workflows/          Step-by-step guides
 │
-├─ 📋 examples/           111 Production Templates
+├─ 📋 examples/           108 Production Templates
 │  ├─ agents/             6 custom AI personas
-│  ├─ commands/           22 slash commands
-│  ├─ hooks/              18 security hooks (bash + PowerShell)
+│  ├─ commands/           23 slash commands
+│  ├─ hooks/              31 hooks (bash + PowerShell)
 │  ├─ skills/             1 meta-skill (Claudeception)
 │  └─ scripts/            Utility scripts (audit, search)
 │
-├─ 🧠 quiz/               257 Questions
+├─ 🧠 quiz/               264 Questions
 │  ├─ 9 categories        Setup, Agents, MCP, Trust, Advanced...
 │  ├─ 4 profiles          Junior, Senior, Power User, PM
 │  └─ Instant feedback    Doc links + score tracking
@@ -121,7 +185,7 @@ graph LR
 │  ├─ reference.yaml      Structured index (~2K tokens)
 │  └─ llms.txt            Standard LLM context file
 │
-└─ 📚 docs/               55 Resource Evaluations
+└─ 📚 docs/               67 Resource Evaluations
    └─ resource-evaluations/  5-point scoring, source attribution
 ```
 
@@ -131,60 +195,105 @@ graph LR
 
 ## 🎯 What Makes This Guide Unique
 
-### 🎓 Educational Depth
+### 🎓 Deep Understanding Over Configuration
 
-We explain **concepts first**, not just configs:
-- [Architecture](./guide/architecture.md) — How Claude Code works internally
-- [Trade-offs](./guide/ultimate-guide.md#when-to-use-what) — When to use agents vs skills vs commands
-- [Pitfalls](./guide/ultimate-guide.md#common-mistakes) — Common mistakes and solutions
+**Outcome**: Design your own workflows instead of copy-pasting blindly.
 
-### 📝 257-Question Quiz (Unique in Ecosystem)
+**We teach how Claude Code works and why patterns matter**:
+- [Architecture](./guide/architecture.md) — Internal mechanics (context flow, tool orchestration, memory management)
+- [Trade-offs](./guide/ultimate-guide.md#when-to-use-what) — Decision frameworks for agents vs skills vs commands
+- [Pitfalls](./guide/ultimate-guide.md#common-mistakes) — Common failure modes + prevention strategies
 
-**Only comprehensive assessment available** — test your understanding across 9 categories:
-- Setup & Configuration
-- Agents & Sub-Agents
-- MCP Servers & Integration
-- Trust & Verification
-- Advanced Patterns
+**What this means for you**: Troubleshoot issues independently, optimize for your specific use case, know when to deviate from patterns.
 
-[Try the Quiz Online →](https://florianbruniaux.github.io/claude-code-ultimate-guide-landing/quiz/) | [Run Locally](./quiz/)
+---
 
-### 🤖 Agent Teams Coverage (v2.1.32+)
+### 🛡️ Security Threat Intelligence (Only Comprehensive Database)
 
-**Only comprehensive guide to Anthropic's experimental multi-agent coordination**:
-- Production metrics (Fountain 50% faster, CRED 2x speed, autonomous C compiler)
+**Outcome**: Protect production systems from AI-specific attacks.
+
+**Only guide with systematic threat tracking**:
+- **18 CVE-mapped vulnerabilities** — Prompt injection, data exfiltration, code injection
+- **341 malicious skills catalogued** — Unicode injection, hidden instructions, auto-execute patterns
+- **Production hardening workflows** — MCP vetting, injection defense, audit automation
+
+[Threat Database →](./machine-readable/threat-db.yaml) | [Security Guide →](./guide/security-hardening.md)
+
+**What this means for you**: Vet MCP servers before trusting them, detect attack patterns in configs, comply with security audits.
+
+---
+
+### 📝 264-Question Knowledge Validation (Unique in Ecosystem)
+
+**Outcome**: Verify your understanding + identify knowledge gaps.
+
+**Only comprehensive assessment available** — test across 9 categories:
+- Setup & Configuration, Agents & Sub-Agents, MCP Servers, Trust & Verification, Advanced Patterns
+
+**Features**: 4 skill profiles (Junior/Senior/Power User/PM), instant feedback with doc links, weak area identification
+
+[Try Quiz Online →](https://florianbruniaux.github.io/claude-code-ultimate-guide-landing/quiz/) | [Run Locally](./quiz/)
+
+**What this means for you**: Know what you don't know, track learning progress, prepare for team adoption discussions.
+
+---
+
+### 🤖 Agent Teams Coverage (v2.1.32+ Experimental)
+
+**Outcome**: Parallelize work on large codebases (Fountain: 50% faster, CRED: 2x speed).
+
+**Only comprehensive guide to Anthropic's multi-agent coordination**:
+- Production metrics from real companies (autonomous C compiler, 500K hours saved)
 - 5 validated workflows (multi-layer review, parallel debugging, large-scale refactoring)
-- Git-based coordination architecture (team lead + teammates)
 - Decision framework: Teams vs Multi-Instance vs Dual-Instance vs Beads
-- Setup, limitations, best practices, troubleshooting
 
 [Agent Teams Workflow →](./guide/workflows/agent-teams.md) | [Section 9.20 →](./guide/ultimate-guide.md#920-agent-teams-multi-agent-coordination)
 
-### 🔬 Methodologies (Structured Workflows)
+**What this means for you**: Break monolithic tasks into parallelizable work, coordinate multi-file refactors, review your own AI-generated code.
+
+---
+
+### 🔬 Methodologies (Structured Development Workflows)
+
+**Outcome**: Maintain code quality while working with AI.
 
 Complete guides with rationale and examples:
-- [TDD](./guide/methodologies.md#1-tdd-test-driven-development-with-claude) — Test-Driven Development
-- [SDD](./guide/methodologies.md#2-sdd-specification-driven-development) — Specification-Driven Development
-- [BDD](./guide/methodologies.md#3-bdd-behavior-driven-development) — Behavior-Driven Development
-- [GSD](./guide/methodologies.md#gsd-get-shit-done) — Get Shit Done pattern
+- [TDD](./guide/methodologies.md#1-tdd-test-driven-development-with-claude) — Test-Driven Development (Red-Green-Refactor with AI)
+- [SDD](./guide/methodologies.md#2-sdd-specification-driven-development) — Specification-Driven Development (Design before code)
+- [BDD](./guide/methodologies.md#3-bdd-behavior-driven-development) — Behavior-Driven Development (User stories → tests)
+- [GSD](./guide/methodologies.md#gsd-get-shit-done) — Get Shit Done (Pragmatic delivery)
 
-### 📚 106 Annotated Templates
+**What this means for you**: Choose the right workflow for your team culture, integrate AI into existing processes, avoid technical debt from AI over-reliance.
+
+---
+
+### 📚 108 Annotated Templates
+
+**Outcome**: Learn patterns, not just configs.
 
 Educational templates with explanations:
-- Agents (6), Commands (22), Hooks (18), Skills
-- Comments explaining **why** each pattern works
-- Gradual complexity progression
+- Agents (6), Commands (23), Hooks (31), Skills
+- Comments explaining **why** each pattern works (not just what it does)
+- Gradual complexity progression (simple → advanced)
 
 [Browse Catalog →](./examples/)
 
-### 🔍 55 Resource Evaluations
+**What this means for you**: Understand the reasoning behind patterns, adapt templates to your context, create your own custom patterns.
+
+---
+
+### 🔍 67 Resource Evaluations
+
+**Outcome**: Trust our recommendations are evidence-based.
 
 Systematic assessment of external resources (5-point scoring):
 - Articles, videos, tools, frameworks
-- Honest assessments with source attribution
-- Integration recommendations
+- Honest assessments with source attribution (no marketing fluff)
+- Integration recommendations with trade-offs
 
 [See Evaluations →](./docs/resource-evaluations/)
+
+**What this means for you**: Save time vetting resources, understand limitations before adopting tools, make informed decisions.
 
 ---
 
@@ -288,12 +397,55 @@ cco   # Offline mode (Ollama, 100% local)
 
 ## 🔑 Golden Rules
 
-1. **Start small** — First project: 10-15 lines CLAUDE.md max
-2. **Read before edit** — Always Read → Understand → Edit (never blind Write)
-3. **Test-first** — Write test → Watch fail → Implement → Pass
-4. **Use `/compact`** before context hits 70% — prevention beats recovery
-5. **Review everything** — AI code has 1.75× more logic errors ([source](https://dl.acm.org/doi/10.1145/3716848))
-6. **Context = Gold** — Clear CLAUDE.md > clever prompts
+### 1. Verify Trust Before Use
+
+Claude Code can generate 1.75x more logic errors than human-written code ([ACM 2025](https://dl.acm.org/doi/10.1145/3716848)). Every output must be verified. Use `/insights` commands and verify patterns through tests.
+
+**Strategy:** Solo dev (verify logic + edge cases). Team (systematic peer review). Production (mandatory gating tests).
+
+---
+
+### 2. Never Approve MCPs from Unknown Sources
+
+18 CVEs identified in Claude Code ecosystem. 341 malicious skills in supply chain. MCP servers can read/write your codebase.
+
+**Strategy:** Systematic audit (5-min checklist). Community-vetted MCP Safe List. Vetting workflow documented in guide.
+
+---
+
+### 3. Context Pressure Changes Behavior
+
+At 70% context, Claude starts losing precision. At 85%, hallucinations increase. At 90%+, responses become erratic.
+
+**Strategy:** 0-50% (work freely). 50-70% (attention). 70-90% (`/compact`). 90%+ (`/clear` mandatory).
+
+---
+
+### 4. Start Simple, Scale Smart
+
+Start with basic CLAUDE.md + a few commands. Test in production for 2 weeks. Add agents/skills only if need is proven.
+
+**Strategy:** Phase 1 (basic). Phase 2 (commands + hooks if needed). Phase 3 (agents if multi-context). Phase 4 (MCP servers if truly required).
+
+---
+
+### 5. Methodologies Matter More with AI
+
+TDD/SDD/BDD are not optional with Claude Code. AI accelerates bad code as much as good code.
+
+**Strategy:** TDD (critical logic). SDD (architecture upfront). BDD (PM/dev collaboration). GSD (throwaway prototypes).
+
+---
+
+### Quick Reference
+
+| # | Rule | Key Metric | Action |
+|---|------|------------|--------|
+| 1 | Verify Trust | 1.75x more logic errors | Test everything, peer review |
+| 2 | Vet MCPs | 18 CVEs, 341 malicious skills | 5-min audit checklist |
+| 3 | Manage Context | 70% = precision loss | `/compact` at 70%, `/clear` at 90% |
+| 4 | Start Simple | 2-week test period | Phase 1→4 progressive adoption |
+| 5 | Use Methodologies | AI amplifies good AND bad | TDD/SDD/BDD by context |
 
 > Context management is critical. See the [Cheat Sheet](./guide/cheatsheet.md#context-management-critical) for thresholds and actions.
 
@@ -312,19 +464,6 @@ cco   # Offline mode (Ollama, 100% local)
 
 ## 🌍 Ecosystem
 
-### Positioning: Complementary, Not Competitive
-
-**Claude Code has two major community resources:**
-
-| Resource | Focus | Best For |
-|----------|-------|----------|
-| **This Guide** | 🎓 Educational depth, methodologies | Deep understanding, learning WHY |
-| [everything-claude-code](https://github.com/affaan-m/everything-claude-code) | ⚙️ Production configs, plugin install | Quick setup, battle-tested patterns |
-
-**Recommended workflow**: Learn concepts here → Leverage production configs there → Return for deep dives
-
-Both resources serve different needs. Use what fits your learning style and project requirements.
-
 ### Claude Cowork (Non-Developers)
 
 **Claude Cowork** is the companion guide for non-technical users (knowledge workers, assistants, managers).
@@ -339,13 +478,14 @@ Same agentic capabilities as Claude Code, but through a visual interface with no
 
 | Project | Focus | Best For |
 |---------|-------|----------|
-| [claude-code-templates](https://github.com/davila7/claude-code-templates) | Distribution (200+ templates) | CLI installation (17k⭐) |
-| [anthropics/skills](https://github.com/anthropics/skills) | Official Anthropic skills (60K+⭐) | Documents, design, dev templates |
+| [everything-claude-code](https://github.com/affaan-m/everything-claude-code) | Production configs (45k+ stars) | Quick setup, battle-tested patterns |
+| [claude-code-templates](https://github.com/davila7/claude-code-templates) | Distribution (200+ templates) | CLI installation (17k stars) |
+| [anthropics/skills](https://github.com/anthropics/skills) | Official Anthropic skills (60K+ stars) | Documents, design, dev templates |
 | [anthropics/claude-plugins-official](https://skills.sh/anthropics/claude-plugins-official) | Plugin dev tools (3.1K installs) | CLAUDE.md audit, automation discovery |
 | [skills.sh](https://skills.sh/) | Skills marketplace | One-command install (Vercel Labs) |
 | [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Curation | Resource discovery |
 | [awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | Skills taxonomy | 62 skills across 12 categories |
-| [awesome-claude-md](https://github.com/josix/awesome-claude-md) | CLAUDE.md examples (31★) | Annotated configs with scoring |
+| [awesome-claude-md](https://github.com/josix/awesome-claude-md) | CLAUDE.md examples | Annotated configs with scoring |
 | [AI Coding Agents Matrix](https://coding-agents-matrix.dev) | Technical comparison | Comparing 23+ alternatives |
 
 **Community**: 🇫🇷 [Dev With AI](https://www.devw.ai/) — 1500+ devs on Slack, meetups in Paris, Bordeaux, Lyon
@@ -363,19 +503,21 @@ Same agentic capabilities as Claude Code, but through a visual interface with no
 | Tool | Purpose | Maintained By |
 |------|---------|---------------|
 | [claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | GitHub Action for automated security scanning | Anthropic (official) |
-| This Guide's Threat DB | Intelligence layer (22 CVEs, 341 malicious skills) | Community |
+| This Guide's Threat DB | Intelligence layer (18 CVEs, 341 malicious skills) | Community |
 
 **Workflow**: Use GitHub Action for automation → Consult Threat DB for threat intelligence.
 
 ### Threat Database
 
-**22 CVE-mapped vulnerabilities** and **341 malicious skills** tracked in [`machine-readable/threat-db.yaml`](./machine-readable/threat-db.yaml):
+**18 CVE-mapped vulnerabilities** and **341 malicious skills** tracked in [`machine-readable/threat-db.yaml`](./machine-readable/threat-db.yaml):
 
 | Threat Category | Count | Examples |
 |----------------|-------|----------|
-| **Prompt Injection** | 14 CVEs | Indirect injection (CVE-2024-1546), context poisoning |
-| **Data Exfiltration** | 5 CVEs | Training data extraction (CVE-2024-0241), secret leakage |
-| **Code Injection** | 3 CVEs | Tool manipulation, workflow abuse |
+| **Code/Command Injection** | 5 CVEs | CLI bypass (CVE-2025-66032), child_process exec |
+| **Path Traversal & Access** | 4 CVEs | Symlink escape (CVE-2025-53109), prefix bypass |
+| **RCE & Prompt Hijacking** | 4 CVEs | MCP Inspector RCE (CVE-2025-49596), session hijack |
+| **SSRF & DNS Rebinding** | 4 CVEs | WebFetch SSRF (CVE-2026-24052), DNS rebinding |
+| **Data Leakage** | 1 CVE | Cross-client response leak (CVE-2026-25536) |
 | **Malicious Skills** | 341 patterns | Unicode injection, hidden instructions, auto-execute |
 
 **Taxonomies**: 10 attack surfaces × 11 threat types × 8 impact levels
@@ -400,7 +542,7 @@ Same agentic capabilities as Claude Code, but through a visual interface with no
 
 ### Security Hooks
 
-**18 production hooks** (bash + PowerShell) in [`examples/hooks/`](./examples/hooks/):
+**30 production hooks** (bash + PowerShell) in [`examples/hooks/`](./examples/hooks/):
 
 | Hook | Purpose |
 |------|---------|
@@ -427,30 +569,37 @@ Same agentic capabilities as Claude Code, but through a visual interface with no
 
 ## 📖 About
 
-<details>
-<summary><strong>Origins & Philosophy</strong></summary>
+This guide is the result of **6 months of daily practice** with Claude Code. The goal isn't to be exhaustive (the tool evolves too fast), but to share what works in production.
 
-This guide is the result of several months of daily practice with Claude Code. I don't claim expertise—I'm sharing what I've learned to help peers and evangelize AI-assisted development best practices.
+**What you'll find:**
+- Patterns verified in production (not theory)
+- Trade-off explanations (not just "here's how to do it")
+- Security first (18 CVEs tracked)
+- Transparency on limitations (Claude Code isn't magic)
 
-**Philosophy**: Learning journey over reference manual. Understanding **why** before **how**. Progressive complexity — start simple, master advanced at your pace.
+**What you won't find:**
+- Definitive answers (tool is too new)
+- Universal configs (every project is different)
+- Marketing promises (zero bullshit)
 
-**Created with Claude Code**. Community-validated through contributions and feedback.
+Use this guide critically. Experiment. Share what works for you.
 
-**Key Inspirations**:
-- [Claudelog.com](https://claudelog.com/) — Excellent patterns & tutorials
-- [zebbern/claude-code-guide](https://github.com/zebbern/claude-code-guide) — Comprehensive reference with security focus
-- [ykdojo/claude-code-tips](https://github.com/ykdojo/claude-code-tips) — Practical productivity techniques
+**Feedback welcome:** [GitHub Issues](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/issues)
 
-</details>
+### About the Author
 
-<details>
-<summary><strong>Privacy & Data</strong></summary>
+**Florian Bruniaux** — Founding Engineer @ [Méthode Aristote](https://methode-aristote.fr) (EdTech + AI). 12 years in tech (Dev → Lead → EM → VP Eng → CTO). Current focus: Rust CLI tools, MCP servers, AI developer tooling.
 
-Claude Code sends your prompts, file contents, and MCP results to Anthropic servers.
-- **Default**: 5 years retention (training enabled) | **Opt-out**: 30 days | **Enterprise**: 0
-- **Action**: [Disable training](https://claude.ai/settings/data-privacy-controls) | [Full privacy guide](./guide/data-privacy.md)
+| Project | Description | Links |
+|---------|-------------|-------|
+| **RTK** | CLI proxy — 60-90% LLM token reduction | [GitHub](https://github.com/rtk-ai/rtk) · [Site](https://www.rtk-ai.app/) |
+| **ccboard** | Real-time TUI/Web dashboard for Claude Code | [GitHub](https://github.com/FlorianBruniaux/ccboard) · [Demo](https://ccboard.bruniaux.com/) |
+| **Claude Cowork Guide** | 26 business workflows for non-coders | [GitHub](https://github.com/FlorianBruniaux/claude-cowork-guide) · [Site](https://cowork.bruniaux.com/) |
+| **cc-copilot-bridge** | Bridge between Claude Code & GitHub Copilot | [GitHub](https://github.com/FlorianBruniaux/cc-copilot-bridge) · [Site](https://ccbridge.bruniaux.com/) |
+| **Agent Academy** | MCP server for AI agent learning | [GitHub](https://github.com/FlorianBruniaux/agent-academy) |
+| **techmapper** | Tech stack mapping & visualization | [GitHub](https://github.com/FlorianBruniaux/techmapper) |
 
-</details>
+[GitHub](https://github.com/FlorianBruniaux) · [LinkedIn](https://www.linkedin.com/in/florian-bruniaux-43408b83/) · [Portfolio](https://florian.bruniaux.com/)
 
 ---
 
@@ -478,13 +627,13 @@ Claude Code sends your prompts, file contents, and MCP results to Anthropic serv
 | **[Claude Code Releases](./guide/claude-code-releases.md)** | Official release history | 10 min |
 
 <details>
-<summary><strong>Examples Library</strong> (111 templates)</summary>
+<summary><strong>Examples Library</strong> (108 templates)</summary>
 
 **Agents** (6): [code-reviewer](./examples/agents/code-reviewer.md), [test-writer](./examples/agents/test-writer.md), [security-auditor](./examples/agents/security-auditor.md), [refactoring-specialist](./examples/agents/refactoring-specialist.md), [output-evaluator](./examples/agents/output-evaluator.md), [devops-sre](./examples/agents/devops-sre.md) ⭐
 
-**Slash Commands** (22): [/pr](./examples/commands/pr.md), [/commit](./examples/commands/commit.md), [/release-notes](./examples/commands/release-notes.md), [/diagnose](./examples/commands/diagnose.md), [/security](./examples/commands/security.md), [/security-check](./examples/commands/security-check.md) **, [/security-audit](./examples/commands/security-audit.md) **, [/update-threat-db](./examples/commands/update-threat-db.md) **, [/refactor](./examples/commands/refactor.md), [/explain](./examples/commands/explain.md), [/optimize](./examples/commands/optimize.md), [/ship](./examples/commands/ship.md)...
+**Slash Commands** (23): [/pr](./examples/commands/pr.md), [/commit](./examples/commands/commit.md), [/release-notes](./examples/commands/release-notes.md), [/diagnose](./examples/commands/diagnose.md), [/security](./examples/commands/security.md), [/security-check](./examples/commands/security-check.md) **, [/security-audit](./examples/commands/security-audit.md) **, [/update-threat-db](./examples/commands/update-threat-db.md) **, [/refactor](./examples/commands/refactor.md), [/explain](./examples/commands/explain.md), [/optimize](./examples/commands/optimize.md), [/ship](./examples/commands/ship.md)...
 
-**Security Hooks** (18): [dangerous-actions-blocker](./examples/hooks/bash/dangerous-actions-blocker.sh), [prompt-injection-detector](./examples/hooks/bash/prompt-injection-detector.sh), [unicode-injection-scanner](./examples/hooks/bash/unicode-injection-scanner.sh), [output-secrets-scanner](./examples/hooks/bash/output-secrets-scanner.sh)...
+**Security Hooks** (31): [dangerous-actions-blocker](./examples/hooks/bash/dangerous-actions-blocker.sh), [prompt-injection-detector](./examples/hooks/bash/prompt-injection-detector.sh), [unicode-injection-scanner](./examples/hooks/bash/unicode-injection-scanner.sh), [output-secrets-scanner](./examples/hooks/bash/output-secrets-scanner.sh)...
 
 **Skills** (1): [Claudeception](https://github.com/blader/Claudeception) — Meta-skill that auto-generates skills from session discoveries ⭐
 
@@ -501,7 +650,7 @@ Claude Code sends your prompts, file contents, and MCP results to Anthropic serv
 </details>
 
 <details>
-<summary><strong>Knowledge Quiz</strong> (257 questions)</summary>
+<summary><strong>Knowledge Quiz</strong> (264 questions)</summary>
 
 Test your Claude Code knowledge with an interactive CLI quiz covering all guide sections.
 
@@ -516,7 +665,7 @@ cd quiz && npm install && npm start
 </details>
 
 <details>
-<summary><strong>Resource Evaluations</strong> (55 assessments)</summary>
+<summary><strong>Resource Evaluations</strong> (67 assessments)</summary>
 
 Systematic evaluation of external resources (tools, methodologies, articles) before integration into the guide.
 
@@ -578,19 +727,25 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
   - **Evaluation**: [`docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md`](docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md) (score 4/5)
   - **Integration**: Diffused across sections 9.17 (Multi-Instance ROI), 9.20 (Agent Teams adoption), 9.11 (Enterprise Anti-Patterns), Section 9 intro
 
+- **[Outcome Engineering — o16g Manifesto](https://o16g.com/)** (Cory Ondrejka, Feb 2026)
+  - 16 principles for shifting from "software engineering" to "outcome engineering"
+  - Author: CTO Onebrief, co-creator Second Life, ex-VP Google/Meta
+  - Cultural positioning: numeronym naming (o16g like i18n, k8s), Honeycomb endorsement
+  - **Status**: Emerging — on [watch list](./docs/resource-evaluations/watch-list.md) for community adoption tracking
+
 ### Community Resources
-- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) — Production configs (31.9k⭐)
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) — Production configs (45k+⭐)
 - [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) — Curated links
 - [SuperClaude Framework](https://github.com/SuperClaude-Org/SuperClaude_Framework) — Behavioral modes
 
 ### Tools
 - [Ask Zread](https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide) — Ask questions about this guide
-- [Interactive Quiz](./quiz/) — 257 questions
+- [Interactive Quiz](./quiz/) — 264 questions
 - [Landing Site](https://florianbruniaux.github.io/claude-code-ultimate-guide-landing/) — Visual navigation
 
 ---
 
-*Version 3.27.0 | Updated daily · Feb 12, 2026 | Crafted with Claude*
+*Version 3.27.1 | Updated daily · Feb 15, 2026 | Crafted with Claude*
 
 <!-- SEO Keywords -->
 <!-- claude code, claude code tutorial, anthropic cli, ai coding assistant, claude code mcp,

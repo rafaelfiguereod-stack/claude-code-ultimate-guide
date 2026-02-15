@@ -15,7 +15,25 @@ Hooks are scripts that execute automatically on Claude Code events. They enable 
 | [claudemd-scanner.sh](./bash/claudemd-scanner.sh) | SessionStart | Detect CLAUDE.md injection attacks | Bash |
 | [output-secrets-scanner.sh](./bash/output-secrets-scanner.sh) | PostToolUse | Detect secrets + env leakage in tool outputs | Bash |
 | [auto-format.sh](./bash/auto-format.sh) | PostToolUse | Auto-format after edits | Bash |
+| [rtk-baseline.sh](./bash/rtk-baseline.sh) | SessionStart | Save RTK baseline for session savings tracking | Bash |
+| [session-summary.sh](./bash/session-summary.sh) | SessionEnd | Full session analytics (15 configurable sections) | Bash |
+| [session-summary-config.sh](./bash/session-summary-config.sh) | CLI tool | Configure session-summary sections, order, preview | Bash |
 | [learning-capture.sh](./bash/learning-capture.sh) | Stop | Prompt for daily learning capture | Bash |
+| [sandbox-validation.sh](./bash/sandbox-validation.sh) | PreToolUse | Validate sandbox isolation | Bash |
+| [file-guard.sh](./bash/file-guard.sh) | PreToolUse | Protect sensitive files from modification | Bash |
+| [permission-request.sh](./bash/permission-request.sh) | PreToolUse | Explicit permission flow for risky ops | Bash |
+| [rtk-auto-wrapper.sh](./bash/rtk-auto-wrapper.sh) | PreToolUse | Auto-wrap commands with RTK for token savings | Bash |
+| [setup-init.sh](./bash/setup-init.sh) | SessionStart | Initialize session environment | Bash |
+| [auto-checkpoint.sh](./bash/auto-checkpoint.sh) | PostToolUse | Auto-checkpoint work at intervals | Bash |
+| [typecheck-on-save.sh](./bash/typecheck-on-save.sh) | PostToolUse | Run TypeScript checks on save | Bash |
+| [test-on-change.sh](./bash/test-on-change.sh) | PostToolUse | Run tests on file changes | Bash |
+| [output-validator.sh](./bash/output-validator.sh) | PostToolUse | Heuristic output validation | Bash |
+| [session-logger.sh](./bash/session-logger.sh) | PostToolUse | Log operations for monitoring | Bash |
+| [privacy-warning.sh](./bash/privacy-warning.sh) | PostToolUse | Warn on potential privacy leaks | Bash |
+| [tts-selective.sh](./bash/tts-selective.sh) | PostToolUse | Text-to-speech for selected outputs | Bash |
+| [subagent-stop.sh](./bash/subagent-stop.sh) | Stop | Clean up sub-agent resources | Bash |
+| [pre-commit-secrets.sh](./bash/pre-commit-secrets.sh) | Git hook | Block secrets from entering commits | Bash |
+| [pre-commit-evaluator.sh](./bash/pre-commit-evaluator.sh) | Git hook | LLM-as-a-Judge pre-commit validation | Bash |
 | [notification.sh](./bash/notification.sh) | Notification | Contextual macOS sound alerts | Bash (macOS) |
 | [security-check.ps1](./powershell/security-check.ps1) | PreToolUse | Block secrets in commands | PowerShell |
 | [auto-format.ps1](./powershell/auto-format.ps1) | PostToolUse | Auto-format after edits | PowerShell |
@@ -244,6 +262,141 @@ Complements `security-check.sh` by scanning tool **outputs** (not inputs) for le
 ```
 
 ## Productivity Hooks
+
+### rtk-baseline.sh
+
+**Event**: `SessionStart`
+
+Captures RTK cumulative stats at session start for delta tracking. Paired with `session-summary.sh` which computes per-session RTK savings at session end.
+
+**Configuration**:
+```json
+{
+  "hooks": {
+    "SessionStart": [{
+      "hooks": [{
+        "type": "command",
+        "command": "~/.claude/hooks/rtk-baseline.sh",
+        "timeout": 5000
+      }]
+    }]
+  }
+}
+```
+
+### session-summary.sh (v3)
+
+**Event**: `SessionEnd`
+
+Full session analytics with 15 configurable sections, CLI config tool, and JSONL logging.
+
+**Sections** (all configurable via env vars or config file):
+
+| Section | Default | Description |
+|---------|---------|-------------|
+| `meta` | always | Session ID, name, branch |
+| `duration` | always | Wall time, active time, turns, exit reason |
+| `tools` | always | Tool calls breakdown (OK/ERR) |
+| `errors` | on | Error details grouped by tool |
+| `files` | on | Files read/edited/created with top edited |
+| `features` | on | MCP servers, agents, skills, teams, plan mode |
+| `git` | on | Git diff summary (+/- lines, files changed) |
+| `loc` | on | Lines of code written via Edit/Write |
+| `models` | always | Model usage (requests, tokens) |
+| `cache` | always | Cache hit rate |
+| `cost` | always | Estimated cost (ccusage or pricing table) |
+| `rtk` | on | RTK token savings (delta from session start) |
+| `ratio` | on | Conversation ratio (interactive/auto turns) |
+| `thinking` | off | Thinking blocks count |
+| `context` | off | Context window estimate (peak %) |
+
+**Log File**: `~/.claude/logs/session-summaries.jsonl` (structured JSONL with all metrics)
+
+**Configuration Priority**: `env vars (SESSION_SUMMARY_*)` > `config file (~/.config/session-summary/config.sh)` > `defaults`
+
+**Environment Variables**:
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `NO_COLOR` | - | Disable ANSI colors |
+| `SESSION_SUMMARY_SKIP` | `0` | Set to `1` to disable summary |
+| `SESSION_SUMMARY_LOG` | `~/.claude/logs` | Override log directory |
+| `SESSION_SUMMARY_FILES` | `1` | Files section toggle |
+| `SESSION_SUMMARY_RTK` | `auto` | `auto` / `1` / `0` |
+| `SESSION_SUMMARY_GIT` | `1` | Git diff toggle |
+| `SESSION_SUMMARY_ERRORS` | `1` | Error details toggle |
+| `SESSION_SUMMARY_LOC` | `1` | Lines of code toggle |
+| `SESSION_SUMMARY_RATIO` | `1` | Conversation ratio toggle |
+| `SESSION_SUMMARY_FEATURES` | `1` | Features used toggle |
+| `SESSION_SUMMARY_THINKING` | `0` | Thinking blocks toggle |
+| `SESSION_SUMMARY_CONTEXT` | `0` | Context estimate toggle |
+| `SESSION_SUMMARY_SECTIONS` | (all) | Comma-separated section order |
+
+**CLI Config Tool** (`session-summary-config.sh`):
+```bash
+session-summary-config show              # Current config with section status
+session-summary-config set git=0         # Disable a section
+session-summary-config set thinking=1    # Enable a section
+session-summary-config reset             # Reset to defaults
+session-summary-config sections          # Show section order
+session-summary-config sections "meta,duration,tools,cost"  # Minimal output
+session-summary-config preview           # Demo output with current config
+session-summary-config install           # Install hooks in settings.json
+session-summary-config log 5             # Last 5 session summaries
+```
+
+**Requirements**:
+- `jq` (required for JSON parsing)
+- `ccusage` (optional, for accurate cost calculation)
+- `rtk` (optional, for token savings tracking)
+
+**Example Output** (all sections enabled):
+```
+═══ Session Summary ═══════════════════
+ID:       abc-123-def-456...
+Name:     Fix session summary hook
+Branch:   main
+Duration: Wall 5m 28s | Active 1m 33s | 12 turns | Exit: user
+
+Tool Calls: 29 (OK 27 / ERR 2)
+  Edit: 13  Bash: 8  Read: 6  Grep: 1  Glob: 1
+
+Errors: 2
+  Bash: "command not found: rtk" (x1)
+  Edit: "old_string not unique" (x1)
+
+Files: 3 read · 2 edited · 1 created
+  session-summary.sh (8 edits), settings.json (3 edits)
+
+Features: MCP (perplexity x4, chrome x12) · Agents (Explore x3, Plan x1) · Skills (commit)
+
+Git: +142 -37 lines · 4 files changed
+Code: +87 -12 net (via Edit/Write)
+
+Model Usage         Reqs    Input    Output
+claude-opus-4-6       59      93K      628
+Cache: 85% hit rate (3.9M read / 322K created)
+Est. Cost: $0.045
+
+RTK Savings: 24 cmds · ~12.4K tokens saved (73%)
+Turns: 12 (8 interactive · 4 auto) · Avg 6.7s/turn
+═══════════════════════════════════════
+```
+
+**Configuration**:
+```json
+{
+  "hooks": {
+    "SessionEnd": [{
+      "hooks": [{
+        "type": "command",
+        "command": "~/.claude/hooks/session-summary.sh"
+      }]
+    }]
+  }
+}
+```
+
+**Quick Install**: `~/.claude/hooks/session-summary-config.sh install` (copies hooks + updates settings.json)
 
 ### auto-format.sh / auto-format.ps1
 

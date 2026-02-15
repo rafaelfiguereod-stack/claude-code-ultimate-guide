@@ -1,26 +1,29 @@
 # Claude Code Examples
 
-Ready-to-use templates for Claude Code configuration.
+Annotated templates that teach you **why** patterns work, not just how to configure them. Each template includes comments explaining trade-offs, alternatives, and when to deviate.
 
 > **[Browse Interactive Catalog](./index.html)** — View, copy, and download all templates with syntax highlighting
 
 ## Structure
 
-| Folder | Description |
-|--------|-------------|
-| [`agents/`](./agents/) | Custom AI personas for specialized tasks |
-| [`skills/`](./skills/) | Reusable knowledge modules |
-| [`commands/`](./commands/) | Custom slash commands |
-| [`hooks/`](./hooks/) | Event-driven automation scripts |
-| [`config/`](./config/) | Configuration file templates |
-| [`memory/`](./memory/) | CLAUDE.md memory file templates |
-| [`claude-md/`](./claude-md/) | Specialized CLAUDE.md configurations |
-| [`scripts/`](./scripts/) | Utility scripts for setup and diagnostics |
-| [`github-actions/`](./github-actions/) | CI/CD workflows for GitHub Actions |
-| [`workflows/`](./workflows/) | Advanced development workflow guides |
-| [`modes/`](./modes/) | Behavioral modes for Claude (SuperClaude) |
-| [`semantic-anchors/`](./semantic-anchors/) | Precise vocabulary for better LLM outputs |
-| [`multi-provider/`](./multi-provider/) | **NEW** Multi-provider bridge (Copilot/Ollama) |
+| Folder | Description | Count |
+|--------|-------------|-------|
+| [`agents/`](./agents/) | Custom AI personas for specialized tasks | 6 |
+| [`commands/`](./commands/) | Slash commands (workflow automation) | 23 |
+| [`hooks/`](./hooks/) | Event-driven security & automation scripts | 31 |
+| [`skills/`](./skills/) | Reusable knowledge modules (patterns, TDD, AST) | 8 |
+| [`claude-md/`](./claude-md/) | CLAUDE.md configuration profiles | 5 |
+| [`config/`](./config/) | Settings, MCP, git templates | 5 |
+| [`memory/`](./memory/) | CLAUDE.md memory file templates | 2 |
+| [`scripts/`](./scripts/) | Diagnostic & utility scripts | 13 |
+| [`github-actions/`](./github-actions/) | CI/CD workflows | 3 |
+| [`workflows/`](./workflows/) | Advanced development workflows | 3 |
+| [`plugins/`](./plugins/) | Community plugins (SE-CoVe, claude-mem) | 2 |
+| [`integrations/`](./integrations/) | External tool integrations (Agent Vibes TTS) | 4 |
+| [`mcp-configs/`](./mcp-configs/) | MCP server configurations | 1 |
+| [`modes/`](./modes/) | Behavioral modes (SuperClaude) | 1 |
+| [`semantic-anchors/`](./semantic-anchors/) | Precise vocabulary for better LLM outputs | 1 |
+| [`multi-provider/`](./multi-provider/) | Multi-provider bridge → [dedicated repo](https://github.com/FlorianBruniaux/cc-copilot-bridge) | — |
 
 ## Quick Start
 
@@ -44,7 +47,8 @@ Ready-to-use templates for Claude Code configuration.
 
 ## Templates Index
 
-### Agents
+### Agents (6)
+
 | File | Purpose | Model |
 |------|---------|-------|
 | [code-reviewer.md](./agents/code-reviewer.md) | Thorough code review | Sonnet |
@@ -54,15 +58,21 @@ Ready-to-use templates for Claude Code configuration.
 | [output-evaluator.md](./agents/output-evaluator.md) | LLM-as-a-Judge quality gate | Haiku |
 | [devops-sre.md](./agents/devops-sre.md) | Infrastructure troubleshooting with FIRE framework | Sonnet |
 
-### Skills
+### Skills (8)
+
 | File | Purpose |
 |------|---------|
-| [design-patterns/](./skills/design-patterns/) | Detect and analyze GoF design patterns with stack-aware suggestions ⭐ |
+| [design-patterns/](./skills/design-patterns/) | Detect and analyze GoF design patterns with stack-aware suggestions |
 | [tdd-workflow.md](./skills/tdd-workflow.md) | Test-Driven Development process |
 | [security-checklist.md](./skills/security-checklist.md) | OWASP Top 10 security checks |
 | [pdf-generator.md](./skills/pdf-generator.md) | Professional PDF generation (Quarto/Typst) |
+| [voice-refine/](./skills/voice-refine/) | Writing voice refinement with before/after examples |
+| [ast-grep-patterns.md](./skills/ast-grep-patterns.md) | AST-based code search patterns |
+| [rtk-optimizer/](./skills/rtk-optimizer/) | RTK token optimization analysis |
+| [audit-agents-skills/](./skills/audit-agents-skills/) | Quality audit for agents, skills, and commands |
 
-### Commands
+### Commands (23)
+
 | File | Trigger | Purpose |
 |------|---------|---------|
 | [commit.md](./commands/commit.md) | `/commit` | Conventional commit messages |
@@ -74,58 +84,115 @@ Ready-to-use templates for Claude Code configuration.
 | [git-worktree.md](./commands/git-worktree.md) | `/git-worktree` | Isolated git worktree setup |
 | [diagnose.md](./commands/diagnose.md) | `/diagnose` | Interactive troubleshooting assistant (FR/EN) |
 | [validate-changes.md](./commands/validate-changes.md) | `/validate-changes` | LLM-as-a-Judge pre-commit validation |
-| [learn/quiz.md](./commands/learn/quiz.md) | `/learn:quiz` | Self-testing for learning concepts |
-| [learn/teach.md](./commands/learn/teach.md) | `/learn:teach` | Step-by-step concept explanations |
-| [learn/alternatives.md](./commands/learn/alternatives.md) | `/learn:alternatives` | Compare different approaches |
 | [catchup.md](./commands/catchup.md) | `/catchup` | Restore context after /clear |
 | [security.md](./commands/security.md) | `/security` | Quick OWASP security audit |
+| [security-check.md](./commands/security-check.md) | `/security-check` | Config scan vs known threats (~30s) |
+| [security-audit.md](./commands/security-audit.md) | `/security-audit` | Full 6-phase audit with score /100 |
+| [update-threat-db.md](./commands/update-threat-db.md) | `/update-threat-db` | Research & update threat intelligence |
+| [audit-agents-skills.md](./commands/audit-agents-skills.md) | `/audit-agents-skills` | Quality audit for .claude/ config |
+| [sandbox-status.md](./commands/sandbox-status.md) | `/sandbox-status` | Sandbox isolation status check |
 | [refactor.md](./commands/refactor.md) | `/refactor` | SOLID-based code improvements |
 | [explain.md](./commands/explain.md) | `/explain` | Code explanations (3 depth levels) |
 | [optimize.md](./commands/optimize.md) | `/optimize` | Performance analysis and roadmap |
 | [ship.md](./commands/ship.md) | `/ship` | Pre-deploy checklist |
+| [learn/quiz.md](./commands/learn/quiz.md) | `/learn:quiz` | Self-testing for learning concepts |
+| [learn/teach.md](./commands/learn/teach.md) | `/learn:teach` | Step-by-step concept explanations |
+| [learn/alternatives.md](./commands/learn/alternatives.md) | `/learn:alternatives` | Compare different approaches |
 
-### Hooks
+### Hooks (31)
+
+Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 monitoring hooks.
+
+**Security Hooks** (12 bash):
+
 | File | Event | Purpose |
 |------|-------|---------|
-| [dangerous-actions-blocker.sh](./hooks/bash/dangerous-actions-blocker.sh) | PreToolUse | Block dangerous commands/edits |
-| [security-check.*](./hooks/) | PreToolUse | Block secrets in commands |
-| [prompt-injection-detector.sh](./hooks/bash/prompt-injection-detector.sh) | PreToolUse | Detect injection attempts (+ANSI, null bytes) |
-| [unicode-injection-scanner.sh](./hooks/bash/unicode-injection-scanner.sh) | PreToolUse | Detect zero-width, RTL, ANSI escape |
-| [repo-integrity-scanner.sh](./hooks/bash/repo-integrity-scanner.sh) | PreToolUse | Scan README/package.json for injection |
+| [dangerous-actions-blocker.sh](./hooks/bash/dangerous-actions-blocker.sh) | PreToolUse | Block `rm -rf`, force-push, production ops |
+| [prompt-injection-detector.sh](./hooks/bash/prompt-injection-detector.sh) | PreToolUse | Detect injection patterns in prompts |
+| [unicode-injection-scanner.sh](./hooks/bash/unicode-injection-scanner.sh) | PreToolUse | Detect zero-width, RTL override, ANSI escape |
+| [repo-integrity-scanner.sh](./hooks/bash/repo-integrity-scanner.sh) | PreToolUse | Scan README/package.json for hidden injection |
+| [security-check.sh](./hooks/bash/security-check.sh) | PreToolUse | Block secrets in commands |
+| [sandbox-validation.sh](./hooks/bash/sandbox-validation.sh) | PreToolUse | Validate sandbox isolation |
+| [file-guard.sh](./hooks/bash/file-guard.sh) | PreToolUse | Protect sensitive files from modification |
+| [permission-request.sh](./hooks/bash/permission-request.sh) | PreToolUse | Explicit permission flow for risky ops |
 | [mcp-config-integrity.sh](./hooks/bash/mcp-config-integrity.sh) | SessionStart | Verify MCP config hash (CVE protection) |
-| [output-secrets-scanner.sh](./hooks/bash/output-secrets-scanner.sh) | PostToolUse | Detect secrets + env leakage |
-| [auto-format.*](./hooks/) | PostToolUse | Auto-format after edits |
-| [notification.sh](./hooks/bash/notification.sh) | Notification | Contextual macOS sound alerts |
+| [claudemd-scanner.sh](./hooks/bash/claudemd-scanner.sh) | SessionStart | Detect CLAUDE.md injection attacks |
+| [output-secrets-scanner.sh](./hooks/bash/output-secrets-scanner.sh) | PostToolUse | Prevent API keys/tokens in Claude responses |
+| [pre-commit-secrets.sh](./hooks/bash/pre-commit-secrets.sh) | Git hook | Block secrets from entering commits |
+
+**Productivity Hooks** (8):
+
+| File | Event | Purpose |
+|------|-------|---------|
+| [auto-format.sh](./hooks/bash/auto-format.sh) | PostToolUse | Auto-format after edits (Prettier, Black, go fmt) |
+| [auto-checkpoint.sh](./hooks/bash/auto-checkpoint.sh) | PostToolUse | Auto-checkpoint work at intervals |
+| [typecheck-on-save.sh](./hooks/bash/typecheck-on-save.sh) | PostToolUse | Run TypeScript checks on save |
+| [test-on-change.sh](./hooks/bash/test-on-change.sh) | PostToolUse | Run tests on file changes |
+| [rtk-auto-wrapper.sh](./hooks/bash/rtk-auto-wrapper.sh) | PreToolUse | Auto-wrap commands with RTK for token savings |
+| [rtk-baseline.sh](./hooks/bash/rtk-baseline.sh) | SessionStart | Save RTK baseline for session savings tracking |
+| [setup-init.sh](./hooks/bash/setup-init.sh) | SessionStart | Initialize session environment |
+| [subagent-stop.sh](./hooks/bash/subagent-stop.sh) | Stop | Clean up sub-agent resources |
+
+**Monitoring Hooks** (5):
+
+| File | Event | Purpose |
+|------|-------|---------|
 | [output-validator.sh](./hooks/bash/output-validator.sh) | PostToolUse | Heuristic output validation |
 | [session-logger.sh](./hooks/bash/session-logger.sh) | PostToolUse | Log operations for monitoring |
-| [pre-commit-evaluator.sh](./hooks/bash/pre-commit-evaluator.sh) | Git hook | LLM-as-a-Judge pre-commit |
+| [session-summary.sh](./hooks/bash/session-summary.sh) | SessionEnd | Display session stats (duration, tools, cost, RTK savings) |
+| [session-summary-config.sh](./hooks/bash/session-summary-config.sh) | CLI tool | Configure session-summary sections and display |
 | [learning-capture.sh](./hooks/bash/learning-capture.sh) | Stop | Prompt for daily learning capture |
+| [privacy-warning.sh](./hooks/bash/privacy-warning.sh) | PostToolUse | Warn on potential privacy leaks |
 
-> **See [hooks/README.md](./hooks/README.md) for complete documentation and security hardening patterns**
+**Notification & TTS** (3):
 
-### Config
+| File | Event | Purpose |
+|------|-------|---------|
+| [notification.sh](./hooks/bash/notification.sh) | Notification | Contextual macOS sound alerts |
+| [tts-selective.sh](./hooks/bash/tts-selective.sh) | PostToolUse | Text-to-speech for selected outputs |
+| [pre-commit-evaluator.sh](./hooks/bash/pre-commit-evaluator.sh) | Git hook | LLM-as-a-Judge pre-commit |
+
+**PowerShell** (2):
+
+| File | Event | Purpose |
+|------|-------|---------|
+| [security-check.ps1](./hooks/powershell/security-check.ps1) | PreToolUse | Block secrets in commands |
+| [auto-format.ps1](./hooks/powershell/auto-format.ps1) | PostToolUse | Auto-format after edits |
+
+> **See [hooks/README.md](./hooks/README.md) for full documentation, configuration examples, and security hardening patterns**
+
+### Config (5)
+
 | File | Purpose |
 |------|---------|
 | [settings.json](./config/settings.json) | Hooks configuration |
 | [mcp.json](./config/mcp.json) | MCP servers setup |
 | [.gitignore-claude](./config/.gitignore-claude) | Git ignore patterns |
+| [CONTRIBUTING-ai-disclosure.md](./config/CONTRIBUTING-ai-disclosure.md) | AI disclosure template for CONTRIBUTING.md |
+| [PULL_REQUEST_TEMPLATE-ai.md](./config/PULL_REQUEST_TEMPLATE-ai.md) | PR template with AI attribution |
 
-### Memory
+### Memory (2)
+
 | File | Purpose |
 |------|---------|
 | [CLAUDE.md.project-template](./memory/CLAUDE.md.project-template) | Team project memory |
 | [CLAUDE.md.personal-template](./memory/CLAUDE.md.personal-template) | Personal global memory |
 
-### CLAUDE.md Configurations
+### CLAUDE.md Configurations (5)
+
 | File | Purpose |
 |------|---------|
 | [learning-mode.md](./claude-md/learning-mode.md) | Learning-focused development configuration |
 | [devops-sre.md](./claude-md/devops-sre.md) | DevOps/SRE project configuration |
+| [product-designer.md](./claude-md/product-designer.md) | Product designer workflow configuration |
+| [tts-enabled.md](./claude-md/tts-enabled.md) | Text-to-speech enabled configuration |
+| [rtk-optimized.md](./claude-md/rtk-optimized.md) | RTK token-optimized configuration |
 
 > **See [guide/learning-with-ai.md](../guide/learning-with-ai.md) for learning mode documentation**
 > **See [guide/devops-sre.md](../guide/devops-sre.md) for DevOps/SRE guide**
 
-### Scripts
+### Scripts (13)
+
 | File | Purpose | Output |
 |------|---------|--------|
 | [audit-scan.sh](./scripts/audit-scan.sh) | Fast setup audit scanner | JSON / Human |
@@ -135,12 +202,17 @@ Ready-to-use templates for Claude Code configuration.
 | [clean-reinstall-claude.ps1](./scripts/clean-reinstall-claude.ps1) | Clean reinstall procedure (Windows) | Human |
 | [session-stats.sh](./scripts/session-stats.sh) | Analyze session logs & costs | JSON / Human |
 | [session-search.sh](./scripts/session-search.sh) | Fast session search & resume | Human |
+| [fresh-context-loop.sh](./scripts/fresh-context-loop.sh) | Auto-restart sessions at context limits | Human |
+| [bridge.py](./scripts/bridge.py) | Plan bridging between sessions | JSON |
+| [migrate-arguments-syntax.sh](./scripts/migrate-arguments-syntax.sh) | Migrate v1 → v2 argument syntax (bash) | Human |
+| [migrate-arguments-syntax.ps1](./scripts/migrate-arguments-syntax.ps1) | Migrate v1 → v2 argument syntax (PowerShell) | Human |
+| [rtk-benchmark.sh](./scripts/rtk-benchmark.sh) | Benchmark RTK token savings | Human |
+| [sync-claude-config.sh](./scripts/sync-claude-config.sh) | Sync Claude config across machines | Human |
 
-> **Usage**: `./audit-scan.sh` for human output, `./audit-scan.sh --json` for JSON output
->
-> **Session search**: `./session-search.sh "keyword"` to find past conversations, outputs ready-to-use `claude --resume` commands
+> **See [scripts/README.md](./scripts/README.md) for detailed usage**
 
-### GitHub Actions
+### GitHub Actions (3)
+
 | File | Trigger | Purpose |
 |------|---------|---------|
 | [claude-pr-auto-review.yml](./github-actions/claude-pr-auto-review.yml) | PR open/update | Auto code review with inline comments |
@@ -149,19 +221,45 @@ Ready-to-use templates for Claude Code configuration.
 
 > **See [github-actions/README.md](./github-actions/README.md) for setup instructions and customization**
 
-### Workflows
+### Workflows (3)
+
 | File | Purpose |
 |------|---------|
 | [database-branch-setup.md](./workflows/database-branch-setup.md) | Isolated feature dev with database branches (Neon/PlanetScale) |
+| [memory-stack-integration.md](./workflows/memory-stack-integration.md) | Multi-day workflow with memory tools (claude-mem + Serena + grepai) |
+| [remotion-quickstart.md](./workflows/remotion-quickstart.md) | Video generation workflow with Remotion |
 
-### Modes
+### Plugins (2)
+
+| File | Purpose |
+|------|---------|
+| [se-cove.md](./plugins/se-cove.md) | Chain-of-Verification for independent code review (Meta AI, ACL 2024) |
+| [claude-mem.md](./plugins/claude-mem.md) | Persistent memory management plugin |
+
+### Integrations (1)
+
+| Tool | Purpose |
+|------|---------|
+| [Agent Vibes TTS](./integrations/agent-vibes/) | Text-to-speech narration for Claude Code responses |
+
+> **See [agent-vibes/README.md](./integrations/agent-vibes/README.md) for installation and voice catalog**
+
+### MCP Configs (1)
+
+| File | Purpose |
+|------|---------|
+| [figma.json](./mcp-configs/figma.json) | Figma MCP server configuration |
+
+### Modes (1)
+
 | File | Purpose | Activation |
 |------|---------|------------|
 | [MODE_Learning.md](./modes/MODE_Learning.md) | Just-in-time explanations | `--learn` flag |
 
 > **See [modes/README.md](./modes/README.md) for installation and SuperClaude framework reference**
 
-### Semantic Anchors
+### Semantic Anchors (1)
+
 | File | Purpose |
 |------|---------|
 | [anchor-catalog.md](./semantic-anchors/anchor-catalog.md) | Comprehensive catalog of precise technical terms for prompting |
@@ -172,11 +270,9 @@ Ready-to-use templates for Claude Code configuration.
 
 | Tool | Purpose |
 |------|---------|
-| [cc-copilot-bridge](./multi-provider/) | Bridge GitHub Copilot to Claude Code CLI for free access to 25+ AI models |
+| [cc-copilot-bridge](./multi-provider/) | Bridge GitHub Copilot to Claude Code CLI for flat-rate access |
 
-> 🔗 **Moved to dedicated repository**: [github.com/FlorianBruniaux/cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge)
->
-> Turn your $10/month GitHub Copilot Pro+ subscription into unlimited Claude Code access with 25+ models (GPT-4.1, Claude Opus/Sonnet/Haiku, Gemini). Includes Ollama local mode for offline/private development.
+> Moved to dedicated repository: [github.com/FlorianBruniaux/cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge)
 
 ---
 

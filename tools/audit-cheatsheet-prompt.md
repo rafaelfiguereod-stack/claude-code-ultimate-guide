@@ -405,7 +405,7 @@ The Claude Code cheatsheet serves as the benchmark. Here's what makes it the gol
 
 ### Quality Characteristics
 
-- **Density**: 527 lines condenses 11,000+ lines (20:1 ratio)
+- **Density**: 527 lines condenses 19,000+ lines (36:1 ratio)
 - **Scannability**: Every section uses tables, code blocks, or numbered lists
 - **Actionability**: Every entry answers "what do I type?" not "what is this?"
 - **Cross-format**: MD (source) + PDF (print) + HTML (landing, with dark theme + print CSS)

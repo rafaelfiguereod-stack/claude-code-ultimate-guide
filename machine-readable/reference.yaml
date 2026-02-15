@@ -3,7 +3,7 @@
 # Source: guide/ultimate-guide.md
 # Purpose: Condensed index for LLMs to quickly answer user questions about Claude Code
 
-version: "3.27.0"
+version: "3.27.1"
 updated: "2026-02-09"
 
 # ════════════════════════════════════════════════════════════════
@@ -48,19 +48,18 @@ deep_dive:
   bridge_schema: "examples/scripts/bridge-plan-schema.json"
   bridge_guide: "guide/ultimate-guide.md:14079"
   # Cost optimization - RTK (Rust Token Killer)
-  rtk_upstream: "https://github.com/pszymkowiak/rtk"
-  rtk_fork_extended: "https://github.com/FlorianBruniaux/rtk"
+  rtk_upstream: "https://github.com/rtk-ai/rtk"
+  rtk_website: "https://www.rtk-ai.app/"
   rtk_evaluation: "docs/resource-evaluations/rtk-evaluation.md"
-  rtk_guide: "guide/ultimate-guide.md:11084"
+  rtk_guide: "guide/ultimate-guide.md:13355"
   rtk_third_party: "guide/third-party-tools.md:86"
   rtk_claude_md: "examples/claude-md/rtk-optimized.md"
   rtk_skill: "examples/skills/rtk-optimizer/SKILL.md"
   rtk_hook: "examples/hooks/bash/rtk-auto-wrapper.sh"
-  rtk_pr_proposals: "claudedocs/rtk-pr-proposals.md"
-  rtk_purpose: "Command output filtering before LLM context (72.6% avg reduction)"
-  rtk_version_tested: "v0.2.0"
-  rtk_score: "4/5"
-  rtk_installation: "Binary download (GitHub releases)"
+  rtk_purpose: "Command output filtering before LLM context (60-90% avg reduction)"
+  rtk_version_tested: "v0.16.0"
+  rtk_score: "5/5"
+  rtk_installation: "cargo install rtk or brew install rtk-ai/tap/rtk"
   # PDF Generation
   pdf_generation: "guide/workflows/pdf-generation.md"
   pdf_generator_skill: "examples/skills/pdf-generator.md"
@@ -173,7 +172,7 @@ deep_dive:
   third_party_toad: "https://github.com/batrachianai/toad"
   third_party_conductor: "https://docs.conductor.build"
   # Configuration Management & Backup (Added 2026-02-02)
-  config_management_guide: "guide/ultimate-guide.md:4085"  # Section 3.27.0
+  config_management_guide: "guide/ultimate-guide.md:4085"  # Section 3.27.1
   config_hierarchy: "guide/ultimate-guide.md:4095"  # Global → Project → Local precedence
   config_git_strategy_project: "guide/ultimate-guide.md:4110"  # What to commit in .claude/
   config_git_strategy_global: "guide/ultimate-guide.md:4133"  # Version control ~/.claude/
@@ -424,7 +423,7 @@ deep_dive:
   gsd_note: "Overlap with existing patterns (Ralph Loop, Gas Town, BMAD)"
   # Resource Evaluations (added 2026-01-26, updated 2026-02-07)
   resource_evaluations_directory: "docs/resource-evaluations/"
-  resource_evaluations_count: 55
+  resource_evaluations_count: 67
   resource_evaluations_methodology: "docs/resource-evaluations/README.md"
   resource_evaluations_watchlist: "docs/resource-evaluations/watch-list.md"
   resource_evaluations_appendix: "guide/ultimate-guide.md:15034"
@@ -450,6 +449,11 @@ deep_dive:
   practitioner_insights: "guide/ai-ecosystem.md:1209"
   practitioner_dave_van_veen: "guide/ai-ecosystem.md:1213"
   practitioner_matteo_collina: "guide/ai-ecosystem.md:1243"
+  # Outcome Engineering (o16g) - Emerging manifesto (2026-02-13)
+  outcome_engineering_o16g: "guide/ai-ecosystem.md:2314"
+  outcome_engineering_url: "https://o16g.com/"
+  outcome_engineering_author: "Cory Ondrejka (CTO Onebrief, co-creator Second Life, ex-VP Google/Meta)"
+  outcome_engineering_status: "Emerging - on watch list for community adoption"
   practitioner_collina_source: "https://adventures.nodeland.dev/archive/the-human-in-the-loop/"
   practitioner_steinberger: "guide/ai-ecosystem.md:1997"
   practitioner_steinberger_source: "https://steipete.me/posts/2025/shipping-at-inference-speed"
@@ -687,6 +691,7 @@ deep_dive:
   ai_ecosystem_context_packing: "guide/ai-ecosystem.md:1208"
   ai_ecosystem_multi_ide_sync: "guide/ai-ecosystem.md:1256"
   agents_md_support_status: "guide/ai-ecosystem.md:1322"
+  ai_ecosystem_build_vs_use: "guide/ai-ecosystem.md:2346"  # Section 11.3 - When to Build vs Use (ADK, LangChain, Vercel AI SDK)
   # Architecture Diagrams as Context (advanced pattern) - Added 2026-01-25
   architecture_diagrams_input: "guide/ai-ecosystem.md:1379"
   architecture_diagrams_mcp_tools:
@@ -733,10 +738,10 @@ deep_dive:
   myths_tasks_api_autonomous: 15301
   myths_100x_faster: 15340
   myths_reliable_sources: 15388
-  # Quiz System (257 questions, 15 categories)
+  # Quiz System (264 questions, 15 categories)
   quiz_overview: "quiz/README.md"
   quiz_file: "quiz/questions.json"
-  quiz_count: 257
+  quiz_count: 264
   quiz_categories: 15
   quiz_beginner: "quiz/categories/basics,commands,shortcuts,reference"
   quiz_beginner_count: 60
@@ -1084,7 +1089,7 @@ rules:
 ecosystem:
   this_guide:
     focus: "Education - Learn & master"
-    unique: ["architecture docs", "TDD/SDD methodologies", "257-question quiz", "YAML index"]
+    unique: ["architecture docs", "TDD/SDD methodologies", "264-question quiz", "YAML index"]
   complementary:
     claude_code_templates:
       url: "github.com/davila7/claude-code-templates"
@@ -1109,8 +1114,8 @@ ecosystem:
       url: "github.com/affaan-m/everything-claude-code"
       author: "Affaan Mustafa (Anthropic hackathon winner - Zenith project)"
       focus: "Production configs - Battle-tested from 10+ months intensive use"
-      stars: "31.9k"
-      verified: "2026-01-27"
+      stars: "45k+"
+      verified: "2026-02-15"
       created: "2026-01-18"
       unique: ["hookify (conversational hooks)", "pass@k metrics", "Plugin ecosystem", "Sandboxed subagents", "Strategic compaction skills"]
       evaluation: "docs/resource-evaluations/015-everything-claude-code-github-repo.md"
@@ -1166,7 +1171,7 @@ ecosystem:
       local: "/Users/florianbruniaux/Sites/perso/claude-code-ultimate-guide-landing/"
       purpose: "Marketing site for Claude Code guide"
       audience: "Developers discovering the guide"
-      features: ["badges (version, templates, lines)", "quiz (257 questions)", "FAQ", "cross-links to Cowork"]
+      features: ["badges (version, templates, lines)", "quiz (264 questions)", "FAQ", "cross-links to Cowork"]
       sync_with: "Guide Code (version, templates count, guide lines)"
     cowork_landing:
       local: "/Users/florianbruniaux/Sites/perso/claude-cowork-guide-landing/"
@@ -1180,7 +1185,7 @@ ecosystem:
       - "Cross-links modified → Update all 4 repos"
     history:
       - date: "2026-01-20"
-        event: "Code Landing sync v3.27.0, 66 templates, cross-links"
+        event: "Code Landing sync v3.27.1, 66 templates, cross-links"
         commit: "5b5ce62"
       - date: "2026-01-20"
         event: "Cowork Landing fix (paths, README, UI badges)"
@@ -1192,7 +1197,7 @@ ecosystem:
 onboarding_matrix_meta:
   version: "2.0.0"
   last_updated: "2026-02-05"
-  aligned_with_guide: "3.27.0"
+  aligned_with_guide: "3.27.1"
   changelog:
     - version: "2.0.0"
       date: "2026-02-05"
@@ -1220,7 +1225,7 @@ onboarding_matrix:
       core: [rules, sandbox_native_guide, commands]
       time_budget: "5 min"
       topics_max: 3
-      note: "SECURITY FIRST - sandbox before commands (v3.27.0 critical fix)"
+      note: "SECURITY FIRST - sandbox before commands (v3.27.1 critical fix)"
 
     beginner_15min:
       core: [rules, sandbox_native_guide, workflow, essential_commands]
@@ -1305,7 +1310,7 @@ onboarding_matrix:
         - default: agent_validation_checklist
       time_budget: "60 min"
       topics_max: 6
-      note: "Dual-instance pattern for quality workflows (v3.27.0)"
+      note: "Dual-instance pattern for quality workflows (v3.27.1)"
 
   learn_security:
     intermediate_30min:
@@ -1316,7 +1321,7 @@ onboarding_matrix:
         - default: permission_modes
       time_budget: "30 min"
       topics_max: 4
-      note: "NEW goal (v3.27.0) - Security-focused learning path"
+      note: "NEW goal (v3.27.1) - Security-focused learning path"
 
     power_60min:
       core: [sandbox_native_guide, mcp_secrets_management, security_hardening]
@@ -1341,7 +1346,7 @@ onboarding_matrix:
       core: [rules, sandbox_native_guide, workflow, essential_commands, context_management, plan_mode]
       time_budget: "60 min"
       topics_max: 6
-      note: "Security foundation + core workflow (v3.27.0 sandbox added)"
+      note: "Security foundation + core workflow (v3.27.1 sandbox added)"
 
     intermediate_120min:
       core: [plan_mode, agents, skills, config_hierarchy, git_mcp_guide, hooks, mcp_servers]

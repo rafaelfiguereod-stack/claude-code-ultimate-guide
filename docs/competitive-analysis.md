@@ -14,7 +14,7 @@
 | **awesome-claude-code** (23.5K★) | Curated list of community resources | Directory/catalog (127 .md files) | Curation, not creation | Community-driven, descriptive | Comprehensive ecosystem map, discovery | Original content, workflows, methodologies |
 | **Claude-Code-Everything-You-Need-to-Know** (867★) | All-in-one guide with BMAD method | Tutorial-based (Obsidian format) | Beginner-friendly | Educational, step-by-step | SDLC workflows, prompt engineering deep-dive | Security, privacy, depth on advanced topics |
 | **claude-code-studio** (206★) | Enterprise-grade agent orchestration | 40+ agents, MCP integrations | Context management focus | Solution-oriented, quantified | Agent delegation for unlimited conversations | General documentation, beginner onboarding |
-| **Claude Code Ultimate Guide** (ours) | Comprehensive documentation with security focus | Reference + educational guides + templates | Deep reference (11K lines) | Direct, factual, educational | Security hardening, methodology workflows, comprehensive reference | Plugin ecosystem (vs manual configs) |
+| **Claude Code Ultimate Guide** (ours) | Comprehensive documentation with security focus | Reference + educational guides + templates | Deep reference (19K lines) | Direct, factual, educational | Security hardening, methodology workflows, comprehensive reference | Plugin ecosystem (vs manual configs) |
 
 ---
 
@@ -171,7 +171,7 @@
 
 | Dimension | everything-claude-code | Claude Code Ultimate Guide (ours) |
 |-----------|------------------------|-----------------------------------|
-| **Total guide lines** | 784 lines (2 guides) | 11,000+ lines (1 comprehensive guide) |
+| **Total guide lines** | 784 lines (2 guides) | 19,000+ lines (1 comprehensive guide) |
 | **Structure** | Setup (Shorthand) → Advanced (Longform) | All-in-one reference + specialized guides |
 | **Security depth** | Brief security-reviewer agent | Dedicated 500+ line security hardening guide |
 | **Privacy coverage** | Not covered | Dedicated data privacy guide |
@@ -437,7 +437,7 @@
                            ▲
                            │
                            │  [Our Guide]
-                           │  (11K lines, security, methodologies)
+                           │  (19K lines, security, methodologies)
                            │
                            │  [Everything-You-Need-to-Know]
                            │  (SDLC, BMAD, beginner-friendly)
@@ -506,22 +506,22 @@
 | **Privacy coverage** | Dedicated guide | None have this | **Unique** |
 | **Methodology workflows** | TDD/SDD/BDD detailed | Brief mentions only | **10x depth** |
 | **Architecture explanations** | How CC works internally | None have this | **Unique** |
-| **Comprehensive reference** | 11K lines | 784 lines (everything-claude-code) | **14x larger** |
-| **Templates** | 66+ production-ready | 13+34+31 (everything-claude-code) | Comparable |
+| **Comprehensive reference** | 19K lines | 784 lines (everything-claude-code) | **24x larger** |
+| **Templates** | 120 production-ready | 13+34+31 (everything-claude-code) | **1.5x more** |
 | **Cheatsheet** | 1-page printable | None provided | **Unique** |
 
 ### Messaging Recommendations
 
 **For README**:
 - Lead with security + methodology differentiation
-- Emphasize comprehensive learning (11K lines)
+- Emphasize comprehensive learning (19K lines)
 - Position as complement to everything-claude-code (they give configs, we teach understanding)
 - Highlight unique features: security hardening, TDD/SDD/BDD, architecture
 
 **For Reddit**:
-- Narrative: "I built the most comprehensive Claude Code guide (11K lines) with security-first approach"
+- Narrative: "I built the most comprehensive Claude Code guide (19K lines) with security-first approach"
 - Hook: Security hardening + methodology workflows (unaddressed needs)
-- Evidence: 66+ templates, threat intelligence DB, systematic audits
+- Evidence: 120 templates, threat intelligence DB, systematic audits
 - Positioning: For security-conscious teams and methodology-driven developers
 
 **Differentiation narrative**:
@@ -538,7 +538,7 @@
 **Strengths to emphasize**:
 1. Security-first (no competitor has this depth)
 2. Methodology workflows (TDD/SDD/BDD detailed guides)
-3. Comprehensive reference (11K lines, largest)
+3. Comprehensive reference (19K lines, largest)
 4. Educational progression (beginner to advanced)
 5. Factual accuracy (no inflated claims, verified metrics)
 

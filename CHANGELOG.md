@@ -8,9 +8,68 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 <!-- New entries go here -->
 
+## [3.27.1] - 2026-02-15
+
+### Added
+
+- **Grepai MCP documentation** (`guide/mcp-servers-ecosystem.md`)
+  - New "Code Search & Analysis" section (~130 lines): semantic search, call graph tracing, setup guide
+  - Privacy: fully local (Ollama + nomic-embed-text), zero data exfiltration
+  - Token efficiency comparison: grepai 2-3K tokens vs Grep+Read 15K for same results
+  - Cross-referenced from `reference.yaml`
+
+- **2 new resource evaluations** (both scored 2/5 — not integrated)
+  - `system-prompts-opus-4-6-update.md`: Re-evaluation of x1xhlol system prompts repo (Opus 4.6 update), still redundant
+  - `2026-02-14-simone-ruggiero-qmd-token-savings-medium.md`: qmd token savings tool (Medium article), claims unverifiable, redundant with grepai
+
+- **2 new hook templates** (`examples/hooks/bash/`)
+  - `rtk-baseline.sh`: SessionStart hook — saves RTK gain baseline for delta tracking
+  - `session-summary.sh`: SessionEnd hook — auto-displays session summary (inspired by Gemini CLI)
+
+- **Watch list entry**: o16g (Outcome Engineering) — emerging framework by Cory Ondrejka (ex-VP Google/Meta)
+
+### Changed
+
+- **RTK documentation overhaul** (v0.7.0 → v0.16.0, 446 stars, rtk-ai org)
+  - Updated 15+ files across guide + landing: org migration (rtk-ai/rtk), removed fork distinction
+  - Added: Python, Go, Homebrew, hook-first install, `rtk init`, `rtk tree`, `rtk learn`
+  - Removed outdated ls/grep warnings (bugs resolved in v0.16.0)
+  - Evaluation score: 4.5/5 → 5/5 (446 stars, [700+ Reddit upvotes](https://www.reddit.com/r/ClaudeAI/comments/1r2tt7q/))
+  - Landing site updated: Homebrew install, new command grid (cargo/python/go), removed name collision warning
+  - `~/.claude/CLAUDE.md`: replaced fork install with cargo/Homebrew
+
+- **Exports deprecated** — Moved `kimi.pdf` and `notebooklm.pdf` to `exports/deprecated/` (generated from ~9K line v1.x era, guide now ~19K lines)
+
+### Fixed
+
+- **Fact-check corrections across 22 files** (866 insertions, 308 deletions)
+  - CVEs: 22→18 (7 files: README, CHANGELOG, SECURITY, competitive-analysis, etc.)
+  - Resource evaluations: 56→67 (README), 55→67 (reference.yaml), 14→68 (CLAUDE.md)
+  - Templates: 111→120 (badges), breakdown 22 commands→23, 18 hooks→30
+  - Quiz questions: 257→264 (README, CLAUDE.md, reference.yaml, ai-ecosystem)
+  - Guide lines: 11K→19K (competitive-analysis, CLAUDE.md, ai-ecosystem, audit-cheatsheet-prompt)
+  - CLAUDE.md: version 3.9.9→3.27.0, evaluations 14→68, quiz 257→264
+  - MCP ecosystem: updated date Jan→Feb 2026, added Code Search TOC entry
+
+- **README positioning fact-check** (4 files, 21 edits)
+  - Template count: 120/123 → **108** (ground truth recount: hooks 30→31, workflows 2→3, multi-provider removed)
+  - Ratio: 14× → **24×** (19,000 ÷ 784 = 24.2×, added "16 specialized guides" context)
+  - everything-claude-code stars: 31.9k → **45k+** (verified 2026-02-15)
+  - Commands count in README: 20→23 (aligned with examples/README.md)
+  - Added missing entries to `examples/README.md`: `session-summary-config.sh` (hook), `memory-stack-integration.md` (workflow)
+
 ## [3.27.0] - 2026-02-12
 
 ### Added
+
+- **Watch List** (`docs/resource-evaluations/watch-list.md`)
+  - Public tracker for resources monitored but not yet integrated (tools, MCP servers, articles, libraries)
+  - Event-driven re-evaluation (trigger-based, not time-based) to avoid stale dates
+  - 3 sections: Active Watch, Graduated, Dropped
+  - Initial entries: ICM (MCP, pre-v1), System Prompts (x1xhlol, redundant with official sources)
+  - Cross-referenced from `mcp-servers-ecosystem.md` (Monitor workflow) and `resource-evaluations/README.md`
+  - Added to `reference.yaml` as `resource_evaluations_watchlist`
+  - Replaces private `claudedocs/` watch list (deleted)
 
 - **Entire CLI Integration** (launched Feb 2026 by Thomas Dohmke, ex-GitHub CEO, $60M funding)
   - Comprehensive coverage across 7 guide files: ai-traceability, third-party-tools, observability, ai-ecosystem, ultimate-guide, security-hardening, cheatsheet
@@ -33,7 +92,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Security Threat Intelligence Database** (`examples/commands/resources/threat-db.yaml` v2.0.0)
   - Comprehensive threat DB compiled from Perplexity Deep Research across 15 sources
   - **63 malicious skills** catalogued (ClawHavoc 341 skills, Snyk ToxicSkills, PyPI supply chain)
-  - **22 CVEs** tracked with component, severity, fixed_in version, and mitigation
+  - **18 CVEs** tracked with component, severity, fixed_in version, and mitigation
   - **4 campaigns** documented: ClawHavoc (AMOS), ToxicSkills, PyPI MCP reverse shell, Postmark npm squatter
   - **IOCs**: 6 C2 IPs, exfiltration endpoints, malicious GitHub repos, malware hashes
   - **17 malicious skill patterns** for wildcard matching (prefix-based scanning)

@@ -66,6 +66,8 @@ Les documents de travail bruts (prompts Perplexity, audits clients) restent dans
 | **Wasp Fullstack Essentials** (Vinny @ Wasp) | 3/5 | **3/5** | ✅ Intégrer concepts framework-agnostiques | [wasp-fullstack-essentials-eval.md](./wasp-fullstack-essentials-eval.md) |
 | **Master Claude Code Infographic** (Rakesh Gohel / Aakash Gupta) | 2/5 | **2/5** | ❌ Ne pas intégrer (surface-level, erreur Cursor) | [rakesh-gohel-aakash-gupta-master-claude-code.md](./rakesh-gohel-aakash-gupta-master-claude-code.md) |
 | **Snyk ToxicSkills** (Supply Chain Audit) | 4/5 | **4/5** | ✅ Intégré (security-hardening.md §1.1, §1.2, §1.5) | [snyk-toxicskills-evaluation.md](./snyk-toxicskills-evaluation.md) |
+| **System Prompts Opus 4.6** (Official Update) | 2/5 | **2/5** | ⚠️ Watch only (2nd eval, same URL, already covered) | [system-prompts-opus-4-6-update.md](./system-prompts-opus-4-6-update.md) |
+| **qmd Token Savings** (Simone Ruggiero, Medium) | 2/5 | **2/5** | ❌ Ne pas intégrer (redundant avec grepai, claims non vérifiables) | [2026-02-14-simone-ruggiero-qmd-token-savings-medium.md](./2026-02-14-simone-ruggiero-qmd-token-savings-medium.md) |
 
 ## Watch List
 
@@ -73,4 +75,4 @@ Ressources surveillées mais pas encore intégrées : [watch-list.md](./watch-li
 
 ---
 
-**Dernier update**: 2026-02-12 (58 évaluations)
+**Dernier update**: 2026-02-14 (60 évaluations)

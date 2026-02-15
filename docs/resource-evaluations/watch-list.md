@@ -17,7 +17,8 @@ Trigger reached → re-evaluation → Integrate (Graduated) / Drop (Dropped)
 | Resource | Type | Added | Why Watching | Re-eval Trigger |
 |----------|------|-------|--------------|-----------------|
 | [ICM](https://github.com/rtk-ai/icm) | MCP | 2026-02-12 | Pre-v1 (1 star, 11 commits) | First release + >20 stars |
-| [System Prompts](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) | Tool | 2026-01-26 | Redundant with official sources | Anthropic confirms CLI prompts not published |
+| [System Prompts](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) | Tool | 2026-01-26 | Redundant with official sources. Re-evaluated 2026-02-13 (Opus 4.6 update): still 2/5. | Anthropic confirms CLI prompts not published |
+| [o16g — Outcome Engineering](https://o16g.com/) | Manifesto | 2026-02-13 | Emerging framework by Cory Ondrejka (CTO Onebrief, co-creator Second Life, ex-VP Google/Meta). 16 principles for shifting from "code writing" to "outcome engineering". Honeycomb endorsement. No Claude Code-specific content yet. Memetic potential (naming follows i18n/k8s pattern). | Term adopted in >3 independent AI engineering resources OR author publishes tool-specific implementation |
 
 ## Graduated
 
