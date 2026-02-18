@@ -1753,39 +1753,42 @@ Claude Code uses **Claude Sonnet 4.6** by default (as of Feb 2026):
 
 #### 200K vs 1M Context: Performance, Cost & Use Cases
 
-The 1M context window (beta, API only) is a significant capability jump — but it's not always the right choice.
+The 1M context window (beta, API + usage tier 4 required) is a significant capability jump — but it's not always the right choice.
 
-**Retrieval accuracy at scale (MRCR v2 8-needle benchmark)**
+**Retrieval accuracy at scale (MRCR v2 8-needle 1M variant)**
 
-| Model | 256K accuracy | 1M accuracy | Source |
-|-------|--------------|-------------|--------|
-| Opus 4.6 | 93% | 76% | Anthropic blog (Feb 2026) |
-| Sonnet 4.5 | — | 18.5% | Anthropic blog |
-| Sonnet 4.6 | Not yet published | Not yet published | — |
+| Model | 1M accuracy | Source |
+|-------|-------------|--------|
+| Opus 4.6 | 76% | Anthropic blog (Feb 2026) |
+| Sonnet 4.5 | 18.5% | Anthropic blog (Feb 2026) |
+| Sonnet 4.6 | Not yet published | — |
 
-Note: Opus 4.6 retains strong accuracy at 1M (76%), while Sonnet 4.5 degrades sharply. Sonnet 4.6 MRCR scores have not yet been published by Anthropic.
+Note: Opus 4.6 retains strong accuracy at 1M (76%), Sonnet 4.5 degrades sharply. The benchmark is specifically the "8-needle 1M variant" measuring retrieval in a 1M-token document. Sonnet 4.6 MRCR scores have not yet been published by Anthropic.
 
 **Cost per session (approximate)**
 
+Important: above 200K input tokens, **all** tokens in the request are charged at premium rates (not just the excess). Applies to both Sonnet 4.6 and Opus 4.6.
+
 | Session type | ~Tokens in | ~Tokens out | Sonnet 4.6 | Opus 4.6 |
 |---|---|---|---|---|
-| Bug fix / PR review | 50K | 5K | ~$0.23 | ~$0.38 |
-| Module refactoring | 150K | 20K | ~$0.75 | ~$1.25 |
-| Full service analysis (1M beta) | 500K | 50K | ~$2.25 | ~$8.75 |
+| Bug fix / PR review (≤200K) | 50K | 5K | ~$0.23 | ~$0.38 |
+| Module refactoring (≤200K) | 150K | 20K | ~$0.75 | ~$1.25 |
+| Full service analysis (>200K, 1M beta) | 500K | 50K | ~$4.13 | ~$6.88 |
 
 **When to use which**
 
 | Scenario | Recommendation |
 |----------|---------------|
 | Bug fix, PR review, daily coding | Sonnet 4.6 @ 200K — fast and cheap |
-| Cross-module refactoring, large codebase | Sonnet 4.6 @ 1M beta — volume without premium |
-| Architecture analysis, Agent Teams, complex reasoning | Opus 4.6 @ 1M beta — accuracy matters |
+| Cross-module refactoring, large codebase | Sonnet 4.6 @ 1M — but premium pricing kicks in above 200K |
+| Architecture analysis, Agent Teams, complex reasoning | Opus 4.6 @ 1M — stronger retrieval accuracy |
 
 **Key facts**
 - Opus 4.6 max output: **128K tokens**; Sonnet 4.6 max output: **64K tokens**
 - 1M context ≈ 30,000 lines of code / 750,000 words
-- 1M context is **beta** (API only, requires `anthropic-beta: interleaved-thinking-2025-05-14` header)
-- Opus 4.6 pricing doubles above 200K; no premium tier announced yet for Sonnet 4.6
+- 1M context is **beta** — requires `anthropic-beta: context-1m-2025-08-07` header, usage tier 4 or custom rate limits
+- Above 200K input tokens: Sonnet 4.6 doubles to $6/$22.50/MTok; Opus 4.6 doubles to $10/$37.50/MTok
+- If input stays ≤200K, standard pricing applies even with the beta flag enabled
 
 #### What Costs the Most?
 
