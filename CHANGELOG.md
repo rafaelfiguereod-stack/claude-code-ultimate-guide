@@ -6,7 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.27.8] - 2026-02-19
+
 ### Added
+
+- **New GitHub Actions workflow**: `examples/github-actions/claude-code-review.yml` — prompt-based code review pattern
+  - Uses `anthropics/claude-code-action@v1` with OAuth token support (API key as fallback)
+  - Triggers on PR open/sync/ready + `/claude-review` on-demand comment
+  - Scoped `allowed_tools`: read-only (Read, Glob, Grep + GitHub PR inspection/review tools)
+  - Externalized prompt via `prompt_file:` — iterate on criteria without touching workflow YAML
+- **New prompt template**: `examples/github-actions/prompts/code-review.md`
+  - Anti-hallucination protocol: verify before reporting, no invented line numbers
+  - Structured severity tiers: 🔴 MUST FIX / 🟡 SHOULD FIX / 🟢 CAN SKIP
+  - 4-step workflow: gather context → analyze → verify → structured review output
+  - Stack-agnostic with explicit "Stack Context" customization hook
 
 - **Resource evaluation**: SKILLMIND/Boris Cherny workflow practices (score 2/5)
   - LinkedIn post by @stasbel (64K followers) sharing SKILL.md file attributed to Boris Cherny (Claude Code creator)
@@ -31,6 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- `examples/github-actions/README.md`: added entry for prompt-based workflow (⭐ Recommended), updated directory tree
 - `guide/ultimate-guide.md`: Added `tasks/lessons.md` variant to Fresh Context Pattern (Ralph Loop) section
   - Lightweight alternative for interactive sessions: Claude updates lessons.md with behavioral rules after each user correction
   - Reviewed at session start for compounding improvement effect

@@ -19,7 +19,44 @@ Ready-to-use GitHub Actions workflows that integrate Claude Code into your CI/CD
 
 ## Available Workflows
 
-### 1. Auto PR Review (`claude-pr-auto-review.yml`)
+### 1. Code Review — Prompt-Based (`claude-code-review.yml`) ⭐ Recommended
+
+**Robust pattern** with externalized prompt, anti-hallucination protocol, and `/claude-review` on-demand trigger.
+
+The review logic lives in `.github/prompts/code-review.md`, so you can iterate on criteria without touching the workflow YAML. The prompt enforces a verification step before every finding — Claude must confirm an issue with `Read`/`Grep` before reporting it.
+
+**Features:**
+- Triggers on PR open/sync/ready **and** `/claude-review` comment
+- Externalized prompt: edit `code-review.md` to tune criteria for your stack
+- Anti-hallucination protocol: no invented line numbers or unverified claims
+- Structured output: `🔴 MUST FIX` / `🟡 SHOULD FIX` / `🟢 CAN SKIP` table + inline comments
+- Read-only `allowed_tools` (no write access to repo)
+- OAuth token support (no API key needed if Claude GitHub App is installed)
+
+**Setup:**
+```bash
+# Copy both files into your repo
+cp examples/github-actions/claude-code-review.yml .github/workflows/
+mkdir -p .github/prompts
+cp examples/github-actions/prompts/code-review.md .github/prompts/
+
+# Add secret: CLAUDE_CODE_OAUTH_TOKEN (or ANTHROPIC_API_KEY)
+# Install Claude GitHub App: https://github.com/apps/claude
+```
+
+**Customization:**
+Edit `.github/prompts/code-review.md` to add your stack conventions:
+```markdown
+## Stack Context
+- TypeScript strict mode, no `any`
+- React Server Components — no `useEffect` for data fetching
+- All DB writes must go through the repository layer
+- New API routes require integration tests
+```
+
+---
+
+### 2. Auto PR Review (`claude-pr-auto-review.yml`)
 
 **Enhanced version** with comprehensive review criteria and smart filtering.
 
@@ -210,9 +247,12 @@ These workflows consume Anthropic API credits:
 ```
 examples/github-actions/
 ├── README.md                        # This file
-├── claude-pr-auto-review.yml        # Auto PR review workflow
+├── claude-code-review.yml           # Prompt-based review (recommended)
+├── claude-pr-auto-review.yml        # Inline prompt auto-review
 ├── claude-security-review.yml       # Security scanning workflow
-└── claude-issue-triage.yml          # Issue triage workflow
+├── claude-issue-triage.yml          # Issue triage workflow
+└── prompts/
+    └── code-review.md               # Externalized review prompt (copy to .github/prompts/)
 ```
 
 ## Resources
