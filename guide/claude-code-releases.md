@@ -10,20 +10,24 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.63 | **Updated**: 2026-02-27
+**Latest**: v2.1.66 | **Updated**: 2026-03-04
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-February 2026)](#21x-series-january-february-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing
+- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
 
 ---
 
-## 2.1.x Series (January-February 2026)
+## 2.1.x Series (January-March 2026)
+
+### v2.1.66 (2026-03-04)
+
+- **Fixed**: Reduced spurious error logging
 
 ### v2.1.63 (2026-02-27)
 

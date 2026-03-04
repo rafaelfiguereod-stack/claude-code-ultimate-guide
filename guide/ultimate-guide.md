@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.30.0
+**Version**: 3.30.1
 
 ---
 
@@ -364,6 +364,7 @@ These 7 commands are the ones I use most frequently:
 | `/exit` or `Ctrl+D` | Exit Claude Code | Done working |
 | `/plan` | Enter Plan Mode | Safe exploration |
 | `/rewind` | Undo changes | Made a mistake |
+| `/voice` | Toggle voice input | Speak instead of type |
 
 ### Quick Actions & Shortcuts
 
@@ -4344,6 +4345,19 @@ Month 3: 50 rules → 50 mistakes prevented + faster onboarding
 
 **Anti-pattern**: Preemptively documenting everything. Instead, treat CLAUDE.md as a **living document** that grows through actual mistakes caught during development.
 
+#### Going further: capitalizing solutions across PRs
+
+CLAUDE.md captures behavioral rules. For solved technical problems, a complementary pattern from [Every.to's Compound Engineering](https://every.to/guides/compound-engineering): a `docs/solutions/` directory that turns each non-trivial problem into searchable documentation.
+
+```
+docs/solutions/
+├── auth-token-refresh-race-condition.md
+├── ios-storekit2-receipt-validation.md
+└── kotlin-coroutine-timeout-pattern.md
+```
+
+Each file documents: the problem, the solution, why it works, and edge cases. Claude reads these files when similar patterns appear — the third time a related issue surfaces, the fix is already there. The distinction with CLAUDE.md is intentional: CLAUDE.md contains rules, `docs/solutions/` contains solved problems with their full context.
+
 ### Build for the Model 6 Months Out
 
 > **"Don't design your workflows around the limitations of today's model. Build for where the technology will be in six months."**
@@ -4767,7 +4781,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.30.0 Version Control & Backup
+### 3.30.1 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -7582,6 +7596,7 @@ Slash commands are shortcuts for common workflows.
 | `/status` | Show session info |
 | `/plan` | Enter Plan Mode |
 | `/rewind` | Undo changes |
+| `/voice` | Toggle voice input (hold Space to speak, release to send) |
 | `/simplify` | Review changed code and fix over-engineering |
 | `/batch` | Large-scale changes via parallel worktree agents |
 | `/insights` | Generate usage analytics report |
@@ -11837,7 +11852,42 @@ my-plugin/
 └── README.md             # Documentation
 ```
 
-**LSP server configuration (`.lsp.json`)** — supports `startupTimeout` (v2.1.50+) to control how long Claude waits for a server to initialize before treating it as unresponsive:
+### LSP Native Support (v2.0.74+)
+
+Since v2.0.74 (December 2025), Claude Code natively integrates with Language Server Protocol servers. Instead of navigating your codebase through text search (grep), Claude connects to the LSP server of your project and understands symbols, types, and cross-references — the same way an IDE does.
+
+**Why it matters**: Finding all call sites of a function drops from ~45 seconds (text search) to ~50ms (LSP). Claude also gets automatic diagnostics after every file edit — errors and warnings appear in real time, without a separate build step.
+
+**Supported languages (11)**: Python, TypeScript, JavaScript, Go, Rust, Java, C/C++, C#, PHP, Kotlin, Ruby.
+
+#### Activation
+
+```bash
+# Option 1 — one-time env variable
+ENABLE_LSP_TOOL=1 claude
+
+# Option 2 — persist in ~/.claude/settings.json
+{
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  }
+}
+```
+
+The LSP server for your language must already be installed on the machine — Claude Code connects to it, it doesn't install it. Common servers:
+
+| Language | Server | Install |
+|----------|--------|---------|
+| TypeScript | `tsserver` | Bundled with TypeScript |
+| Python | `pylsp` | `pip install python-lsp-server` |
+| Go | `gopls` | `go install golang.org/x/tools/gopls@latest` |
+| Rust | `rust-analyzer` | `rustup component add rust-analyzer` |
+| Kotlin | `kotlin-language-server` | Via IntelliJ or standalone |
+| Swift | `sourcekit-lsp` | Bundled with Xcode |
+
+#### Timeout configuration (`.lsp.json`)
+
+Controls how long Claude waits for an LSP server to initialize before treating it as unresponsive (v2.1.50+):
 
 ```json
 {
@@ -21591,7 +21641,7 @@ Use rebase for clean history before push, merge for shared branches.
 > **Tip**: These resources evolve quickly. Star repos you find useful to track updates.
 
 **Additional topics from ykdojo worth exploring** (not yet integrated in this guide):
-- **Voice transcription workflows** - Using superwhisper/MacWhisper for faster input than typing
+- **Voice transcription workflows** - Native voice input now available via `/voice` (rolling out, Pro/Max/Team/Enterprise). Hold Space to speak, release to send. Transcription is free and doesn't count against rate limits. Previously required superwhisper/MacWhisper as external workarounds.
 - **Tmux for autonomous testing** - Running interactive tools in tmux sessions for automated testing
 - **cc-safe security tool** - Auditing approved commands to prevent accidental deletions
 - **Cascade method** - Multitasking pattern with 3-4 terminal tabs for parallel work streams
@@ -22144,4 +22194,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.30.0
+**Last updated**: January 2026 | **Version**: 3.30.1

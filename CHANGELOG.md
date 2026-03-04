@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.30.1] - 2026-03-04
+
+### Documentation
+
+- **Claude Code Releases**: Updated tracking to v2.1.66
+  - v2.1.66: Reduced spurious error logging
+  - v2.1.63: HTTP hooks (POST JSON to URL), project configs shared across git worktrees, `/simplify` & `/batch` bundled commands, major memory leak wave fixed
+  - v2.1.62: Prompt suggestion cache fix
+  - v2.1.61: Windows config file corruption fix
+
+### Added
+
+- **LSP natif documenté** (`guide/ultimate-guide.md`, `guide/cheatsheet.md`, landing cheatsheet) — section complète sur le support LSP natif de Claude Code (v2.0.74+, décembre 2025). Contenu : explication du gain (50ms vs 45s pour navigation codebase, 900x), activation via `ENABLE_LSP_TOOL=1` ou `~/.claude/settings.json`, tableau des 11 langages supportés avec commandes d'install (`tsserver`, `pylsp`, `gopls`, `rust-analyzer`, `kotlin-language-server`, `sourcekit-lsp`...), configuration `.lsp.json` pour les timeouts. Cheatsheet enrichi : ligne LSP avec stat perf + note d'activation. Sources : [aifreeapi.com/en/posts/claude-code-lsp](https://aifreeapi.com/en/posts/claude-code-lsp), Perplexity fact-check mars 2026.
+
+- **Pattern `docs/solutions/` documenté** (`guide/ultimate-guide.md` §CLAUDE.md as Compounding Memory) — pattern complémentaire à CLAUDE.md pour capitaliser les problèmes résolus entre PRs, inspiré du framework [Compound Engineering (Every.to)](https://every.to/guides/compound-engineering). Distinction claire : CLAUDE.md = règles comportementales, `docs/solutions/` = problèmes résolus avec contexte complet. Inclut exemple de structure avec 3 fichiers illustratifs (auth, iOS StoreKit, Kotlin coroutines).
+
+- **Voice Mode documenté** (`guide/ultimate-guide.md`, `guide/cheatsheet.md`) — feature native rolling out (~5% des users Pro/Max/Team/Enterprise). `/voice` pour activer, maintenir `Space` pour parler, relâcher pour envoyer. Mixable avec la saisie texte dans le même prompt. Transcription gratuite, ne compte pas dans les rate limits. 4 endroits mis à jour : table quick commands §1.3, table built-in commands §6.1, section voice workarounds §11 (passage du workaround superwhisper/MacWhisper à la feature native), cheatsheet (commandes + shortcuts + features méconnues). Source : [Charly Wargnier / LinkedIn](https://www.linkedin.com/posts/charlywargnier_voice-mode-is-officially-coming-to-claude-ugcPost-7434514836211863552-JvKw).
+
+- **Smart Concierge + Retex system** — portage du système développé sur Méthode Aristote vers ce projet. Hook `UserPromptSubmit` (`smart-suggest.sh`) qui analyse chaque prompt en langage naturel et suggère 0 ou 1 outil pertinent (max 1 par prompt, silent sur slash commands, dedup si l'outil est déjà dans le prompt, log ROI dans `~/.claude/logs/smart-suggest.jsonl`). 22 patterns en 2 tiers adaptés aux outils de ce projet : Tier 1 découverte (retex, whitepaper-density/journalist/coherence, pdf-generator, sync, security-audit, audit-repo-docs, boldguy-linkedin-answer, guide-recap, park, update-whitepapers), Tier 2 contextuel (release, changelog, version, code-reviewer, debugger, audit-agents-skills, update-threat-db, audit-prose, release-notes-generator, security-check).
+- **Commande `/retex`** — capture de lessons learned (fausses pistes, bugs, rollbacks) dans `.claude/memories/retex-*.md` avec index global `retex-index.md`. Structure : what happened, root cause, prevention rule, tags, severity, scope. Mode direct (`/retex "description"`) et interactif.
+- **Rule `retex-review.md`** — auto-loaded à chaque session, affiche les 3 retex récents au démarrage, surfacing contextuel inline si pattern matchant une prevention rule existante (max 1 warning par type par session).
+
 ## [3.30.0] - 2026-03-03
 
 ### Added
