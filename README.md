@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers"><img src="https://img.shields.io/github/stars/FlorianBruniaux/claude-code-ultimate-guide?style=for-the-badge" alt="Stars"/></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Mar_11,_2026_·_v3.34.0-brightgreen?style=for-the-badge" alt="Last Update"/></a>
+  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Mar_11,_2026_·_v3.34.1-brightgreen?style=for-the-badge" alt="Last Update"/></a>
   <a href="./quiz/"><img src="https://img.shields.io/badge/Quiz-271_questions-orange?style=for-the-badge" alt="Quiz"/></a>
   <a href="./examples/"><img src="https://img.shields.io/badge/Templates-204-green?style=for-the-badge" alt="Templates"/></a>
   <a href="./guide/security/security-hardening.md"><img src="https://img.shields.io/badge/🛡️_Threat_DB-15_vulnerabilities_·_655_malicious_skills-red?style=for-the-badge" alt="Threat Database"/></a>
@@ -66,7 +66,7 @@ Both guides serve different needs. Choose based on your priority.
 | **Security hardening** | Only threat database (24 CVEs) | Basic patterns only |
 | **Test understanding** | 271-question quiz | Not available |
 | **Methodologies** (TDD/SDD/BDD) | Full workflow guides | Not covered |
-| **Copy-paste ready** templates | 204 templates | 200+ templates |
+| **Copy-paste ready** templates | 218 templates | 200+ templates |
 
 ### Ecosystem Positioning
 
@@ -151,7 +151,7 @@ graph LR
     root[📦 Repository<br/>Root]
 
     root --> guide[📖 guide/<br/>22K lines]
-    root --> examples[📋 examples/<br/>204 templates]
+    root --> examples[📋 examples/<br/>218 templates]
     root --> quiz[🧠 quiz/<br/>271 questions]
     root --> tools[🔧 tools/<br/>utils]
     root --> machine[🤖 machine-readable/<br/>AI index]
@@ -747,7 +747,7 @@ Use this guide critically. Experiment. Share what works for you.
 | **[Claude Code Releases](./guide/core/claude-code-releases.md)** | Official release history | 10 min |
 
 <details>
-<summary><strong>Examples Library</strong> (204 templates)</summary>
+<summary><strong>Examples Library</strong> (218 templates)</summary>
 
 **Agents** (6): [code-reviewer](./examples/agents/code-reviewer.md), [test-writer](./examples/agents/test-writer.md), [security-auditor](./examples/agents/security-auditor.md), [refactoring-specialist](./examples/agents/refactoring-specialist.md), [output-evaluator](./examples/agents/output-evaluator.md), [devops-sre](./examples/agents/devops-sre.md) ⭐
 
@@ -872,7 +872,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ---
 
-*Version 3.34.0 | Updated daily · Mar 11, 2026 | Crafted with Claude*
+*Version 3.34.1 | Updated daily · Mar 11, 2026 | Crafted with Claude*
 
 <!-- SEO Keywords -->
 <!-- claude code, claude code tutorial, anthropic cli, ai coding assistant, claude code mcp,
