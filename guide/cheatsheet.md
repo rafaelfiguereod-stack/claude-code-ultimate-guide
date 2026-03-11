@@ -39,6 +39,7 @@ tags: [cheatsheet, reference]
 | `/mobile` | Get Claude mobile app download links |
 | `/fast` | Toggle fast mode (2.5x speed, 6x cost) |
 | `/voice` | Toggle voice input (hold Space to speak, release to send) |
+| `btw [question]` | Side question overlay — read-only ephemeral agent, no history pollution, no tools |
 | `/loop [interval] [prompt]` | Run a prompt on repeat (ex: `/loop 5m check the deploy`, default 10m) |
 | `/stats` | Usage graph, favorite model, streak |
 | `/rename [name]` | Name or rename the current session |

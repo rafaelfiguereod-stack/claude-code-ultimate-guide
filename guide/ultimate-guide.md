@@ -8019,7 +8019,29 @@ Slash commands are shortcuts for common workflows.
 | `/simplify` | Review changed code and fix over-engineering |
 | `/batch` | Large-scale changes via parallel worktree agents |
 | `/insights` | Generate usage analytics report |
+| `/btw [question]` | Side question via ephemeral overlay — read-only, no tools, single response, doesn't pollute main history |
 | `/exit` | Exit Claude Code |
+
+### The /btw Command
+
+`/btw` lets you ask a quick side question while Claude is working without breaking your flow. Type `/btw what does this function return?` and get an instant response in an overlay — the main task keeps running uninterrupted.
+
+**How it works**: Claude spawns a temporary ephemeral agent with NO tools available. It cannot read files, run commands, or take actions. It responds once based solely on the current conversation context, then the overlay closes. The exchange never enters your main conversation history.
+
+**Key constraints:**
+- Read-only — no file access, no shell commands
+- Single response — no follow-up in the overlay
+- Context-only — answers from what's already in the conversation, not from disk
+- "Full context aware" means conversation context, not project files
+
+**When to use it:**
+- Quick clarification mid-task ("btw what's the default port for Postgres?")
+- Terminology check without stopping work
+- Sanity check on something Claude just mentioned
+
+**Syntax**: Start your message with `btw` (lowercase, no slash required) followed by your question. Claude Code detects the `btw` prefix and routes it to the ephemeral overlay agent.
+
+> Note: This feature (`btw-side-question`) was introduced around v2.0.73 and matured by v2.1.23. If you encounter issues, verify you're on a recent version.
 
 ### The /insights Command
 
