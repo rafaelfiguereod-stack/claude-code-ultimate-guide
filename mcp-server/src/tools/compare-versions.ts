@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { loadReleases } from '../lib/content.js';
 import { githubUrl } from '../lib/urls.js';
 
-const RELEASES_GITHUB = githubUrl('guide/claude-code-releases.md');
+const RELEASES_GITHUB = githubUrl('guide/core/claude-code-releases.md');
 
 interface ReleaseEntry {
   version: string;

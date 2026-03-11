@@ -165,7 +165,7 @@ export function registerChangelog(server: McpServer): void {
           lines.push(`### v${r.version} (${r.date})`);
           for (const h of r.highlights ?? []) lines.push(`- ${h}`);
           // Link to the release tracking file
-          lines.push(`GitHub: ${githubUrl('guide/claude-code-releases.md')}`);
+          lines.push(`GitHub: ${githubUrl('guide/core/claude-code-releases.md')}`);
           lines.push('');
         }
       }
