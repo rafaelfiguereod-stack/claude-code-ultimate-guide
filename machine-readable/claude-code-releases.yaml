@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.75"
-updated: "2026-03-13"
+latest: "2.1.76"
+updated: "2026-03-14"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,17 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-March 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.76"
+    date: "2026-03-14"
+    highlights:
+      - "⭐ MCP elicitation support — servers can request structured input mid-task via interactive dialog (form fields or browser URL)"
+      - "New hooks: Elicitation, ElicitationResult (intercept/override MCP input responses), PostCompact (fires after compaction)"
+      - "-n/--name CLI flag for session display name at startup; worktree.sparsePaths for monorepo sparse checkout"
+      - "/effort slash command to set model effort level; fixed deferred tools (ToolSearch) losing input schemas after compaction"
+      - "Fixed auto-compaction circuit breaker — stops retrying after 3 consecutive failures"
+      - "Fixed Bash(cmd:*) rules not matching when quoted argument contains #; fixed plan mode re-approval after accepted"
+    breaking: []
 
   - version: "2.1.75"
     date: "2026-03-13"

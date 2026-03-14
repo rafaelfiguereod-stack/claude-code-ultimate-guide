@@ -10,13 +10,13 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.75 | **Updated**: 2026-03-13
+**Latest**: v2.1.76 | **Updated**: 2026-03-14
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise
+- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
@@ -24,6 +24,30 @@ tags: [reference, release]
 ---
 
 ## 2.1.x Series (January-March 2026)
+
+### v2.1.76 (2026-03-14)
+
+- **New**: ⭐ MCP elicitation support — MCP servers can now request structured input mid-task via an interactive dialog (form fields or browser URL)
+- **New**: `Elicitation` and `ElicitationResult` hooks to intercept and override MCP input responses before they're sent back to the server
+- **New**: `PostCompact` hook that fires after compaction completes
+- **New**: `-n` / `--name <name>` CLI flag to set a display name for the session at startup
+- **New**: `worktree.sparsePaths` setting for `claude --worktree` in large monorepos — check out only needed directories via git sparse-checkout
+- **New**: `/effort` slash command to set model effort level
+- **Fixed**: Deferred tools (loaded via `ToolSearch`) losing their input schemas after conversation compaction — array and number parameters were being rejected with type errors
+- **Fixed**: Auto-compaction retrying indefinitely after consecutive failures — circuit breaker now stops after 3 attempts
+- **Fixed**: `Bash(cmd:*)` permission rules not matching when a quoted argument contains `#`
+- **Fixed**: Slash commands showing "Unknown skill"
+- **Fixed**: Plan mode asking for re-approval after the plan was already accepted
+- **Fixed**: Voice mode swallowing keypresses while a permission dialog or plan editor was open
+- **Fixed**: `/voice` not working on Windows when installed via npm
+- **Fixed**: Bridge sessions failing to recover after extended WebSocket disconnects
+- **Improved**: `--worktree` startup performance by reading git refs directly, skipping redundant `git fetch`
+- **Improved**: Killing a background agent now preserves its partial results in the conversation context
+- **Improved**: Model fallback notifications — now always visible with human-friendly model names
+- **Improved**: Stale worktree cleanup — worktrees left behind after interrupted parallel runs are automatically cleaned up
+- **Improved**: Blockquote readability on dark terminal themes — italic with left bar instead of dim
+- **Updated**: `--plugin-dir` now accepts one path only; use repeated flags for multiple directories
+- **VSCode**: Fixed gitignore patterns containing commas silently excluding entire filetypes from the `@`-mention file picker
 
 ### v2.1.75 (2026-03-13)
 

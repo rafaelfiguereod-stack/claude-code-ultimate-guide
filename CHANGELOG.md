@@ -6,13 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **ICM (Infinite Context Memory)**: New MCP memory server section after Kairn (~line 11365) — Rust single binary, zero deps, Homebrew install, dual architecture (episodic decay Memories + permanent knowledge graph Memoirs), 9 typed relation types, auto-extraction 3 layers, 14 editor clients. Score 3/5 — recommended as Rust-native alternative when Python dependency management is a friction point. Includes explicit license callout (Source-Available, free ≤20 people) and vendor-reported benchmark flags.
+- **Comparison matrix update**: Added ICM column to MCP memory stack matrix (Runtime + License rows added for all tools)
+
 ### Documentation
 
-- **Claude Code Releases**: Updated tracking to v2.1.75
-  - 1M context window for Opus 4.6 now default for Max, Team, Enterprise (no extra usage required)
-  - Session name display on prompt bar with `/rename`; hook source in permission prompts
-  - Fixed token estimation over-counting for thinking/tool_use blocks (premature compaction fix)
-  - Fixed Bash tool mangling `!` in piped commands
+- **Claude Code Releases**: Updated tracking to v2.1.76
+  - MCP elicitation support — servers request structured input mid-task via interactive dialog
+  - New hooks: `Elicitation`, `ElicitationResult`, `PostCompact`
+  - `-n`/`--name` CLI flag for session display name; `worktree.sparsePaths` for monorepo sparse checkout
+  - `/effort` slash command; fixed ToolSearch deferred tools losing schemas after compaction
+  - Auto-compact circuit breaker (stops after 3 failures); fixed `Bash(cmd:*)` rules with `#` in args
 
 ## [3.35.0] - 2026-03-13
 
