@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **New guide section §5.5 — Registry-based Discovery: ctx7 CLI** (`guide/ultimate-guide.md`): Context7's CLI companion (`npx ctx7`) for automated skill discovery and MCP setup. Documents `ctx7 skills suggest` (dependency-aware skill recommendations), `ctx7 skills install owner/repo`, `ctx7 setup --claude` wizard, and `ctx7 docs` terminal lookup. Clarifies agentskills.io (open spec) vs context7.com/skills (registry) relationship. Cross-reference note added to `guide/ecosystem/mcp-servers-ecosystem.md` Context7 section. Resource evaluation: `docs/resource-evaluations/2026-03-17-context7-cli.md` (score 4/5).
+
+- **Doc audit — stats sync**: corrected stale counts across guide + landing. Templates: 204/216/217/218/222/232 → unified to 217 (per `check-landing-sync.sh` logic). Guide lines: "22K" → "23K+" (actual: 23,422). Quiz: reference.yaml `quiz_count` and llms*.txt had 311 → corrected to 271 (actual count). Version in llms.txt / llms-full.txt / machine-readable/llms.txt bumped 3.36.0 → 3.37.0. Landing updated: FeaturesGrid, GuideComparison, WhyGuide, McpDemo, cheatsheet page, index.astro, compare page, and guide content files (00-introduction, index, 09-advanced-patterns, 12-appendices).
+
 ## [3.37.0] - 2026-03-17
 
 - **ICM v0.5.0 — setup guide + session starter template**: corrected `icm init` documentation (3 explicit modes: `--mode mcp`, `--mode hook`, `--mode skill` — not a single interactive command); fixed CLI syntax (`--importance` is an enum `critical|high|medium|low`, not a float; no `memory` subcommand); added `examples/memory/icm-session-starter.md` ready-to-use onboarding prompt to paste at the start of any session.

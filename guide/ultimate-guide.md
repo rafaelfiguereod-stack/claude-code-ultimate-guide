@@ -7576,6 +7576,69 @@ This skill is now installed in the Méthode Aristote repository at:
 
 ## 5.5 Community Skill Repositories
 
+### Registry-based Discovery: ctx7 CLI
+
+Before diving into specific repositories, Context7 provides a CLI companion (`ctx7`) that automates skill discovery and installation. Instead of manually cloning repos, `ctx7 skills suggest` analyzes your project's dependencies and recommends matching skills from the [context7.com/skills](https://context7.com/skills) registry — with trust scores to help evaluate quality.
+
+**Install**:
+
+```bash
+npx ctx7 --help          # No install required (npx)
+npm install -g ctx7       # Global install
+```
+
+**Discovery workflow**:
+
+```bash
+# Auto-detect project deps and suggest matching skills
+npx ctx7 skills suggest
+
+# Search by keyword
+npx ctx7 skills search terraform
+
+# Install from any GitHub repository
+npx ctx7 skills install antonbabenko/terraform-skill
+npx ctx7 skills install owner/repo
+
+# List / remove installed skills
+npx ctx7 skills list
+npx ctx7 skills remove skill-name
+```
+
+**Setup wizard** (replaces manual `claude mcp add`):
+
+```bash
+# Configure Context7 for Claude Code — detects editor, picks MCP or CLI+Skills mode
+npx ctx7 setup --claude
+```
+
+`ctx7 setup` runs a wizard that configures Context7 in the right mode for your editor. Use it when setting up Context7 for the first time instead of writing `claude mcp add` manually. The `--claude` flag targets Claude Code specifically; `--cursor` and `--universal` are available for other editors.
+
+**Registry vs. agentskills.io**: The [agentskills.io](https://agentskills.io) specification is the open standard defining the skill format (supported by 30+ platforms — see §5.1). The [context7.com/skills](https://context7.com/skills) registry is a hosted directory of skills conforming to that standard. The two are complementary: agentskills.io defines the format, context7.com/skills is one place to discover and share conforming skills. Skills installed via `ctx7` land in `~/.claude/skills/` and work identically to manually installed ones.
+
+**Skill generation** (authenticated, rate-limited):
+
+```bash
+npx ctx7 skills generate    # AI-generated custom skill
+                             # Free: 6 generations/week — Pro: 10/week
+```
+
+Generation is best reserved for skills with no equivalent in the registry. For team onboarding at scale, the `suggest` + `install` workflow is more practical than generation.
+
+**CLI doc lookup** (alternative to MCP):
+
+```bash
+# Search available libraries
+npx ctx7 library react
+
+# Fetch docs for a specific library + query
+npx ctx7 docs /facebook/react "useEffect cleanup"
+```
+
+This is the terminal equivalent of what the Context7 MCP server does. Useful when you want to look something up yourself without invoking Claude, or in environments where MCP is not configured. Claude Code users who already have the MCP server active don't need this — Claude handles it automatically.
+
+---
+
 ### Cybersecurity Skills Repository
 
 The Claude Code community has created specialized skill collections for specific domains. One notable collection focuses on cybersecurity and penetration testing.

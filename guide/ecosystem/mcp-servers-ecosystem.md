@@ -910,6 +910,8 @@ Result: Official Python SDK docs + example code for streaming
 - **Official Site**: https://context7.com
 - **LobeHub Registry**: https://lobehub.com/mcp/upstash-context7
 
+**ctx7 CLI companion**: Context7 also ships a CLI (`npx ctx7`) that handles skill discovery and MCP setup from the terminal. `ctx7 skills suggest` auto-detects project dependencies and recommends matching skills; `ctx7 setup --claude` runs a wizard that configures MCP or CLI+Skills mode automatically. See §5.5 of the ultimate guide for the full workflow.
+
 ---
 
 ### Project Management
