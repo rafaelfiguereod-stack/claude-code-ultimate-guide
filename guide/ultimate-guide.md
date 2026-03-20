@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.37.2
+**Version**: 3.37.3
 
 ---
 
@@ -5216,7 +5216,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.37.2 Version Control & Backup
+### 3.37.3 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -16903,6 +16903,116 @@ rtk init --global          # Replace hook with thin delegator
 - Website: https://www.rtk-ai.app/
 - Third-party tools comparison: `guide/third-party-tools.md#rtk-rust-token-killer`
 
+### Progressive Code Exploration (Smart Explore)
+
+RTK handles **command outputs** (what you run). Smart explore handles **code reading** (what you read). Together they cover both major token sinks in a Claude Code session.
+
+**The problem**: When Claude explores a codebase, it reads files completely — 400 lines when it needed 3 function signatures. A typical 10-file module exploration costs 35,000 tokens. With progressive exploration, the same task costs 3,500.
+
+**The pattern (3 steps, 86-92% reduction):**
+
+```
+Step 1 — Structure (~200 tokens per file)
+  Get function signatures, types, fields only
+  Claude answers "what exists?" without reading any body
+
+Step 2 — Target (~350 tokens per function)
+  Read one specific function by line offset
+  Not the whole file — just lines 45-90
+
+Step 3 — Cross-reference (~150 tokens)
+  Find callers of a function
+  rg "function_name" --type rust -n
+```
+
+This is the same pattern Aider uses for its repo map (40k+ stars) — validated at scale since 2023.
+
+**Approach A: No setup — CLAUDE.md discipline**
+
+The fastest path. Add to your project's `CLAUDE.md`:
+
+```markdown
+## Code Exploration Protocol
+
+When exploring a codebase or understanding a module:
+
+1. **Structure first** — run the appropriate command for the language:
+
+   Rust: `rg "^\s*(pub\s+)?(async\s+)?fn |^\s*(pub\s+)?(struct|enum|trait|impl)\s" src/ --no-heading -n`
+   Python/TS/JS: `rg "^\s*(async\s+)?(def |function |class |export (function|class|const))" src/ --no-heading -n`
+
+   Use `^\s*` not `^` — Rust methods inside impl blocks are indented. The `^` pattern misses ~70% of them.
+
+2. Identify 2-3 relevant functions from the signatures
+3. Read only those functions with line offset (not the whole file)
+4. Cross-reference callers with Grep if needed
+
+Never read a file end-to-end when exploring. Structure first, drill second.
+```
+
+**Approach B: tree-sitter CLI + script (50-150 tokens per file)**
+
+```bash
+# Install tree-sitter
+brew install tree-sitter
+
+# Use the extract-signatures script
+# → Template: examples/skills/smart-explore.md (Approach B section)
+python3 ~/.claude/scripts/extract-signatures.py src/
+
+# Sample output for a 500-line Rust file:
+# src/auth.rs:
+#   fn  pub async fn login(username: &str, password: &str) -> Result<Session>  (line 28)
+#   fn  pub async fn logout(session_id: Uuid) -> Result<()>  (line 67)
+#   struct  pub struct AuthConfig  (line 110)
+```
+
+50-150 tokens per file vs 2,000-5,000 for full reads.
+
+**Approach C: MCP servers (large codebases, >50 files)**
+
+| Use case | Tool | Install |
+|---|---|---|
+| General exploration | mcp-server-tree-sitter | `pip install mcp-server-tree-sitter` |
+| PR code reviews | code-review-graph (MIT, ~2k stars) | `pip install code-review-graph` |
+| Symbol lookup | jCodeMunch (free non-commercial) | `claude mcp add jcodemunch uvx jcodemunch-mcp` |
+
+**code-review-graph** is the strongest standalone option: MIT, Claude Code marketplace, 6.8x average token reduction on PR reviews across real codebases (httpx: 26x, FastAPI: 8x, Next.js: 6x).
+
+```bash
+pip install code-review-graph
+code-review-graph install
+# or
+claude plugin marketplace add tirth8205/code-review-graph
+```
+
+**Honest benchmarks:**
+
+| Task | Without smart-explore | With smart-explore | Savings |
+|---|---|---|---|
+| Understand 5-file module | ~18,000 tokens | ~2,500 tokens | **86%** |
+| Find where to add a feature | ~8,000 tokens | ~800 tokens | **90%** |
+| PR review (10 changed files) | ~25,000 tokens | ~3,500 tokens | **86%** |
+| Single function lookup | ~3,000 tokens | ~350 tokens | **88%** |
+
+**RTK vs Smart Explore — complete picture:**
+
+| | RTK | Smart Explore |
+|---|---|---|
+| **What it saves** | Command output tokens | Code reading tokens |
+| **When** | After running git, cargo, npm | Before reading source files |
+| **How** | Regex + text filtering | AST parsing (signatures only) |
+| **Typical savings** | 60-90% on CLI outputs | 86-92% on code exploration |
+| **Setup** | `rtk init --global` (2 min) | CLAUDE.md rule (0 min) or script (5 min) |
+
+Use both. A 30-minute session with RTK + smart explore: ~15-20k tokens instead of ~150-200k.
+
+**See also:**
+
+- Skill template: `examples/skills/smart-explore.md`
+- Evaluation: `docs/resource-evaluations/tree-sitter-progressive-code-exploration.md`
+- Reference implementation: https://aider.chat/docs/repomap.html
+
 ### Cost Tracking
 
 **Monitor cost with `/status`:**
@@ -23638,4 +23748,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.37.2
+**Last updated**: January 2026 | **Version**: 3.37.3
