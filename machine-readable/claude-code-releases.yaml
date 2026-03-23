@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.80"
-updated: "2026-03-20"
+latest: "2.1.81"
+updated: "2026-03-22"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,16 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-March 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.81"
+    date: "2026-03-22"
+    highlights:
+      - "--bare flag for scripted -p calls — skips hooks, LSP, plugin sync, skill walks (requires API key; no OAuth)"
+      - "--channels permission relay — channel servers can forward tool approval prompts to your phone"
+      - "Resuming a worktree session now switches back to that worktree automatically"
+      - "MCP read/search tool calls collapse into 'Queried {server}' line (expand with Ctrl+O)"
+      - "Plan mode hides 'clear context' option by default (restore with showClearContextOnPlanAccept: true)"
+      - "Fixed concurrent sessions repeatedly re-authenticating when one session refreshes OAuth token"
 
   - version: "2.1.80"
     date: "2026-03-20"

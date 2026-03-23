@@ -10,13 +10,13 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.80 | **Updated**: 2026-03-20
+**Latest**: v2.1.81 | **Updated**: 2026-03-22
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview
+- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview, --bare flag, worktree session resume fix, MCP query collapsing
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
@@ -24,6 +24,29 @@ tags: [reference, release]
 ---
 
 ## 2.1.x Series (January-March 2026)
+
+### v2.1.81 (2026-03-22)
+
+- **New**: `--bare` flag for scripted `-p` calls — skips hooks, LSP, plugin sync, and skill directory walks; requires `ANTHROPIC_API_KEY` or `apiKeyHelper` via `--settings` (OAuth and keychain auth disabled); auto-memory fully disabled
+- **New**: `--channels` permission relay — channel servers that declare the permission capability can now forward tool approval prompts to your phone
+- **Changed**: Plan mode hides the "clear context" option by default (restore with `"showClearContextOnPlanAccept": true` in settings)
+- **Improved**: MCP read/search tool calls collapse into a single "Queried {server}" line (expand with Ctrl+O)
+- **Improved**: `!` bash mode discoverability — Claude now suggests it when you need to run an interactive command
+- **Improved**: Plugin freshness — ref-tracked plugins re-clone on every load to pick up upstream changes
+- **Improved**: Remote Control session titles refresh after your third message; `/rename` now syncs title for RC sessions
+- **Improved**: MCP OAuth updated to support Client ID Metadata Document (CIMD / SEP-991) for servers without Dynamic Client Registration
+- **Fixed**: Resuming a worktree session now switches back to that worktree automatically
+- **Fixed**: Multiple concurrent sessions requiring repeated re-authentication when one session refreshes its OAuth token
+- **Fixed**: Voice mode silently swallowing retry failures with misleading "check your network" message; voice audio not recovering when server silently drops WebSocket
+- **Fixed**: `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` not suppressing the structured-outputs beta header (caused 400 errors on Vertex/Bedrock proxies)
+- **Fixed**: Race condition where background agent task output could hang indefinitely when task completed between polling intervals
+- **Fixed**: `/btw` not including pasted text when used during an active response
+- **Fixed**: Plugin hooks blocking prompt submission when plugin directory is deleted mid-session
+- **Fixed**: Remote Control `/exit` not reliably archiving the session
+- **Fixed**: Node.js 18 crash
+- **Fixed**: Unnecessary permission prompts for Bash commands containing dashes in strings
+- **Disabled**: Line-by-line response streaming on Windows (including WSL in Windows Terminal) due to rendering issues
+- **VSCode**: Fixed Windows PATH inheritance for Bash tool when using Git Bash (regression in v2.1.78)
 
 ### v2.1.80 (2026-03-20)
 
