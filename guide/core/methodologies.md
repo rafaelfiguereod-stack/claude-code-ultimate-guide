@@ -202,6 +202,18 @@ This Gherkin scenario is the contract between intent and implementation. The age
 
 **CDD (Contract-Driven Development)** — API contracts (OpenAPI specs) as executable interface between teams. Patterns: Contract as Test, Contract as Stub.
 
+**JiTTesting (Just-in-Time Testing)** — Tests generated on-the-fly at PR submission, designed to fail, then discarded after merge. No maintenance cost, no test suite growth.
+
+TDD/BDD/ATDD all assume the developer controls the pace of code authoring. Agentic development breaks that assumption: an agent can generate 200 lines per hour, faster than any human test-writing workflow can keep up with. JiTTests are the industrial response to that mismatch.
+
+The mechanism: at PR time, an LLM infers the intent of the diff, generates code mutants (deliberately broken variants), writes tests that catch those mutants, runs ensemble rule-based and LLM assessors to filter false positives, and surfaces only real regressions to the engineer. The tests never land in the codebase.
+
+Meta deployed this at scale (100M+ LoC): 4x improvement in catching regressions over traditional hardening tests, 70% reduction in human review load, 4 serious production failures prevented from 41 candidates reviewed.
+
+No open-source implementation exists yet. You can approximate this today: before merging any agent-generated PR, prompt Claude with "generate tests that would catch regressions introduced by this diff specifically — I'll run them locally and discard them after the PR closes." The ephemeral framing focuses test generation on what actually changed rather than general coverage.
+
+> **Reference**: [Just-in-Time Catching Test Generation at Meta](https://arxiv.org/abs/2601.22832) — Harman, 2026.
+
 ---
 
 ### Tier 4: Feature Delivery

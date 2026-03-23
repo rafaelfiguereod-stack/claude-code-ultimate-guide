@@ -10,13 +10,13 @@
 
 - Title: Claude Code Ultimate Guide
 - Author: Florian Bruniaux (Founding Engineer @ Méthode Aristote)
-- Version: 3.37.3
-- Last Updated: March 18, 2026
+- Version: 3.37.4
+- Last Updated: March 23, 2026
 - License: CC BY-SA 4.0
 - Repository: https://github.com/FlorianBruniaux/claude-code-ultimate-guide
 - Landing: https://cc.bruniaux.com
 - Lines of Documentation: 23,400+
-- Production Templates: 218
+- Production Templates: 219
 - Quiz Questions: 271
 - Whitepapers: 9 titles (FR + EN)
 
@@ -26,7 +26,7 @@
 
 Claude Code is Anthropic's official CLI for AI-assisted development. It lets developers interact with Claude directly from the terminal to write, edit, debug, and review code. Unlike IDE plugins, it has full filesystem access, can run shell commands, and works autonomously on multi-step tasks.
 
-This guide is the most comprehensive community resource for Claude Code. It covers everything from installation to production security, with 204 ready-to-use templates for agents, hooks, commands, and skills.
+This guide is the most comprehensive community resource for Claude Code. It covers everything from installation to production security, with 219 ready-to-use templates for agents, hooks, commands, and skills.
 
 ## Who This Guide Is For
 
@@ -314,7 +314,7 @@ Deep analysis     → Use Opus (thinking on by default)
 
 ---
 
-## Template Library (216 templates)
+## Template Library (219 templates)
 
 ### Agents (16 files + sub-projects)
 - `adr-writer.md` — Architecture Decision Records
@@ -425,7 +425,7 @@ Deep analysis     → Use Opus (thinking on by default)
 ## FAQ
 
 **Q: What is the Claude Code Ultimate Guide?**
-A: The most comprehensive community guide for Claude Code (Anthropic's CLI). 22,900+ lines of documentation, 204 production-ready templates, 271-question quiz, and security threat database. Free and open-source (CC BY-SA 4.0).
+A: The most comprehensive community guide for Claude Code (Anthropic's CLI). 22,900+ lines of documentation, 219 production-ready templates, 271-question quiz, and security threat database. Free and open-source (CC BY-SA 4.0).
 
 **Q: Is this guide free?**
 A: Yes, completely free. The guide is CC BY-SA 4.0 (share and adapt with attribution). Templates are CC0 (copy-paste freely, no attribution needed). No paywall, no login required.
@@ -485,7 +485,7 @@ claude-code-ultimate-guide/
 │   ├── security-hardening.md       # Security best practices
 │   ├── data-privacy.md             # What data is sent to Anthropic
 │   └── claude-code-releases.md     # Official release tracking
-├── examples/                       # 204 production-ready templates
+├── examples/                       # 219 production-ready templates
 │   ├── agents/                     # Custom AI personas
 │   ├── commands/                   # Slash commands
 │   ├── hooks/                      # Event automation (bash + PowerShell)

@@ -38,6 +38,7 @@ Les documents de travail bruts (prompts Perplexity, audits clients) restent dans
 | Ressource | Score Initial | Score Final | Décision | Fichier |
 |-----------|---------------|-------------|----------|---------|
 | **Anthropic Releases** (Jan 16-23, 2026) | - | - | ✅ Suivi régulier | [anthropic-releases-jan16-23-2026.md](./anthropic-releases-jan16-23-2026.md) |
+| **Caliber** (rely-ai-org/caliber) | 3/5 | 3/5 | ✅ Intégré — Configuration Quality | [caliber-config-quality-tool.md](./caliber-config-quality-tool.md) |
 | **AST-grep** (Flavien Métivier) | 3/5 | **4/5** | ✅ Intégrer workflow | [astgrep-flavien-metivier.md](./astgrep-flavien-metivier.md) |
 | **MCP Apps** (SEP-1865) | 3/5 | **4/5** | ✅ Intégré (architecture + guide) | [mcp-apps-announcement.md](./mcp-apps-announcement.md) |
 | **Boris Cherny** (Cowork Video) | 4/5 | **4/5** | ✅ Intégré (mental models) | [boris-cowork-video-eval.md](./boris-cowork-video-eval.md) |

@@ -261,6 +261,8 @@ After tests pass, run mutation testing to find weak spots.
 Identify tests that don't catch mutations.
 ```
 
+> **Going further**: JiTTesting applies mutation testing automatically at PR time — LLM-generated, ephemeral, zero maintenance. Meta deployed this at scale with 4x regression catch improvement over traditional tests. See [Just-in-Time Catching Test Generation at Meta](https://arxiv.org/abs/2601.22832) and the [methodologies guide](../core/methodologies.md#jittesting-just-in-time-testing) for the approximation pattern with Claude Code today.
+
 ### TDD with Legacy Code
 
 ```
