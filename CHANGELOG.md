@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Context Engineering Tools page** (`guide/ecosystem/context-engineering-tools.md`): new dedicated page mapping the ecosystem of tools for token and context optimization. Covers output compression (RTK, Headroom), prompt compression (LLMLingua/LLMLingua-2), AI gateways (Edgee, Portkey), RAG optimization (Anthropic Contextual Retrieval, JIT search, RAG Triad), memory systems, KV cache infrastructure (vLLM PagedAttention, SGLang RadixAttention, semantic caching), LLMOps observability (Langfuse, LangSmith, Arize Phoenix, Maxim AI, TruLens), and core concepts (MVC, Context Rot, Semantic Priming Hypothesis). Includes tool selection matrix by use case and research landscape section. Added to `guide/README.md` ecosystem navigation.
+
 - **Auto Dream section** (`guide/ultimate-guide.md` ~l.4945): Community-discovered memory consolidation feature for Claude Code. Documents the 4-phase process (Orient, Gather Signal, Consolidate, Prune & Index), trigger conditions (24h + 5 sessions), access via `/memory`, and caveats about unofficial status. Sourced from Piebald-AI/claude-code-system-prompts. Added pointer in `machine-readable/reference.yaml`.
 
 ### Documentation
@@ -22,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - **Glossary** (`guide/core/glossary.md`): new alphabetical reference with 120+ Claude Code-specific terms, community-coined patterns, and AI engineering concepts. Single table with 4 columns (Term, Definition, Category, Subcategory). Covers Claude Code modes, hooks, permissions, models, workflow patterns, security concepts, and ecosystem tools. Linked from `guide/README.md` Core Reference section and `machine-readable/reference.yaml`.
 - **"Slop" attribution** (`guide/ultimate-guide.md`): added one-sentence attribution to Simon Willison's 2024 coinage before the Desloppify section, with link to source article.
+- **Glossary corrections** (`guide/core/glossary.md`): fixed critical Config hierarchy direction (reversed — correct order is Local > Project > Global); fixed Boris Cherny title to "creator of Claude Code / Head of Claude Code at Anthropic"; corrected Desloppify author to GitHub handle `@peteromallet`; corrected BMAD expansion to "Business-driven, Methodical AI Development"; added Ralph Wiggum Loop attribution (Geoffrey Huntley); expanded SE-CoVe acronym in full; qualified Constitutional AI priority order as "per published system prompt"; fixed auto-compaction threshold to environment-specific values (~75% VS Code, ~95% CLI); fixed 4 alphabetical ordering issues (`!` before `@`, GSD before gstack, RTK before Rules, Skeleton before Skill); updated term count to ~130.
 
 ### Fixed
 - **`paths:` array bug in rules frontmatter** (`guide/ultimate-guide.md`): Both path-scoped rules examples (lines ~5147 and ~5856) used the documented `paths:` YAML array syntax, which fails silently. Replaced with `globs:` field and unquoted CSV patterns in both code examples. Added blockquote warnings at both locations explaining the root cause (internal CSV parser bug, confirmed GH#17204 and 8 duplicate issues) and the working workaround.
