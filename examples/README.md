@@ -15,7 +15,7 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | Folder | Description | Count |
 |--------|-------------|-------|
 | [`agents/`](./agents/) | Custom AI personas for specialized tasks | 14 + 2 collections |
-| [`commands/`](./commands/) | Slash commands (workflow automation) | 31 |
+| [`commands/`](./commands/) | Slash commands (workflow automation) | 32 |
 | [`hooks/`](./hooks/) | Event-driven security & automation scripts | 34 |
 | [`skills/`](./skills/) | Reusable knowledge modules — [9 on SkillHub](https://skills.palebluedot.live/owner/FlorianBruniaux) | 17 |
 | [`claude-md/`](./claude-md/) | CLAUDE.md configuration profiles | 7 |
@@ -99,7 +99,7 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | [cyber-defense-team/](./skills/cyber-defense-team/) | Multi-agent cyber defense team orchestration |
 | [talk-pipeline/](./skills/talk-pipeline/) | 6-stage pipeline: raw material to slides via Kimi |
 
-### Commands (31)
+### Commands (32)
 
 | File | Trigger | Purpose |
 |------|---------|---------|
@@ -134,6 +134,7 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | [plan-execute.md](./commands/plan-execute.md) | `/plan-execute` | Execute validated plan: worktree isolation, TDD scaffolding, parallel agents, PR creation |
 | [plan-validate.md](./commands/plan-validate.md) | `/plan-validate` | 2-layer plan validation: structural checks + specialist agents, auto-fix issues |
 | [review-plan.md](./commands/review-plan.md) | `/review-plan` | Structured plan review across 4 axes before writing code |
+| [check-cache-bugs.md](./commands/check-cache-bugs.md) | `/check-cache-bugs` | Audit for CC#40524 cache bugs that can silently 10-20x API costs |
 
 ### Hooks (34)
 
