@@ -9,7 +9,9 @@ Audit your Claude Code setup for three cache bugs discovered in March 2026 that 
 
 **Time**: ~20 seconds | **Scope**: version, config files, CLAUDE.md, skills, hooks, shell profiles, all claude binaries
 
-**Reference**: `anthropics/claude-code#40524` | **Discovered by**: `u/skibidi-toaleta-2137` (r/ClaudeAI) + `@whiletrue0x` + `@jmarianski` (GitHub)
+> **Note on cache contamination**: This skill loads content containing `cch=` strings into the current session's message array. If you are on a standalone binary (Bun-based, not npm), this is the exact trigger condition for Bug 1. For Bug 3, loading this skill into a long session may also shift cache offsets. For cleanest results, run this command at the very start of a fresh session before any other context is loaded — or run it via `claude -p "$(cat .claude/commands/check-cache-bugs.md)"` as a one-shot print-mode invocation outside your current session.
+
+**Reference**: `anthropics/claude-code#40524` | **Discovered by**: `@jmarianski` (GitHub / u/skibidi-toaleta-2137, r/ClaudeAI) + `@whiletrue0x`
 
 ---
 
