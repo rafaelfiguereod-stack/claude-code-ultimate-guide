@@ -9520,7 +9520,7 @@ Hooks receive JSON on stdin with common fields (all events) plus event-specific 
 
 ### Hook Output
 
-Hooks communicate results through exit codes and optional JSON on stdout. Choose one approach per hook: either exit codes alone, or exit 0 with JSON for structured control (Claude Code only processes JSON on exit 0).
+Hooks communicate results through exit codes and optional JSON on stdout. Choose one approach per hook: either exit codes alone, or exit 0 with JSON for structured control. Claude Code only processes JSON on exit 0, so if your hook exits with any other code, stdout and any JSON it contains are silently discarded.
 
 **Universal JSON fields** (all events):
 
@@ -9533,7 +9533,7 @@ Hooks communicate results through exit codes and optional JSON on stdout. Choose
 
 **Event-specific decision control** varies by event type:
 
-- **PreToolUse**: Uses `hookSpecificOutput` with `permissionDecision` (allow/deny/ask), `permissionDecisionReason`, `updatedInput`, `additionalContext`
+- **PreToolUse**: Uses `hookSpecificOutput` with `permissionDecision` (allow/deny/ask/defer), `permissionDecisionReason`, `updatedInput`, `additionalContext`. When multiple PreToolUse hooks return different decisions, precedence is: `deny` > `defer` > `ask` > `allow` (v2.1.89+).
 - **PostToolUse, Stop, SubagentStop, UserPromptSubmit, ConfigChange**: Uses top-level `decision: "block"` with `reason`
 - **TeammateIdle, TaskCompleted**: Exit code 2 only (no JSON decision control)
 - **PermissionRequest**: Uses `hookSpecificOutput` with `decision.behavior` (allow/deny)
@@ -9577,12 +9577,26 @@ When Claude fires `AskUserQuestion` mid-session, interactive prompts are not ava
 
 The hook script is responsible for retrieving the answer (e.g., polling a webhook or reading from a queue). Return `updatedInput` with the answer and `permissionDecision: "allow"` to satisfy the question and continue execution without interactive prompts.
 
+**PreToolUse `defer` decision (v2.1.89+ — headless/non-interactive only)**:
+
+`defer` is designed for headless integrations where Claude is orchestrated by an external process. When a hook returns `permissionDecision: "defer"`, Claude pauses with `stop_reason: "tool_deferred"` and waits. The calling process can then collect input from a user or another system and resume the session with `--resume <session-id>`. In interactive terminal sessions, `defer` is ignored with a warning.
+
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "defer",
+    "permissionDecisionReason": "Awaiting human approval via external workflow"
+  }
+}
+```
+
 ### Exit Codes
 
 | Code | Meaning | Result |
 |------|---------|--------|
 | `0` | Success | Allow operation, parse stdout for JSON output |
-| `2` | Blocking error | Prevent operation (for blocking events), stderr fed to Claude |
+| `2` | Blocking error | Prevent operation (for blocking events), stderr fed to Claude. stdout is silently ignored. |
 | Other | Non-blocking error | Stderr shown in verbose mode (`Ctrl+O`), execution continues |
 
 ### Silent Success Pattern
