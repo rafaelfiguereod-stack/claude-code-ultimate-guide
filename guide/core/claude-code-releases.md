@@ -10,13 +10,13 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.110 | **Updated**: 2026-04-16
+**Latest**: v2.1.111 | **Updated**: 2026-04-16
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-April 2026)](#21x-series-january-april-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview, --bare flag, worktree session resume fix, MCP query collapsing, managed-settings.d/ drop-in, CwdChanged/FileChanged hooks, transcript search, credential scrubbing, PowerShell tool Windows preview, conditional hooks if field, MCP headersHelper multi-server env vars, headless AskUserQuestion hooks, X-Claude-Code-Session-Id header, Jujutsu/Sapling VCS exclusions, @ mention token reduction, Read tool compact format, Cowork Dispatch fix, PermissionDenied hook, thinking summaries off by default, "defer" PreToolUse permission, CLAUDE_CODE_NO_FLICKER, /powerup interactive lessons, PowerShell hardened permissions, SSE linear-time performance, MCP 500K result override, disableSkillShellExecution, plugin bin/ executables, Edit tool shorter anchors, interactive Bedrock wizard, forceRemoteSettingsRefresh, /cost per-model breakdown, interactive /release-notes, Linux sandbox apply-seccomp fix, Bedrock Mantle support, high effort default for API/enterprise users, Bedrock auth fix, NO_FLICKER focus view (Ctrl+O), refreshInterval status line, 30+ bug fixes, Vertex AI wizard, Monitor tool, CLAUDE_CODE_PERFORCE_MODE, Bash security hardening, subprocess PID namespace sandboxing, /team-onboarding command, OS CA cert store trust by default, /ultraplan auto-cloud-environment, 40+ bug fixes, PreCompact hook blocking, EnterWorktree path param, plugin monitors, /proactive alias, WebFetch CSS/JS stripping, /doctor status icons, thinking hints sooner, ENABLE_PROMPT_CACHING_1H, /recap session context, built-in slash commands via Skill tool, /undo alias, rotating extended-thinking indicator, /tui fullscreen command, push notification tool, --resume resurrects scheduled tasks, /focus command, autoScrollEnabled config, session recap for telemetry-disabled, 30+ bug fixes
+- [2.1.x Series (January-April 2026)](#21x-series-january-april-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview, --bare flag, worktree session resume fix, MCP query collapsing, managed-settings.d/ drop-in, CwdChanged/FileChanged hooks, transcript search, credential scrubbing, PowerShell tool Windows preview, conditional hooks if field, MCP headersHelper multi-server env vars, headless AskUserQuestion hooks, X-Claude-Code-Session-Id header, Jujutsu/Sapling VCS exclusions, @ mention token reduction, Read tool compact format, Cowork Dispatch fix, PermissionDenied hook, thinking summaries off by default, "defer" PreToolUse permission, CLAUDE_CODE_NO_FLICKER, /powerup interactive lessons, PowerShell hardened permissions, SSE linear-time performance, MCP 500K result override, disableSkillShellExecution, plugin bin/ executables, Edit tool shorter anchors, interactive Bedrock wizard, forceRemoteSettingsRefresh, /cost per-model breakdown, interactive /release-notes, Linux sandbox apply-seccomp fix, Bedrock Mantle support, high effort default for API/enterprise users, Bedrock auth fix, NO_FLICKER focus view (Ctrl+O), refreshInterval status line, 30+ bug fixes, Vertex AI wizard, Monitor tool, CLAUDE_CODE_PERFORCE_MODE, Bash security hardening, subprocess PID namespace sandboxing, /team-onboarding command, OS CA cert store trust by default, /ultraplan auto-cloud-environment, 40+ bug fixes, PreCompact hook blocking, EnterWorktree path param, plugin monitors, /proactive alias, WebFetch CSS/JS stripping, /doctor status icons, thinking hints sooner, ENABLE_PROMPT_CACHING_1H, /recap session context, built-in slash commands via Skill tool, /undo alias, rotating extended-thinking indicator, /tui fullscreen command, push notification tool, --resume resurrects scheduled tasks, /focus command, autoScrollEnabled config, session recap for telemetry-disabled, 30+ bug fixes, Opus 4.7 xhigh effort, /ultrareview cloud code review, /less-permission-prompts skill, Auto mode for Max subscribers, plan files named after prompts, read-only bash glob patterns no prompt, interactive /effort slider, many bug fixes
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
@@ -24,6 +24,36 @@ tags: [reference, release]
 ---
 
 ## 2.1.x Series (January-April 2026)
+
+### v2.1.111 (2026-04-16)
+
+> Claude Opus 4.7 xhigh effort level, /ultrareview cloud code review, /less-permission-prompts skill, Auto mode for Max subscribers.
+
+- **New**: Claude Opus 4.7 `xhigh` effort level — between `high` and `max`; available via `/effort`, `--effort`, and the model picker; other models fall back to `high`
+- **New**: Auto mode for Max subscribers on Opus 4.7 — no longer requires `--enable-auto-mode`
+- **New**: `/ultrareview` skill — runs comprehensive code review in the cloud using parallel multi-agent analysis; invoke without arguments for current branch, or `/ultrareview <PR#>` for a specific GitHub PR
+- **New**: `/less-permission-prompts` skill — scans transcripts for common read-only Bash and MCP tool calls, proposes a prioritized allowlist for `.claude/settings.json`
+- **New**: "Auto (match terminal)" theme option — follows your terminal's dark/light mode; selectable via `/theme`
+- **New**: `/effort` opens an interactive slider when called without arguments; arrow-key navigation + Enter to confirm
+- **Improved**: Plan files now named after your prompt (e.g. `fix-auth-race-snug-otter.md`) instead of purely random words
+- **Improved**: Read-only bash commands with glob patterns (e.g. `ls *.ts`) and commands starting with `cd <project-dir> &&` no longer trigger a permission prompt
+- **Improved**: `/setup-vertex` and `/setup-bedrock` show the actual `settings.json` path when `CLAUDE_CONFIG_DIR` is set, seed model candidates from existing pins on re-run, offer a "with 1M context" option
+- **Improved**: `/skills` menu now supports sorting by estimated token count — press `t` to toggle
+- **Improved**: `Ctrl+U` clears the entire input buffer (`Ctrl+Y` restores); `Ctrl+L` forces full screen redraw
+- **Improved**: Typo suggestions for near-miss `claude <word>` invocations (e.g. `claude udpate` → "Did you mean `claude update`?")
+- **Improved**: Headless `--output-format stream-json` includes `plugin_errors` on the init event; `OTEL_LOG_RAW_API_BODIES` env var emits full API bodies as OpenTelemetry log events
+- **Fixed**: Terminal display tearing (random characters, drifting input) in iTerm2 + tmux setups when terminal notifications are sent
+- **Fixed**: `@` file suggestions re-scanning entire project on every turn in non-git directories; only config files shown in freshly-initialized git repos with no tracked files
+- **Fixed**: LSP diagnostics from before an edit appearing after it, causing model to re-read already-edited files
+- **Fixed**: Tab-completing `/resume` immediately resuming an arbitrary titled session instead of showing the session picker
+- **Fixed**: `/clear` dropping the session name set by `/rename`, causing statusline to lose `session_name`
+- **Fixed**: Claude calling non-existent `commit` skill showing "Unknown skill: commit" for users without a custom `/commit` command
+- **Fixed**: 429 rate-limit errors on Bedrock/Vertex/Foundry incorrectly referencing status.claude.com
+- **Fixed**: Multiple additional issues — bare URLs unclickable when terminal wraps them across lines, feedback surveys appearing back-to-back, Windows `CLAUDE_ENV_FILE` and SessionStart hook env files now apply, drive-letter path permission rules correctly root-anchored
+- **Fixed**: Plugin error handling improvements — dependency errors distinguish conflicting/invalid/overly complex version requirements; stale resolved versions after `plugin update`; `plugin install` recovers from interrupted installs
+- **Reverted**: v2.1.110 cap on non-streaming fallback retries — it traded long waits for more outright failures during API overload
+
+---
 
 ### v2.1.110 (2026-04-16)
 

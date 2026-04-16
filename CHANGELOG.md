@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.39.1] - 2026-04-16 (2)
+
+### Documentation
+
+- **Claude Code Releases**: Updated tracking to v2.1.111
+  - Claude Opus 4.7 xhigh effort level; Auto mode for Max subscribers no longer requires --enable-auto-mode
+  - /ultrareview skill for cloud-based parallel multi-agent code review
+  - /less-permission-prompts skill auto-generates allowlist from transcript history
+  - Plan files named after prompts; read-only bash glob patterns no longer prompt
+  - Many bug fixes (iTerm2+tmux tearing, LSP diagnostics, /resume tab-complete, /clear session name)
+  - Reverted v2.1.110 non-streaming fallback retry cap
+
 ## [3.39.1] - 2026-04-16
 
 ### Added

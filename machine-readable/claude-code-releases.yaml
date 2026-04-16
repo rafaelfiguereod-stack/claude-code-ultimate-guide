@@ -3,7 +3,7 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.110"
+latest: "2.1.111"
 updated: "2026-04-16"
 
 # ════════════════════════════════════════════════════════════════
@@ -14,6 +14,14 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.111"
+    date: "2026-04-16"
+    highlights:
+      - "⭐ Claude Opus 4.7 xhigh effort level (between high and max); Auto mode for Max subscribers no longer requires --enable-auto-mode"
+      - "⭐ /ultrareview skill — cloud-based parallel multi-agent code review; invoke with no args for current branch or /ultrareview <PR#>"
+      - "⭐ /less-permission-prompts skill — scans transcripts and proposes a prioritized read-only allowlist for settings.json"
+      - "Plan files named after prompts; read-only bash with glob patterns and cd <dir> && no longer trigger prompts; interactive /effort slider; many bug fixes"
 
   - version: "2.1.110"
     date: "2026-04-16"
