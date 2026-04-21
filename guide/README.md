@@ -10,6 +10,21 @@ Core documentation for mastering Claude Code, organized by topic.
 
 ---
 
+## Getting Started
+
+| File | Description | Time |
+|------|-------------|------|
+| [**learning-path/**](./learning-path/README.md) | **Structured 7-module learning path** for beginners: Installation, Core Loop, Memory, Agents, Skills, Hooks, Advanced Patterns | 8-11 hours |
+| [learning-path/01-installation.md](./learning-path/01-installation.md) | Module 01: Install Claude Code and verify it works | 15 min |
+| [learning-path/02-core-loop.md](./learning-path/02-core-loop.md) | Module 02: Understand the interaction loop and context | 45 min |
+| [learning-path/03-memory.md](./learning-path/03-memory.md) | Module 03: Create CLAUDE.md and configure memory | 1 hour |
+| [learning-path/04-agents.md](./learning-path/04-agents.md) | Module 04: Create specialized agents | 1.5 hours |
+| [learning-path/05-skills.md](./learning-path/05-skills.md) | Module 05: Build reusable skills | 1.5 hours |
+| [learning-path/06-hooks.md](./learning-path/06-hooks.md) | Module 06: Create automation hooks | 1 hour |
+| [learning-path/07-advanced.md](./learning-path/07-advanced.md) | Module 07: Multi-agent orchestration | 2-3 hours |
+
+---
+
 ## Core Reference
 
 | File | Description | Time |

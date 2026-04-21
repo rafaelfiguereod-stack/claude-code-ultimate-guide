@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Learning Path (NEW)**: Added structured 7-module learning path for beginners
+  - `guide/learning-path/README.md` — Meta guide with 7 modules, 3 learning tracks, time estimates
+  - `guide/learning-path/01-installation.md` — Installation and first run (15 min)
+  - `guide/learning-path/02-core-loop.md` — Interaction loop and context management (45 min)
+  - `guide/learning-path/03-memory.md` — CLAUDE.md and configuration (1 hour)
+  - `guide/learning-path/04-agents.md` — Creating specialized agents (1.5 hours)
+  - `guide/learning-path/05-skills.md` — Building reusable skills (1.5 hours)
+  - `guide/learning-path/06-hooks.md` — Automation hooks and events (1 hour)
+  - `guide/learning-path/07-advanced.md` — Multi-agent orchestration (2-3 hours)
+  - Each module: theory + hands-on exercises + validation steps
+  - Mirrors competitor structure while maintaining unique depth in security/architecture
+  - Integrates with `/self-assessment` and `/lesson-quiz` skills for interactive learning
+  - Time estimate: 8-11 hours for complete path + optional deep dives
+
 - **Claude Code Releases**: Updated tracking to v2.1.116
   - `/resume` up to 67% faster on 40MB+ sessions; handles dead-fork entries more efficiently
   - Thinking spinner shows inline progress ("still thinking", "thinking more", "almost done thinking")
