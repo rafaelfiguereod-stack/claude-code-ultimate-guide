@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **third-party-tools.md**: Added abtop — Rust TUI for monitoring Claude Code & Codex CLI agent fleets (htop-style: tokens, context %, rate limits, orphan ports, subagent tree, tmux integration, 584+ stars, MIT)
+
+- **ultimate-guide.md § 5.4**: Added Example 4 — Tally Form Builder Skill, documenting the MCP wrapping pattern with deferred tool loading, OAuth flow, block chaining, and known limitations
+- **examples/README.md**: Updated all section counts (agents 23, commands 52, hooks 37, skills 68, scripts 17, github-actions 6, integrations 3, config 6, memory 1) and added context-engineering folder to structure table
+- **README.md, llms-full.txt, landing**: Updated template count from 246 → 247 across all counters (guide README badge, mermaid diagram, tree, comparison table, landing hero, features, FAQ, examples page)
+
 - **ultimate-guide.md § 9.9**: Added "macOS Batch Automation: Shell + AppleScript" subsection — batch PPTX→PDF conversion via Keynote, with the shell-open-then-AppleScript pattern to avoid error -1719
 - **examples/scripts/pptx-to-pdf.sh**: New utility script — recursive PPTX→PDF conversion on macOS using Keynote + AppleScript, no external dependencies
 

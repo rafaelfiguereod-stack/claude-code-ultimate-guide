@@ -8,9 +8,9 @@
 <!-- Stats -->
 <p align="center">
   <a href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers"><img src="https://img.shields.io/github/stars/FlorianBruniaux/claude-code-ultimate-guide?style=for-the-badge" alt="Stars"/></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Apr_16,_2026_·_v3.39.1-brightgreen?style=for-the-badge" alt="Last Update"/></a>
+  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Apr_20,_2026_·_v3.39.1-brightgreen?style=for-the-badge" alt="Last Update"/></a>
   <a href="./quiz/"><img src="https://img.shields.io/badge/Quiz-271_questions-orange?style=for-the-badge" alt="Quiz"/></a>
-  <a href="./examples/"><img src="https://img.shields.io/badge/Templates-229-green?style=for-the-badge" alt="Templates"/></a>
+  <a href="./examples/"><img src="https://img.shields.io/badge/Templates-247-green?style=for-the-badge" alt="Templates"/></a>
 </p>
 
 <!-- Features -->
@@ -91,7 +91,7 @@ Both guides serve different needs. Choose based on your priority.
 | **Security hardening** | Only threat database (24 CVEs) | Basic patterns only |
 | **Test understanding** | 271-question quiz | Not available |
 | **Methodologies** (TDD/SDD/BDD) | Full workflow guides | Not covered |
-| **Copy-paste ready** templates | 228 templates | 200+ templates |
+| **Copy-paste ready** templates | 247 templates | 200+ templates |
 
 ### Ecosystem Positioning
 
@@ -176,7 +176,7 @@ graph LR
     root[📦 Repository<br/>Root]
 
     root --> guide[📖 guide/<br/>24K+ lines]
-    root --> examples[📋 examples/<br/>228 templates]
+    root --> examples[📋 examples/<br/>247 templates]
     root --> quiz[🧠 quiz/<br/>271 questions]
     root --> tools[🔧 tools/<br/>utils]
     root --> machine[🤖 machine-readable/<br/>AI index]
@@ -207,10 +207,10 @@ graph LR
 │  ├─ mcp-servers-ecosystem.md  Official & community MCP servers
 │  └─ workflows/          Step-by-step guides
 │
-├─ 📋 examples/           228 Production Templates
-│  ├─ agents/             9 custom AI personas
-│  ├─ commands/           26 slash commands
-│  ├─ hooks/              31 hooks (bash + PowerShell)
+├─ 📋 examples/           247 Production Templates
+│  ├─ agents/             23 custom AI personas
+│  ├─ commands/           52 slash commands
+│  ├─ hooks/              37 hooks (bash + PowerShell)
 │  ├─ skills/             14 skills (9 on SkillHub)
 │  └─ scripts/            Utility scripts (audit, search)
 │
@@ -775,7 +775,7 @@ Use this guide critically. Experiment. Share what works for you.
 | **[Credits](./guide/core/credits.md)** | Open-source inspirations and pattern attributions | 2 min |
 
 <details>
-<summary><strong>Examples Library</strong> (228 templates)</summary>
+<summary><strong>Examples Library</strong> (247 templates)</summary>
 
 **Agents** (6): [code-reviewer](./examples/agents/code-reviewer.md), [test-writer](./examples/agents/test-writer.md), [security-auditor](./examples/agents/security-auditor.md), [refactoring-specialist](./examples/agents/refactoring-specialist.md), [output-evaluator](./examples/agents/output-evaluator.md), [devops-sre](./examples/agents/devops-sre.md) ⭐
 

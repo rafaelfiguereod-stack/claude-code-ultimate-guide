@@ -8075,6 +8075,81 @@ This skill is now installed in the Méthode Aristote repository at:
 - Pattern reference: `examples/skills/design-patterns/reference/*.md`
 - Detection rules: `examples/skills/design-patterns/signatures/*.yaml`
 
+### Example 4: Tally Form Builder Skill
+
+**Purpose**: Create and modify Tally forms via MCP — no browser, no UI, just `/tally-form-builder` and a description.
+
+**Location**: `~/.claude/skills/tally-form-builder/`
+
+**What This Pattern Demonstrates**: MCP wrapping with deferred tool loading. The Tally MCP tools are not available by default — their schemas must be fetched via `ToolSearch` before any call. This skill handles that automatically and documents all the gotchas that cause failures when calling the API blind.
+
+**Key Features**:
+- OAuth flow management (authenticate → browser → callback URL → complete)
+- Block-chaining with `insertAfterBlockUuid` to preserve order
+- HTML support awareness (TEXT blocks yes, option labels no)
+- Batch text updates in a single call
+- Known-issues reference file with 7 documented limitations and workarounds
+
+**Structure**:
+```
+tally-form-builder/
+├── SKILL.md                     # Full workflow + rules + anti-patterns
+└── references/
+    ├── block-types.md           # All block types with payloads and examples
+    └── known-issues.md          # 7 limitations with workarounds
+```
+
+**Core Concept: Deferred Tools**
+
+Tally MCP tools are deferred — calling them without `ToolSearch` first returns `InputValidationError`. The skill enforces a mandatory `ToolSearch` step before any MCP call. This pattern applies to any MCP server with deferred tools.
+
+```
+ToolSearch → authenticate → list_workspaces → create_new_form
+          → create_blocks → configure_blocks → update_text → save_form
+```
+
+**Block Chaining Pattern**:
+
+Each block must reference the UUID of the block that precedes it. The skill tracks UUIDs across calls to maintain correct insertion order:
+
+```
+FORM_TITLE (uuid: "abc")
+  → create_blocks([TITLE], insertAfterBlockUuid: "abc") → returns "def"
+  → create_blocks([CHECKBOX × N], insertAfterBlockUuid: "def") → returns "ghi"
+  → create_blocks([PAGE_BREAK], insertAfterBlockUuid: "ghi") → ...
+```
+
+**Critical Rule**: `save_form` is mandatory. Without it, the form does not exist in Tally and `list_forms` returns 0 results.
+
+**Usage**:
+
+```
+/tally-form-builder
+Create a survey form on [topic] with:
+- Page 1: intro + checkbox question with options [A, B, C, D]
+- Page 2: context questions (team size, role)
+- Page 3: optional contact info (first name, email)
+Publish as PUBLISHED.
+```
+
+```
+/tally-form-builder
+Edit form [formId]:
+- Change "2 min" to "3 min max" in the intro
+- Add a "SMB" option to the team size question
+```
+
+**Key Limitations (documented in `references/known-issues.md`)**:
+- Options (checkbox, dropdown, multiple choice) do not support HTML — labels are always plain text
+- "Other" option generates a fixed small input; cannot be converted to a textarea via API
+- `list_forms` always returns 0 until `save_form` is called
+
+**Reference**:
+- Full skill: `~/.claude/skills/tally-form-builder/SKILL.md`
+- Block types: `~/.claude/skills/tally-form-builder/references/block-types.md`
+- Known issues: `~/.claude/skills/tally-form-builder/references/known-issues.md`
+- MCP wrapping template: `examples/skills/mcp-integration-reference/SKILL.md`
+
 ## 5.5 Community Skill Repositories
 
 ### Registry-based Discovery: ctx7 CLI
