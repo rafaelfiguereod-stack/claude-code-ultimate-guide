@@ -41,6 +41,11 @@ tags: [cheatsheet, reference]
 | `/mobile` | Get Claude mobile app download links |
 | `/fast` | Toggle fast mode (2.5x speed, 6x cost) |
 | `/voice` | Toggle voice input (hold Space to speak, release to send) |
+| `/recap` | Session context summary on return to a break (v2.1.108) |
+| `/effort [level]` | Thinking depth: low/medium/high/xhigh/max; no arg = interactive slider (v2.1.111) |
+| `/tui [fullscreen]` | Full-screen flicker-free TUI rendering (v2.1.110) |
+| `/focus` | Toggle minimal focus view, separate from Ctrl+O (v2.1.110) |
+| `/less-permission-prompts` | Scan transcripts and propose a read-only tool allowlist (v2.1.111) |
 | `/btw [question]` | Side question overlay — read-only ephemeral agent, no history pollution, no tools |
 | `/loop [interval] [prompt]` | Run a prompt on repeat (ex: `/loop 5m check the deploy`, default 10m) |
 | `/stats` | Usage graph, favorite model, streak |

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Built-in Commands Reference** (major update): Added 26 missing commands to the reference table introduced in v2.1.108–v2.1.117
+  - `/recap`, `/effort`, `/tui`, `/focus`, `/undo`, `/proactive`, `/less-permission-prompts`, `/team-onboarding`, `/terminal-setup`, `/reload-plugins`
+  - `/config`, `/model`, `/context`, `/cost`, `/doctor`, `/release-notes`, `/copy`, `/resume`, `/loop`, `/mcp`, `/memory`, `/plugin`, `/keybindings`, `/setup-bedrock`, `/setup-vertex`, `/ultrareview`
+- **`/recap` dedicated section**: How it works (triggers on return, not on exit), configuration options (`/config`, `CLAUDE_CODE_ENABLE_AWAY_SUMMARY`), telemetry-disabled compatibility, version history
+- **Cheatsheet**: Added `/recap`, `/effort`, `/tui`, `/focus`, `/less-permission-prompts` to Essential Commands table
+
 - **Claude Code Releases**: Updated tracking to v2.1.117
   - Default effort changed to `high` for Pro/Max subscribers on Opus 4.6 and Sonnet 4.6 (was `medium`)
   - Fixed Opus 4.7 sessions computing `/context` against 200K instead of 1M context window

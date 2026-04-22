@@ -8796,13 +8796,39 @@ Slash commands are shortcuts for common workflows.
 | `/clear` | Clear conversation |
 | `/compact` | Summarize context |
 | `/status` | Show session info |
+| `/context` | Detailed context/token breakdown with actionable suggestions |
+| `/cost` | Per-model token cost breakdown for the session |
 | `/plan` | Enter Plan Mode |
 | `/rewind` | Undo changes |
+| `/undo` | Alias for /rewind |
+| `/resume` | Resume a previous session with interactive picker |
 | `/voice` | Toggle voice input (hold Space to speak, release to send) |
+| `/recap` | Show context summary when returning to a session after a break |
+| `/config` | Interactive configuration editor |
+| `/model` | Switch model (sonnet/opus/opusplan) |
+| `/effort [level]` | Set thinking depth: low/medium/high/xhigh/max; no arg = interactive slider |
+| `/focus` | Toggle focus view (minimal UI, hides metadata) |
+| `/tui [fullscreen]` | Switch to full-screen flicker-free TUI rendering |
+| `/copy` | Interactive picker: copy a code block or full response |
+| `/loop [interval] [prompt]` | Run a prompt on a recurring interval |
+| `/proactive` | Alias for /loop |
 | `/simplify` | Review changed code and fix over-engineering |
 | `/batch` | Large-scale changes via parallel worktree agents |
 | `/insights` | Generate usage analytics report |
-| `/btw [question]` | Side question via ephemeral overlay — read-only, no tools, single response, doesn't pollute main history |
+| `/btw [question]` | Side question via ephemeral overlay: read-only, no tools, single response, doesn't pollute main history |
+| `/doctor` | Diagnostic check: environment, settings, connectivity |
+| `/release-notes` | Browse Claude Code changelog interactively |
+| `/less-permission-prompts` | Scan transcripts and propose a read-only tool allowlist |
+| `/team-onboarding` | Generate a teammate ramp-up guide from CLAUDE.md and recent sessions |
+| `/terminal-setup` | Configure terminal scroll sensitivity (VS Code, Cursor, Windsurf) |
+| `/reload-plugins` | Reload MCP plugins and auto-install missing dependencies |
+| `/mcp` | Show MCP server status |
+| `/memory` | View/edit memory files |
+| `/plugin` | Manage plugins (install, list, update) |
+| `/keybindings` | Edit key bindings (opens ~/.claude/keybindings.json) |
+| `/setup-bedrock` | Interactive Bedrock configuration wizard |
+| `/setup-vertex` | Interactive Vertex AI configuration wizard |
+| `/ultrareview` | Cloud-based parallel multi-agent code review (Pro/Max) |
 | `/exit` | Exit Claude Code |
 
 ### The /btw Command
@@ -8850,6 +8876,24 @@ claude --resume <session-id> --fork-session
 **After forking**: both branches are independent — changes in one don't affect the other. Resume either later with `claude --resume` and the interactive session picker.
 
 **Tip**: run `/rename` before forking so you can tell the two branches apart in the picker.
+
+### /recap: Session Context on Return
+
+`/recap` provides a context summary when you come back to a session after a break. Claude automatically detects the absence and generates a brief recap of what was being worked on, the last actions taken, and what comes next. This makes returning to a long session significantly less disorienting, especially after an overnight gap or a context compaction.
+
+**Behavior**: The recap fires automatically on re-entry to a session. It does not trigger at the end of a session; the trigger is when you *return* to one that has been inactive.
+
+**Configuration options:**
+
+| Method | Effect |
+|--------|--------|
+| `/config` then search "recap" | Enable/disable the feature in the UI |
+| `CLAUDE_CODE_ENABLE_AWAY_SUMMARY=1` | Force-enable (useful if telemetry is disabled) |
+| `CLAUDE_CODE_ENABLE_AWAY_SUMMARY=0` | Disable completely |
+
+The feature works even with telemetry disabled (Bedrock, Vertex, Foundry, `DISABLE_TELEMETRY`). You can also toggle it from `/config` without touching environment variables.
+
+**Version history**: Introduced in v2.1.108. Extended to telemetry-disabled environments in v2.1.110. A regression that caused auto-firing while the user was still composing a message was fixed in v2.1.113.
 
 ### The /insights Command
 
