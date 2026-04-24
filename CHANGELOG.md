@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Known Issues** (major update): Added "Triple Harness Incident (Mar-Apr 2026)" resolved entry, covering three independent harness/prompt changes that degraded output quality: default effort high to medium (March 4, reverted April 7), thinking tokens cleared per-turn bug (March 26, fixed April 10 in v2.1.101), verbosity system prompt (April 16, reverted April 20 in v2.1.116). Source: Anthropic official postmortem and Boris Cherny HN comments (April 23, 2026). Updated Last Updated date.
+
 - **Ultrareview section** (guide): Added `/ultrareview <PR#>` syntax, clarified diff-only scope (not full codebase), added Scope row to Ultraplan vs Ultrareview comparison table
 
 - **Claude Code Releases**: Updated tracking to v2.1.118

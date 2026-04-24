@@ -8,7 +8,7 @@ tags: [reference, security, debugging]
 
 This document tracks verified, critical issues affecting Claude Code users based on community reports and official communications.
 
-> **Last Updated**: April 1, 2026
+> **Last Updated**: April 23, 2026
 > **Source**: [GitHub Issues](https://github.com/anthropics/claude-code/issues) + [Anthropic Official Communications](https://www.anthropic.com/engineering)
 
 ---
@@ -317,6 +317,62 @@ If experiencing excessive consumption:
 ---
 
 ## ✅ Resolved Historical Issues
+
+### Triple Harness Incident: Effort, Thinking Tokens, Verbosity (Mar-Apr 2026)
+
+**Severity**: 🔴 **HIGH**
+**Status**: ✅ **RESOLVED** (all three issues resolved by April 20, 2026)
+**Timeline**: March 4 – April 20, 2026
+
+#### Problem
+
+Three independent harness and system-prompt changes degraded Claude Code output quality over a six-week period. None were model-level regressions; all were in the Claude Code harness layer.
+
+#### Incident 1: Default Effort High to Medium (March 4, reverted April 7)
+
+**Trigger**: Long latency in high effort mode made the UI appear frozen on some sessions.
+**Change**: Anthropic changed the default reasoning effort from `high` to `medium` for Sonnet 4.6 and Opus 4.6.
+**Impact**: Users who hadn't manually set `/effort high` silently got medium-quality reasoning. The in-product indicator still showed "high", masking the regression for over a month.
+**Affected**: Sonnet 4.6, Opus 4.6.
+**Resolution**: Reverted April 7. New defaults: xhigh for Opus 4.7, high for all other models. Proper UI iterations (thinking spinners, clearer `/effort` UX) shipped alongside.
+
+#### Incident 2: Thinking Tokens Cleared Per Turn After Idle (March 26, fixed April 10)
+
+**Trigger**: Anthropic shipped a change to clear thinking tokens once when a session had been idle for over an hour (to reduce latency and cache cost on resume).
+**Bug**: A code defect caused the clear to trigger on every subsequent turn for the rest of the session, not just once on resume.
+**Impact**: Sessions became forgetful and repetitive, with Claude losing context progressively throughout a resumed conversation.
+**Affected**: Sonnet 4.6, Opus 4.6.
+**Resolution**: Bug fixed April 10, 2026 (v2.1.101). Root cause per Boris Cherny (CC team): large idle sessions caused full cache misses (900K+ tokens), creating significant token cost spikes for Pro users on resume.
+
+#### Incident 3: Verbosity System Prompt Instruction (April 16, reverted April 20)
+
+**Trigger**: Anthropic added a system prompt instruction to reduce response verbosity.
+**Impact**: In combination with other prompt changes active at the time, coding quality dropped noticeably.
+**Affected**: Sonnet 4.6, Opus 4.6, Opus 4.7.
+**Resolution**: Reverted April 20. Four-day exposure, fastest resolution of the three incidents.
+
+#### Community Impact
+
+- Widespread reports of quality degradation across Reddit, HN, X/Twitter (March–April 2026)
+- Cancellations among Pro and Max subscribers
+- Anthropic employees (including Boris Cherny) initially responded in comment sections without acknowledging the systemic issues
+- HN thread reached 250+ comments on day of disclosure
+
+#### Anthropic Response
+
+**Official Update**: [An update on recent Claude Code quality reports](https://www.anthropic.com/engineering/april-23-postmortem) (April 23, 2026)
+
+Key commitments from the post:
+- Usage limits reset for all subscribers (April 23)
+- Larger share of internal staff will use the exact public build (not the feature-test build)
+- "Going forward" section promised improved eval and rollout practices
+
+Key quote from Boris Cherny (HN comment):
+> "We agree, and will be spending the next few weeks increasing our investment in polish, quality, and reliability."
+
+**Resolution**: All three issues resolved between April 7–20, 2026.
+
+---
 
 ### Model Quality Degradation (Aug-Sep 2025)
 
