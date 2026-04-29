@@ -2607,6 +2607,8 @@ For subscription usage history: Check your [Anthropic Console](https://console.a
 
 **Historical Note**: In October 2025, users reported significant undocumented limit reductions coinciding with Sonnet 4.5's release. Pro users who previously sustained 40-80 Sonnet hours weekly reported hitting limits after only 6-8 hours. Anthropic acknowledged the limits but did not explain the discrepancy.
 
+**Peak Hours (March 2026)**: On March 26, 2026, Anthropic adjusted how session limits are consumed during peak demand — the 5-hour rolling window drains faster during **weekdays 5am–11am PT** (1pm–7pm GMT). Same weekly total, different distribution. Anthropic cited GPU capacity constraints; roughly 7% of users hit limits they wouldn't have before. Max users reported going from 21% to 100% usage on a single prompt during peak. Practical workaround: move compute-heavy agentic tasks (long sub-agent chains, large refactors) to evenings or weekends. Off-peak usage clears faster, stretching the same budget further.
+
 ### Context Poisoning (Bleeding)
 
 **Definition**: When information from one task contaminates another.

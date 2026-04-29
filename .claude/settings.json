@@ -88,5 +88,8 @@
       }
     ]
   },
+  "env": {
+    "ALLOWED_PATHS": "/Users/florianbruniaux/Sites/perso/claude-code-plugins"
+  },
   "$schema": "https://json.schemastore.org/claude-code-settings.json"
 }

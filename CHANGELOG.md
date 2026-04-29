@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Peak Hours behavior** (guide, section "Subscription Plans & Limits"): Documented the March 26, 2026 Anthropic change — session limits now drain faster during weekdays 5am–11am PT due to GPU capacity constraints. Added practical workaround (shift compute-heavy tasks to off-peak hours). Source: MacRumors, The Register, TechRadar coverage of the official Anthropic change.
+
+- **Data Privacy guide** (security): Added Risk 6 — Claude Desktop browser integration silent native messaging host installation. Covers what gets installed, which browsers are affected, what native messaging actually does vs. the consent failure issue, how to audit and remove the files, and the Claude Desktop/Claude Code CLI conflict bug (GitHub #51949, #53864). Factual, no "spyware" framing, includes command-line audit and cleanup steps.
+
 - **Claude Code Releases**: Updated tracking to v2.1.119
   - /config settings now persist to ~/.claude/settings.json with override precedence
   - --from-pr accepts GitLab MR, Bitbucket PR, and GitHub Enterprise URLs
