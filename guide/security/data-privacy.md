@@ -164,6 +164,59 @@ Or add it to your shell profile (`~/.zshrc`, `~/.bashrc`) to make it permanent.
 | Credentials exposed via environment variables | GitHub issues |
 | Prompt injection via malicious MCP servers | r/programming |
 
+### Risk 6: Claude Desktop Browser Integration — Silent Native Messaging Host Installation
+
+Claude Desktop installs native messaging host manifest files into browsers' `NativeMessagingHosts` directories to enable its "Claude in Chrome" feature. As of April 2026, this happens without an explicit opt-in prompt from the user.
+
+**What gets installed:**
+
+```
+~/Library/Application Support/Google/Chrome/NativeMessagingHosts/
+  com.anthropic.claude_browser_extension.json
+
+/Applications/Claude.app/Contents/MacOS/
+  claude_browser_native_host  (helper binary)
+```
+
+Claude Desktop writes these files to **all Chromium-based browsers found on the system** — Chrome, Brave, Edge, Arc, Vivaldi, Opera, Chromium — including browsers not installed at the time of Claude Desktop's installation. The "Don't ask" opt-out in Claude Desktop's preferences does not reliably prevent this ([GitHub #53864](https://github.com/anthropics/claude-code/issues/53864), April 2026).
+
+**What native messaging actually does (and doesn't do):**
+
+Native messaging is a standard Chrome mechanism used by password managers, VPNs, and many other legitimate apps. The native host can only receive messages sent by a Chrome extension that explicitly targets it. It cannot initiate connections to the browser, read tabs, or access browser data unsolicited. This is architecturally different from spyware.
+
+The real issue is the **consent failure**, not the mechanism itself. An application silently modifying another vendor's application directories violates the principle of least surprise, regardless of intent.
+
+**What to check if you're concerned:**
+
+```bash
+# List all native messaging hosts installed for Chrome
+ls ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/
+
+# Check if Anthropic's host is present
+cat ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/com.anthropic.claude_browser_extension.json
+
+# Check other browsers
+ls ~/Library/Application\ Support/BraveSoftware/Brave-Browser/NativeMessagingHosts/
+ls ~/Library/Application\ Support/Microsoft\ Edge/NativeMessagingHosts/
+```
+
+**To remove:**
+
+```bash
+# Remove from Chrome (repeat for each browser as needed)
+rm ~/Library/Application\ Support/Google/Chrome/NativeMessagingHosts/com.anthropic.claude_browser_extension.json
+
+# Restart Chrome after deletion
+```
+
+Uninstalling Claude Desktop removes the helper binary but may leave stale manifest files in some browser directories. Restart the affected browsers after cleanup.
+
+**Conflict with Claude Code:** When both Claude Desktop and Claude Code CLI are installed, the Chrome extension always binds to Claude Desktop's native host, making Claude Code's `claude-in-chrome` MCP tools unreachable ([GitHub #51949](https://github.com/anthropics/claude-code/issues/51949)). This is a known bug with no workaround as of April 2026 other than uninstalling Claude Desktop.
+
+**Mitigation:**
+
+If you don't use the browser integration feature, you can safely delete the manifest files. Anthropic has not yet provided an official opt-out mechanism that reliably prevents installation. Monitor [GitHub #53864](https://github.com/anthropics/claude-code/issues/53864) for updates.
+
 ---
 
 ## 4. Protective Measures

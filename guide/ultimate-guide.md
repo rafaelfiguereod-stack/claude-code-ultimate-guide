@@ -18285,16 +18285,15 @@ python3 ~/.claude/scripts/extract-signatures.py src/
 | Use case | Tool | Install |
 |---|---|---|
 | General exploration | mcp-server-tree-sitter | `pip install mcp-server-tree-sitter` |
-| PR code reviews | code-review-graph (MIT, ~2k stars) | `pip install code-review-graph` |
+| PR code reviews | code-review-graph (MIT, 10k+ stars) | `pip install code-review-graph` |
 | Symbol lookup | jCodeMunch (free non-commercial) | `claude mcp add jcodemunch uvx jcodemunch-mcp` |
 
-**code-review-graph** is the strongest standalone option: MIT, Claude Code marketplace, 6.8x average token reduction on PR reviews across real codebases (httpx: 26x, FastAPI: 8x, Next.js: 6x).
+**code-review-graph** is the strongest standalone option: MIT, 10k+ stars, 8.2x average token reduction across real codebases (gin: 16x, flask: 9x, FastAPI: 8x, Next.js: 8x). Builds a Tree-sitter AST of your repo, tracks blast radius per change, and exposes 28 MCP tools so Claude reads only the files that matter. Supports 23 languages + Jupyter notebooks, auto-updates on every git commit (< 2s re-index), and ships a multi-repo daemon for editor-agnostic setups.
 
 ```bash
 pip install code-review-graph
-code-review-graph install
-# or
-claude plugin marketplace add tirth8205/code-review-graph
+code-review-graph install   # auto-detects Claude Code, Cursor, Windsurf, Zed, Continue, Kiro...
+code-review-graph build     # first-time parse (~10s for 500 files)
 ```
 
 **Honest benchmarks:**

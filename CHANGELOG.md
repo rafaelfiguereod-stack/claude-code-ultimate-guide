@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Resource Evaluation**: Sandcastle (`@ai-hero/sandcastle`) — score 3/5 (Watch)
+  - Evaluation file: `docs/resource-evaluations/083-sandcastle-agent-orchestration.md`
+  - Added to Known Gaps table in `guide/ecosystem/third-party-tools.md` (programmatic sandboxed orchestration)
+  - Not integrated: v0.5.x maturity, TypeScript-only barrier, Docker/Podman hard dependency, separate API key model
+  - Revisit trigger: v1.0 release or Sequential Reviewer bug + issue #191 (subscription auth) resolved
+
 - **MCP Ecosystem**: Added Sentry MCP Server entry to `guide/ecosystem/mcp-servers-ecosystem.md`
   - New validated server under DevOps & Infrastructure (observability loop: alert → diagnosis → patch)
   - Full entry: key features, setup, Claude Code config, query syntax reference, quality score (8.5/10), limitations table, alternatives comparison
