@@ -216,6 +216,9 @@ If you only have time for 5 sections:
   - [9.20 Agent Teams (Multi-Agent Coordination)](#920-agent-teams-multi-agent-coordination)
   - [9.21 Legacy Codebase Modernization](#921-legacy-codebase-modernization)
   - [9.22 Remote Control (Mobile Access)](#922-remote-control-mobile-access)
+  - [9.23 Configuration Lifecycle & The Update Loop](#923-configuration-lifecycle--the-update-loop)
+  - [9.24 Instinct-Based Continuous Learning](#924-instinct-based-continuous-learning)
+  - [9.25 Harness Engineering](#925-harness-engineering)
 - [10. Reference](#10-reference) `🟢 All levels` `⏱ As needed`
   - [10.1 Commands Table](#101-commands-table)
   - [10.2 Keyboard Shortcuts](#102-keyboard-shortcuts)
@@ -23110,6 +23113,202 @@ The promotion step stays manual by design — you decide what gets encoded. The 
 > **Credit**: Instinct-based learning pipeline and the Stop hook capture pattern from [Everything Claude Code v2](https://github.com/affaan-m/everything-claude-code) (Affaan Mustafa). The confidence scoring, decay model, and instinct → skill evolution pipeline are their original contribution.
 
 > **See also**: [§9.23 Configuration Lifecycle & The Update Loop](#923-configuration-lifecycle--the-update-loop) — deliberate maintenance vs. incidental capture
+
+---
+
+## 9.25 Harness Engineering
+
+**Reading time**: 10 minutes
+**Skill level**: Month 2+
+
+> **The core insight**: model capability and execution reliability are orthogonal. The same model produces fundamentally different outcomes depending on the infrastructure around it, not the model's quality. That infrastructure is the harness.
+
+### What Is a Harness?
+
+The harness is everything in the engineering environment around the agent: the instruction files, initialization scripts, state tracking, verification commands, and feedback loops. It is not a prompt file and not a list of guidelines. The harness is the workbench the agent operates inside.
+
+Five subsystems make up a complete harness:
+
+| Subsystem | Purpose | Core artifacts |
+|-----------|---------|----------------|
+| **Instructions** | Defines what the agent should do and how to behave | AGENTS.md, CLAUDE.md |
+| **Tools** | Shell access, file editing, command execution | Native Claude Code tools |
+| **Environment** | Dependencies, versions, reproducible baseline | init.sh, lockfiles, devcontainers |
+| **State** | Tracks scope and progress across sessions | feature_list.json, progress.md |
+| **Feedback** | Signals whether work is correct before declaring done | Tests, lint, typecheck, E2E |
+
+The most common failure modes map directly to missing subsystems. Agents that forget context between sessions are missing State. Agents that redo completed work are missing State. Agents that declare done before tests pass are missing Feedback.
+
+### The Verification Gap
+
+The most dangerous failure mode in agentic workflows: the agent announces "done" while tests are still failing, types are broken, or the build doesn't compile. This is not a model quality issue; it is a harness design issue. Without an enforced verification step, the agent relies on code inspection rather than actual execution, and its confidence is uncalibrated.
+
+The fix is to make verification non-optional. Add a three-layer check before the agent can declare completion:
+
+```bash
+# Layer 1: Static analysis
+npm run lint && npm run typecheck
+
+# Layer 2: Unit and integration tests
+npm test
+
+# Layer 3: End-to-end smoke test
+npm run e2e
+```
+
+Encode this as a hard rule in CLAUDE.md:
+
+```markdown
+## Definition of Done
+
+A feature is NOT done until all three layers pass:
+1. `npm run lint && npm run typecheck` — clean
+2. `npm test` — all tests pass
+3. `npm run e2e` — smoke test passes
+
+Do NOT commit or report completion before running all three.
+```
+
+The third layer matters more than most teams expect. Unit tests pass when components work in isolation. End-to-end tests catch interface mismatches, state propagation errors, and lifecycle issues that unit tests structurally cannot detect. Agents that know E2E verification is enforced also tend to write better integration code, because they know it will be tested.
+
+### WIP=1: One Feature at a Time
+
+When multiple features are in progress simultaneously, verification becomes ambiguous (which feature broke the tests?), progress tracking becomes noisy, and context fills faster with no clear completion signal. The agent distributes attention across the full task list instead of closing one thing.
+
+Enforce WIP=1 in your feature list: only one feature can be in `active` state at any time. The agent picks one, finishes it through all three verification layers, then picks the next. This constraint feels restrictive and produces measurably better completion rates.
+
+### The Session Lifecycle
+
+A reliable session follows this sequence every time, not just at startup:
+
+| Step | Action | Subsystem |
+|------|--------|-----------|
+| 1. READ | Read AGENTS.md and CLAUDE.md | Instructions |
+| 2. INIT | Run `./init.sh` — verify environment is healthy | Environment |
+| 3. RESUME | Read `progress.md` — what happened last session | State |
+| 4. SELECT | Pick one feature with `not_started` status from `feature_list.json` | State |
+| 5. EXECUTE | Implement only that feature | — |
+| 6. VERIFY | Run all three verification layers | Feedback |
+| 7. UPDATE | Set feature status to `passing`, record evidence | State |
+| 8. LOG | Update `progress.md` with what changed and what's next | State |
+| 9. CLEANUP | Remove temp files, leave repo in restartable state | Environment |
+| 10. COMMIT | Commit only when verification passes and state is clean | — |
+
+Steps 2 (INIT) and 6 (VERIFY) are where most harness failures occur. INIT that silently continues past broken dependencies produces confusing errors for the rest of the session. VERIFY that runs but doesn't block completion produces false positives that erode trust in the agent's output.
+
+### feature_list.json: Structured Scope Tracking
+
+A plain text task list is insufficient for reliable agent operation: no machine-readable state, no evidence field, no dependency ordering. `feature_list.json` adds structure that both the agent and your tooling can read.
+
+Each feature needs three things: a description of the expected behavior, the verification command that proves it works, and a status field the agent updates throughout the session.
+
+```json
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Document Import",
+      "description": "User can import PDF and TXT files from the local filesystem",
+      "dependencies": [],
+      "status": "passing",
+      "evidence": "npm test -- --grep 'document import' → 4 tests pass"
+    },
+    {
+      "id": "feat-002",
+      "name": "Document Chunking",
+      "description": "Imported documents split into ~500-char chunks with position metadata",
+      "dependencies": ["feat-001"],
+      "status": "active",
+      "evidence": ""
+    },
+    {
+      "id": "feat-003",
+      "name": "Search Index",
+      "description": "Full-text search across all imported documents",
+      "dependencies": ["feat-002"],
+      "status": "not_started",
+      "evidence": ""
+    }
+  ]
+}
+```
+
+Status values follow a one-way flow: `not_started` → `active` → `passing` (or `blocked` if a dependency is unresolvable). The `evidence` field is the highest-signal part of the schema: it records what verification actually ran, not just that the code was written. An empty `evidence` field on a `passing` feature is a red flag.
+
+### init.sh: Bootstrap Contract
+
+Every session starts from an unknown environment state. Dependencies may have changed, build artifacts may be stale, or types may be broken from a previous incomplete session. `init.sh` establishes a known-good baseline before any work begins.
+
+```bash
+#!/bin/bash
+set -e  # Fail fast on any error
+
+echo "=== Initialization ==="
+npm install
+npm run build
+npm run typecheck
+npm test
+
+echo "=== Environment ready ==="
+echo "Next: read feature_list.json and pick one not_started feature"
+```
+
+`set -e` is non-negotiable. If install fails, the script stops. An agent that proceeds past a broken environment produces confusing errors for the rest of the session, and the root cause becomes difficult to isolate. Run it idempotently — calling it five times should produce the same result as calling it once.
+
+### progress.md: Session Continuity
+
+Context windows are finite. Every session that ends without a handoff note forces the next session to reconstruct context from scratch: reading git log, grepping for recent changes, inferring what was in progress. This reconstruction is expensive and imprecise, and it's where subtle errors get introduced.
+
+`progress.md` eliminates the reconstruction cost. It's a short, structured note written at the end of every session, read at the start of the next.
+
+```markdown
+# Session Progress
+
+## Last Updated
+2026-05-04 — Session 7
+
+## Active Feature
+feat-002: Document Chunking
+
+## Done This Session
+- [x] Implemented chunk() function in src/services/chunker.ts
+- [x] Added position metadata (start_char, end_char, chunk_index)
+- [x] Unit tests pass (8/8)
+
+## In Progress
+- [ ] Chunker integration with DocumentService
+  - Status: function exists, wiring not complete
+  - Blocker: none
+
+## Next Steps
+1. Wire chunker into DocumentService.import()
+2. Add integration test covering full import-to-chunk flow
+3. Update feat-002 status to passing once integration test passes
+
+## Evidence
+- lint: clean
+- typecheck: clean
+- unit tests: 8/8 pass
+- integration tests: not yet (feat-002 not complete)
+
+## Notes for Next Session
+chunk() is in src/services/chunker.ts:42. DocumentService expects a
+ChunkResult[] type (defined in src/types/documents.ts:18). The wiring
+point is DocumentService.import() at line 67.
+```
+
+The "Notes for Next Session" section is the highest-ROI part: concrete file paths, line numbers, and specific wiring points that save 5-10 minutes of orientation at session start. Treat it as a message to a colleague who knows the codebase but has no memory of what happened today.
+
+### Templates
+
+Ready-to-use starting points:
+
+- `feature_list.json` template: [`examples/templates/feature-list.json`](../examples/templates/feature-list.json)
+- `progress.md` session handoff: [`examples/claude-md/agent-progress.md`](../examples/claude-md/agent-progress.md)
+
+> **Source**: Framework and patterns from [Learn Harness Engineering](https://github.com/humanlayer/learn-harness-engineering) (HumanLayer, 2026), adapted and integrated. The verification gap concept, WIP=1 principle, and session lifecycle structure are the course's primary contributions.
+
+> **See also**: [§3.1 CLAUDE.md](#31-memory-files-claudemd) — instruction files, the Instructions subsystem. [§9.5 Tight Feedback Loops](#95-tight-feedback-loops) — automated feedback, the Feedback subsystem. [§9.24 Instinct-Based Continuous Learning](#924-instinct-based-continuous-learning) — capturing session observations across sessions.
 
 ---
 

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **New section §9.25 Harness Engineering**: five-subsystem model (Instructions, Tools, Environment, State, Feedback), verification gap pattern, WIP=1 principle, 10-step session lifecycle, feature_list.json schema with evidence field, init.sh bootstrap contract, progress.md session handoff. Source: Learn Harness Engineering (HumanLayer, 2026). TOC updated (also adds 9.23 and 9.24 entries that were missing). Templates: `examples/templates/feature-list.json`, `examples/claude-md/agent-progress.md`.
+
 - **Whitepapers P2 polish** (FR + EN): WP00, WP06 final consistency pass
   - WP00 (Introduction): "9 whitepapers" → "12 livres blancs / 12 technical whitepapers" (body now matches footer); Peak Hours callout added (March 2026, faster drain 5am–11am PT weekdays); /ultrareview updated to v2.1.114+ with CI subcommand note; /usage added to essential commands list
   - WP06 (Privacy): ZDR local cache caveat added (cache may persist 30 days locally despite 0-day server retention); Constitutional AI governance section added (priority table: safe > ethical > Anthropic compliance > helpful, with team implications)
