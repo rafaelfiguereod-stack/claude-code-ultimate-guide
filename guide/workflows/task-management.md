@@ -795,6 +795,61 @@ TaskList | jq '.tasks[] | select(.metadata.priority == "high" and .status == "pe
 
 ---
 
+## Session Lifecycle Protocol
+
+Every agent session follows the same ten-step sequence, from boot to commit. Defining these steps explicitly, rather than leaving them implicit, is what makes sessions reliably resumable after an interruption. Anthropic's own engineering team observed this directly: in a game editor experiment, a bare Claude run failed partway through, while the same workload wrapped in a structured session harness completed successfully (source: [Anthropic Engineering Blog](https://www.anthropic.com/engineering/harness-design-long-running-apps)).
+
+| Step | Action | Artifact |
+|------|--------|----------|
+| START | Read project instructions | `AGENTS.md` or `CLAUDE.md` |
+| INIT | Run environment bootstrap | `init.sh` / `npm install && npm run check` |
+| READ | Load previous session state | `progress.md` |
+| SELECT | Pick one feature, set status active | `feature_list.json` |
+| EXECUTE | Implement only that feature | Source files |
+| VERIFY | Run three-layer verification (lint, tests, e2e) | Exit codes |
+| WRAP UP | Record completion and evidence | `progress.md`, `feature_list.json` |
+| CLEANUP | Remove temp files, verify repo restarts cleanly | Repo state |
+| COMMIT | Mark session boundary in git | Git history |
+| HANDOFF | Write or update handoff note | `claudedocs/handoffs/` |
+
+### The continuity artifact: `progress.md`
+
+`progress.md` is the file that lets the READ step happen in seconds rather than minutes. It lives in the project root, stays under 50 lines, and is written for the next agent session, not for a human reviewer. That distinction matters. A handoff document (WRAP UP and HANDOFF steps) is verbose by design: it tells a human what happened, why decisions were made, and what to watch for. `progress.md` does something narrower. It records the active feature ID, the last commit hash, any current blockers, and the single next action the agent should take. No prose, no narrative.
+
+```markdown
+# Session Progress
+
+last_updated: 2026-05-04
+active_feature: feat-002
+last_commit: a3f92c1
+session_count: 3
+
+## Status
+- feat-001: passing (verified 2026-05-01)
+- feat-002: active (in progress)
+- feat-003: not_started
+
+## Next action
+Finish chunking implementation, then run: npm test -- --grep 'chunking'
+
+## Blockers
+None
+```
+
+The next session reads this at the READ step, picks up `active_feature: feat-002`, checks the last commit hash to orient itself in git history, and moves directly to the next action. No cold-start briefing required.
+
+### How this composes with the handoff triad
+
+The handoff triad pattern (create, resume, update) documented earlier in this workflow and `progress.md` serve different audiences reading the same session boundary. `progress.md` gives the agent a machine-readable starting point. The handoff document gives the human reviewer a narrative account of what changed and why. Neither replaces the other, and the two are updated at the same step (WRAP UP), which keeps them synchronized without extra overhead.
+
+### The COMMIT step as a session boundary
+
+A commit at the COMMIT step is not just a VCS operation. It is an assertion that the repository is in a restartable state. The rule is the same as in the handoff triad: only commit when the feature is complete and verified. A half-implemented feature left in a broken state means the next session starts with a broken environment, and the INIT step's `npm run check` will fail immediately, surfacing the problem before any new work begins. That failure is informative, but it is better to prevent it by holding the commit until the VERIFY step passes cleanly.
+
+For the failure mode that occurs when the VERIFY step is skipped, see The Verification Gap in [tdd-with-claude.md](tdd-with-claude.md#the-verification-gap).
+
+---
+
 ## Related Workflows
 
 - **[TDD with Claude](tdd-with-claude.md)** - Test-first development with task tracking

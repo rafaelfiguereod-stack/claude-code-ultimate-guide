@@ -793,6 +793,8 @@ echo "💡 Human review can now focus on architecture/UX/business logic"
 - **Rule 2 (Database Safety)**: Migration tests catch destructive operations
 - **Rule 6 (Pattern Following)**: Linters enforce project conventions automatically
 
+The agent-side counterpart to this paradox is the Verification Gap pattern documented in the [TDD workflow](../workflows/tdd-with-claude.md#the-verification-gap).
+
 ---
 
 ## Integration with Existing Workflows

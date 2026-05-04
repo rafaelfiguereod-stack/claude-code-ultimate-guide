@@ -92,6 +92,46 @@ A task that fails 2+ dimensions needs rework before an agent touches it. The spe
 - Out of scope: OAuth, password reset, remember me"
 ```
 
+### Feature List: Machine-Readable Scope Control
+
+A feature list is a JSON file that tracks scope and completion state per feature across agent sessions. Unlike a PRD, which describes intent, a feature list is the agent's operational contract: it gets read at session start, updated at session end, and persists across handoffs.
+
+Each feature entry has three required fields. The `description` tells the agent what to build. The `verify` field is a shell command that exits 0 on success, and this matters because it forces the definition of done to be executable, not just descriptive. The `status` field tracks progress through a one-way state machine: `not_started` → `active` → `blocked` → `passing`. An entry can only move forward, never backward. When a feature reaches `passing`, an `evidence` field records what proved it (a test name, command output, or a specific log line).
+
+The WIP=1 rule applies here: only one feature can be in `active` state at any time. Multiple active features lead to partial work and incomplete verification across all of them.
+
+Store `feature_list.json` in the project root alongside `AGENTS.md`. At session start, the agent reads it to know what was done and what to pick next. At session end, the agent writes the updated state and evidence before committing.
+
+The feature list works alongside `claudedocs/handoffs/`. Together, these two artifacts give the next session both the operational state (which features are done and verified) and the narrative context (what happened, what was tried, what is left open). Neither replaces the other.
+
+A minimal example showing two features at different stages:
+
+```json
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Document Import",
+      "description": "Allow users to import PDF and TXT files from local filesystem",
+      "verify": "npm test -- --grep 'document import'",
+      "status": "passing",
+      "evidence": "npm test: 12 passed, 0 failed (2026-05-01 14:22)"
+    },
+    {
+      "id": "feat-002",
+      "name": "Document Chunking",
+      "description": "Split imported documents into ~500-character chunks with metadata",
+      "verify": "npm test -- --grep 'chunking'",
+      "status": "not_started",
+      "evidence": "",
+      "dependencies": ["feat-001"]
+    }
+  ]
+}
+```
+
+The `evidence` field on `feat-001` shows exactly what ran and when. The `feat-002` entry is `not_started` with an empty `evidence` field, waiting for `feat-001` to be confirmed passing before it becomes `active`. This pattern is described in the Anthropic engineering blog post on [harness design for long-running applications](https://www.anthropic.com/engineering/harness-design-long-running-apps). A ready-to-use template is available at `examples/workflows/feature-list.json`.
+
 ---
 
 ## CLAUDE.md Spec Templates

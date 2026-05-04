@@ -326,6 +326,8 @@ With Claude: Be explicit. "Write FAILING tests that don't exist yet."
 >
 > **Anti-pattern**: Blind iteration without feedback. Without verification mechanism, Claude can't converge toward correct solution—it guesses.
 
+For the implementation-side failure mode this prevents, see [The Verification Gap](../workflows/tdd-with-claude.md#the-verification-gap) in the TDD workflow.
+
 **Eval-Driven Development** — TDD for LLMs. Test agent behaviors via evals:
 - Code-based: `output == golden_answer`
 - LLM-based: Another Claude evaluates

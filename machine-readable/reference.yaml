@@ -1038,6 +1038,11 @@ deep_dive:
   spec_osmani_score: "4/5"
   spec_task_granularity: "guide/workflows/spec-first.md:62"  # Vertical slices + PRD checklist (Allan Hill, Feb 2026)
   spec_prd_checklist: "guide/workflows/spec-first.md:68"  # 6-dimension PRD quality checklist
+  spec_feature_list: "guide/workflows/spec-first.md"  # Feature list as harness primitive: triple structure (behavior+verify+state), WIP=1, state machine not_started→passing
+  tdd_verification_gap: "guide/workflows/tdd-with-claude.md"  # Verification Gap pattern: 3-layer stack (lint/test/e2e), independent evaluator, Anthropic experiment source
+  task_session_lifecycle: "guide/workflows/task-management.md"  # 10-step session lifecycle protocol: START/INIT/READ/SELECT/EXECUTE/VERIFY/WRAP UP/CLEANUP/COMMIT/HANDOFF + progress.md template
+  session_lifecycle_feature_list_template: "examples/workflows/feature-list.json"  # Machine-readable scope tracker template
+  session_lifecycle_verification_hook: "examples/hooks/bash/verification-gate.sh"  # PostToolUse independent evaluator hook
   atdd_with_agents: "guide/core/methodologies.md:161"  # ATDD + Gherkin for agentic workflows
   commands_table: 47
   shortcuts_table: 368

@@ -206,6 +206,26 @@ Then I'll implement to pass those tests.
 
 ## Anti-Patterns
 
+### The Verification Gap
+
+The Verification Gap is the failure mode where an agent reports a feature complete before the verification suite confirms it. It is the most common reliability failure in multi-session agent work, and it is entirely preventable with the right harness design.
+
+Three observable symptoms: the agent prints a success message before any test command runs; tests run but stderr is discarded or not read; only unit tests pass when the acceptance criteria specified end-to-end behavior.
+
+The fix is a three-layer verification stack that must all pass before any feature is marked `passing` in the feature list:
+
+1. **Lint** — syntax and style checks (fastest, catches obvious errors before running tests)
+2. **Unit and integration tests** — functional correctness of individual components
+3. **End-to-end tests** — behavioral contract as seen by a user or external caller
+
+Each layer catches a different class of failure. Unit tests can pass while component boundaries break. End-to-end tests surface state propagation errors and lifecycle issues that unit tests cannot see. Skipping any layer leaves a gap.
+
+The independent evaluator principle: the agent that writes the code must not be the same invocation that certifies it done. This is not about distrust of the model; it is about how context affects evaluation. An agent that just spent two hours building a feature interprets ambiguous output charitably. A PostToolUse hook or a second agent reading the exit code independently does not. The hook in `examples/hooks/bash/verification-gate.sh` implements this pattern.
+
+Anthropic documented this failure in their harness design research: in a bare run (no harness), their agent reported the game editor complete after 20 minutes. Nothing worked. With an independent evaluator added to the harness, the same model ran for 6 hours and delivered a functional result. (Source: [https://www.anthropic.com/engineering/harness-design-long-running-apps](https://www.anthropic.com/engineering/harness-design-long-running-apps))
+
+The WIP=1 rule connects here: keeping only one feature `active` at a time means the verification gap, when it occurs, affects one feature, not several simultaneously.
+
 ### What NOT to do
 
 | Anti-Pattern | Why It's Wrong | Correct Approach |

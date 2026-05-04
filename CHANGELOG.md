@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Harness engineering concepts integrated from Learn Harness Engineering course (HumanLayer/Anthropic, 2026)**: three new sections across existing workflow files, two new templates, two cross-reference notes
+  - `guide/workflows/spec-first.md`: new subsection "Feature List: Machine-Readable Scope Control" — triple structure (behavior, shell verify command, state), one-way state machine (not_started → active → blocked → passing), WIP=1 rule, evidence field, connection to handoff pattern
+  - `guide/workflows/tdd-with-claude.md`: new subsection "The Verification Gap" — failure mode where agent declares done before verification, three-layer stack (lint/tests/e2e), independent evaluator principle, Anthropic game experiment citation (https://www.anthropic.com/engineering/harness-design-long-running-apps)
+  - `guide/workflows/task-management.md`: new section "Session Lifecycle Protocol" — 10-step table (START through HANDOFF), progress.md as continuity artifact with inline template, connection to existing handoff triad
+  - `guide/core/methodologies.md`: one-sentence cross-ref added after Verification Loops callout
+  - `guide/security/production-safety.md`: one-sentence cross-ref added after Verification Paradox
+  - New templates: `examples/workflows/feature-list.json`, `examples/hooks/bash/verification-gate.sh`
+  - Claims: only VERIFIED sources cited (Anthropic engineering blog, OpenAI harness-engineering post); illustrative percentages from course dropped
+
 - **New section §9.25 Harness Engineering**: five-subsystem model (Instructions, Tools, Environment, State, Feedback), verification gap pattern, WIP=1 principle, 10-step session lifecycle, feature_list.json schema with evidence field, init.sh bootstrap contract, progress.md session handoff. Source: Learn Harness Engineering (HumanLayer, 2026). TOC updated (also adds 9.23 and 9.24 entries that were missing). Templates: `examples/templates/feature-list.json`, `examples/claude-md/agent-progress.md`.
 
 - **Whitepapers P2 polish** (FR + EN): WP00, WP06 final consistency pass
