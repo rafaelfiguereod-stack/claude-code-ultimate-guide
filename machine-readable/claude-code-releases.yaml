@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.126"
-updated: "2026-05-01"
+latest: "2.1.128"
+updated: "2026-05-05"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,14 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-May 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.128"
+    date: "2026-05-05"
+    highlights:
+      - "EnterWorktree now creates branch from local HEAD (not origin/<default-branch>) — unpushed commits no longer dropped"
+      - "--plugin-dir accepts .zip plugin archives; --channels works with console (API key) auth (requires channelsEnabled: true for managed orgs)"
+      - "/mcp shows tool count per server and flags 0-tool servers; MCP reconnects no longer flood with tool name lists"
+      - "Fixes: parallel bash tool failure no longer cancels sibling calls, sub-agent summaries missing prompt cache (~3x cache_creation reduction), 1M-context models false 'Prompt is too long', MCP stdio corrupted args with spaces/metacharacters, 35+ bug fixes"
 
   - version: "2.1.126"
     date: "2026-05-01"
